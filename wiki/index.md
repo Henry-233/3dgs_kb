@@ -1,0 +1,47 @@
+# 3D Gaussian Splatting — Knowledge Base
+
+## Papers
+
+### Base
+- [[papers/3d-gaussian-splatting|3D Gaussian Splatting for Real-Time Radiance Field Rendering]] (Kerbl et al., SIGGRAPH 2023)
+
+### Extensions
+- [[papers/mip-splatting|Mip-Splatting: Alias-free 3D Gaussian Splatting]] (Yu et al., CVPR 2024)
+- [[papers/gaussian-opacity-fields|Gaussian Opacity Fields]] (Yu et al., arxiv 2024)
+- [[papers/mobile-gs|Mobile-GS: Real-time Gaussian Splatting for Mobile Devices]] (2024)
+- [[papers/langsplat|LangSplat: 3D Language Gaussian Splatting]] (Qin et al., CVPR 2024)
+
+### Applications
+- [[papers/street-gaussians|Street Gaussians: Modeling Dynamic Urban Scenes]] (Yan et al., ECCV 2024)
+
+---
+
+## Concepts
+
+### Core Representation
+- [[concepts/3d-gaussian|3D高斯]]
+- [[concepts/covariance-matrix|协方差矩阵]]
+- [[concepts/spherical-harmonics|球谐函数]]
+
+### Rendering
+- [[concepts/projection-transform|投影变换]]
+- [[concepts/tile-based-rasterization|Tile-based光栅化]]
+- [[concepts/alpha-compositing|Alpha合成]]
+- [[concepts/order-independent-rendering|顺序无关渲染]]
+
+### Training & Optimization
+- [[concepts/adaptive-density-control|自适应密度控制]]
+- [[concepts/ssim-loss|SSIM损失]]
+
+### Compression
+- [[concepts/gaussian-compression|高斯压缩]]
+- [[concepts/neural-view-dependent-enhancement|神经视角依赖增强]]
+
+### Semantics
+- [[concepts/3d-language-field|3D语言场]]
+
+### Comparison Methods
+- [[concepts/nerf|NeRF]]
+- [[concepts/instant-ngp|Instant-NGP]]
+- [[concepts/mip-nerf|Mip-NeRF]]
+- [[concepts/tensorf|TensoRF]]

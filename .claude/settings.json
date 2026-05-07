@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pdfinfo \"raw/papers/LangSplat 3D Language Gaussian Splatting.pdf\")",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}

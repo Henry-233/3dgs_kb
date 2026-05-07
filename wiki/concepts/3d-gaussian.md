@@ -24,4 +24,6 @@ $$G(x) = e^{-\frac{1}{2}(x - \mu)^T \Sigma^{-1} (x - \mu)}$$
 
 ## 关联
 - 相关概念: [[concepts/covariance-matrix]], [[concepts/spherical-harmonics]], [[concepts/projection-transform]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]]
+- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/langsplat]]
+
+3DGS中每个高斯携带颜色和几何信息（SH系数、不透明度、协方差）。LangSplat扩展了这一表示，为每个3D高斯添加语言特征向量（从CLIP蒸馏），使高斯同时具备视觉和语义表达能力。

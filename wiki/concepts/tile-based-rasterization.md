@@ -19,4 +19,6 @@ Tile-based光栅化是3DGS中实现实时渲染的关键算法。不同于逐像
 
 ## 关联
 - 相关概念: [[concepts/alpha-compositing]], [[concepts/projection-transform]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]]
+- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/langsplat]]
+
+LangSplat将tile-based splatting从颜色渲染扩展到语言特征渲染，通过同一光栅化管线高效生成语言特征图。
