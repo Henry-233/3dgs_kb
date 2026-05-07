@@ -113,11 +113,11 @@ $$L = L_{rgb} + \lambda_{distill} L_{distill} + \lambda_{depth} L_{depth}$$
 
 ### 与其他排序无关方法对比（Table 8）
 
-| 方法 | 渲染公式类型 | 移动端FPS | 存储 |
-|------|------------|----------|------|
-| SortFreeGS* (quantized) | 加权和 $w(d_i) = \exp(-\kappa_i d_i)$ | 18 | 64.3 MB |
-| GES | Surfel混合 | 24 | 29.4 MB |
-| **Mobile-GS** | 深度感知OIR + MLP增强 | **127** | **4.6 MB** |
+| 方法                      | 渲染公式类型                             | 移动端FPS  | 存储         |
+| ----------------------- | ---------------------------------- | ------- | ---------- |
+| SortFreeGS* (quantized) | 加权和 $w(d_i) = \exp(-\kappa_i d_i)$ | 18      | 64.3 MB    |
+| GES                     | Surfel混合                           | 24      | 29.4 MB    |
+| **Mobile-GS**           | 深度感知OIR + MLP增强                    | **127** | **4.6 MB** |
 
 ## 实验结论
 
