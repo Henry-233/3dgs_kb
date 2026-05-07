@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:arxiv.org)",
+      "WebSearch",
+      "Bash(python -c \"import PyPDF2; print\\('PyPDF2 available'\\)\")",
+      "Bash(python -c \"import pikepdf; print\\('pikepdf available'\\)\")",
+      "Bash(python -c \"import pdfplumber; print\\('pdfplumber available'\\)\")",
+      "Bash(pdftotext \"F:/A2026/Obsidian/3dgs_kb/3dgs-kb/raw/papers/Mobile-GS Real-time Gaussian Splatting for Mobile Devices.pdf\" -)"
+    ]
+  }
+}
