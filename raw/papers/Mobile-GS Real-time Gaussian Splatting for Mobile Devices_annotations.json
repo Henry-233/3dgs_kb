@@ -1,0 +1,122 @@
+[
+  {
+    "page": 1,
+    "phrase": "first real-time Gaussian Splatting method that can reach 116 FPS",
+    "category": "result",
+    "note": "结果：首个在移动端实现实时渲染的3DGS方法，骁龙8 Gen 3上达116 FPS（Bicycle场景1600×1063）"
+  },
+  {
+    "page": 1,
+    "phrase": "depth-aware order-independent rendering scheme",
+    "category": "core_contribution",
+    "note": "核心贡献：提出深度感知的顺序无关渲染，消除alpha合成中的排序瓶颈，大幅加速渲染"
+  },
+  {
+    "page": 1,
+    "phrase": "eliminates the need for sorting",
+    "category": "method",
+    "note": "方法：顺序无关渲染的核心——消除深度排序依赖，使所有高斯可并行累加"
+  },
+  {
+    "page": 1,
+    "phrase": "substantially reducing the storage requirements to 4.8 MB",
+    "category": "result",
+    "note": "结果：模型存储从3DGS的~840MB压缩至4.8MB，减少175倍以上"
+  },
+  {
+    "page": 2,
+    "phrase": "Sorting as the primary performance bottleneck",
+    "category": "limitation",
+    "note": "瓶颈分析：排序操作占3DGS推理时间的40-70%，是移动端部署的最大障碍"
+  },
+  {
+    "page": 2,
+    "phrase": "removing the sorting step substantially accelerates 3DGS, achieving several-fold speedup",
+    "category": "method",
+    "note": "动机：移除排序后3DGS速度提升数倍，证明排序是核心瓶颈，但需解决alpha合成正确性问题"
+  },
+  {
+    "page": 3,
+    "phrase": "distill the first-order SH parameters",
+    "category": "core_contribution",
+    "note": "核心贡献：将3阶SH（48系数）蒸馏至1阶SH（12系数），参数量减少4倍，存储大幅压缩"
+  },
+  {
+    "page": 3,
+    "phrase": "quantize 3D Gaussian parameters grouped by K-means",
+    "category": "core_contribution",
+    "note": "核心贡献：用K-Means分组+多码本量化3D高斯属性向量，配合神经解码器重建SH特征"
+  },
+  {
+    "page": 3,
+    "phrase": "contribution-based pruning strategy to prune redundant Gaussians",
+    "category": "core_contribution",
+    "note": "核心贡献：基于不透明度和尺度的贡献度剪枝，投票机制累积后剪除低贡献高斯"
+  },
+  {
+    "page": 5,
+    "phrase": "depth-aware weight that modulates the contribution",
+    "category": "method",
+    "note": "方法：深度感知权重wi = β² + σ + β·d² + exp(smax/d)，近处+大尺度高斯权重高，无需排序即可调节贡献"
+  },
+  {
+    "page": 5,
+    "phrase": "inverse depth to reduce the contributions of the distant 3D Gaussians",
+    "category": "method",
+    "note": "方法：用深度倒数抑制远处高斯的贡献（d²项），用exp(smax/d)提升近处大高斯权重"
+  },
+  {
+    "page": 5,
+    "phrase": "view-dependent per-Gaussian parameters",
+    "category": "method",
+    "note": "方法：β_i由轻量MLP根据相机方向、高斯尺度/旋转/SH预测，提供视角依赖的贡献调节"
+  },
+  {
+    "page": 6,
+    "phrase": "scale-invariant depth distillation loss",
+    "category": "method",
+    "note": "方法：尺度不变深度蒸馏损失——不直接用L1/L2（教师学生深度尺度可能不同），用对数空间尺度不变形式"
+  },
+  {
+    "page": 6,
+    "phrase": "Neural Vector Quantization",
+    "category": "method",
+    "note": "方法：将高斯属性向量通过K-Means分K簇，每簇独立码本量化，多码本减少码字碰撞、简化推理查找"
+  },
+  {
+    "page": 7,
+    "phrase": "pruning votes for each Gaussian",
+    "category": "method",
+    "note": "方法：贡献度剪枝采用投票累积机制——不立即删除候选高斯，累积票数超阈值(I_prune·v)后才永久剪除"
+  },
+  {
+    "page": 7,
+    "phrase": "Gaussian g is permanently pruned",
+    "category": "method",
+    "note": "方法：剪枝条件——不透明度<Q_τ(o)且尺度<Q_τ(s_max)的高斯进入候选集，连续多轮在候选集中才被移除"
+  },
+  {
+    "page": 8,
+    "phrase": "4.6 MB",
+    "category": "result",
+    "note": "结果：Mip-NeRF360数据集上Mobile-GS模型仅4.6MB（3DGS原版839.9MB），压缩183倍"
+  },
+  {
+    "page": 9,
+    "phrase": "Runtime Analysis",
+    "category": "result",
+    "note": "结果：移动端127 FPS（骁龙8 Gen 3），桌面端1125 FPS（RTX 3090 Ti），均为实时帧率"
+  },
+  {
+    "page": 9,
+    "phrase": "our proposed Mobile-GS requires more training time",
+    "category": "limitation",
+    "note": "局限：Mobile-GS训练时间1.5小时，长于其他轻量方法（0.4-0.8h），因需训练MLP和蒸馏过程"
+  },
+  {
+    "page": 10,
+    "phrase": "codebook size",
+    "category": "limitation",
+    "note": "局限：码本大小敏感——2^6时PSNR骤降至25.52，2^12时存储增至7.9MB，2^10为最佳平衡（27.12 PSNR/4.6MB）"
+  }
+]
