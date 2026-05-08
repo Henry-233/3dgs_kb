@@ -1,0 +1,128 @@
+[
+  {
+    "page": 1,
+    "phrase": "each encoding language features distilled from CLIP",
+    "category": "core_contribution",
+    "note": "核心贡献：首个用3D高斯集合表示语言场的方法，每个高斯编码从CLIP蒸馏的语言特征"
+  },
+  {
+    "page": 1,
+    "phrase": "tile-based splatting technique for rendering language features",
+    "category": "method",
+    "note": "方法：用tile-based splatting渲染语言特征，替代NeRF昂贵的体渲染流程"
+  },
+  {
+    "page": 1,
+    "phrase": "scene-wise language autoencoder",
+    "category": "method",
+    "note": "方法：场景级语言自编码器将高维CLIP特征压缩到低维潜空间，缓解显存压力"
+  },
+  {
+    "page": 1,
+    "phrase": "199 × speedup compared to LERF",
+    "category": "result",
+    "note": "结果：LangSplat在1440×1080分辨率下比LERF快199倍"
+  },
+  {
+    "page": 2,
+    "phrase": "first 3D Gaussian Splatting-based method for 3D language fields",
+    "category": "core_contribution",
+    "note": "核心贡献：首个基于3DGS的3D语言场方法，开创显式语义高斯表示新范式"
+  },
+  {
+    "page": 2,
+    "phrase": "learn the hierarchical semantics defined by SAM",
+    "category": "method",
+    "note": "方法：利用SAM定义的层次语义（whole/part/subpart）解决点歧义问题"
+  },
+  {
+    "page": 2,
+    "phrase": "point ambiguity issue",
+    "category": "method",
+    "note": "核心问题：同一3D点同时属于多个语义层级（如熊鼻子∈鼻子∈头∈整只熊），导致训练目标歧义"
+  },
+  {
+    "page": 2,
+    "phrase": "scale-based solution",
+    "category": "limitation",
+    "note": "局限：LERF的多尺度方案需渲染多达30个尺度，查询时间增30倍且patch常含背景噪声"
+  },
+  {
+    "page": 3,
+    "phrase": "extends each 3D Gaussian with language embeddings for open-vocabulary",
+    "category": "core_contribution",
+    "note": "创新：将3DGS从纯视觉表示扩展到语言嵌入，每个高斯同时携带几何和语义信息"
+  },
+  {
+    "page": 4,
+    "phrase": "three different masks for a point prompt, namely, whole, part, and subpart",
+    "category": "method",
+    "note": "方法：SAM为一个点提示生成三个层次mask——整体、部件、子部件，预定义三层语义尺度"
+  },
+  {
+    "page": 4,
+    "phrase": "feed a regular grid of 32 × 32 point prompts into SAM",
+    "category": "method",
+    "note": "实现细节：对每张图输入32×32均匀点网格到SAM，获取三层全图语义分割"
+  },
+  {
+    "page": 5,
+    "phrase": "augments each 3D Gaussian with three language embeddings",
+    "category": "method",
+    "note": "方法：每个3D高斯增加{f^s, f^p, f^w}三组语言嵌入，对应SAM的三个语义层级"
+  },
+  {
+    "page": 5,
+    "phrase": "by over 35 times",
+    "category": "limitation",
+    "note": "局限：直接存储512维CLIP特征使显存需求膨胀35倍以上，容易耗尽L1缓存"
+  },
+  {
+    "page": 5,
+    "phrase": "scene priors to compress CLIP features",
+    "category": "method",
+    "note": "方法：利用场景先验——单场景SAM分割区域仅数百个，CLIP空间中稀疏分布，可用低维压缩"
+  },
+  {
+    "page": 6,
+    "phrase": "compresses the 512-dimensional CLIP features into 3-dimensional",
+    "category": "method",
+    "note": "实现细节：MLP自编码器将512维CLIP特征压缩至3维，大幅降低显存（d=3时效率精度最优）"
+  },
+  {
+    "page": 6,
+    "phrase": "overall accuracy of 84.3%",
+    "category": "result",
+    "note": "结果：LERF数据集上3D物体定位准确率84.3%，显著超越LERF（73.6%）"
+  },
+  {
+    "page": 6,
+    "phrase": "outperforms LERF by 14.0%",
+    "category": "result",
+    "note": "结果：3D语义分割IoU达51.4%，超越LERF（37.4%）14个百分点"
+  },
+  {
+    "page": 7,
+    "phrase": "IoU by 18.54%",
+    "category": "result",
+    "note": "消融结论：用SAM替代多尺度方案直接提升IoU 18.54%，证明层次语义是精度提升的关键"
+  },
+  {
+    "page": 7,
+    "phrase": "running out of L1 cache memory",
+    "category": "limitation",
+    "note": "局限：无自编码器时直接建模CLIP特征会导致L1缓存溢出（OOM），百万级高斯场景不可行"
+  },
+  {
+    "page": 7,
+    "phrase": "most of the computational time is allocated to the decoder",
+    "category": "limitation",
+    "note": "瓶颈：高分辨率下解码器（MLP逐像素恢复512维CLIP特征）成为推理速度瓶颈"
+  },
+  {
+    "page": 8,
+    "phrase": "achieves an overall mIoU of 93.4%",
+    "category": "result",
+    "note": "结果：3D-OVS数据集上mIoU达93.4%，超越所有2D和3D SOTA方法"
+  }
+]

@@ -143,5 +143,6 @@ $$\mathcal{L}_{lang} = \sum_{l \in \{s,p,w\}} \sum_{t=1}^{T} d_{lang}(F_t^l(v), 
 
 ## 关联
 - 基于: [[papers/3d-gaussian-splatting]]
+- 被引用: [[papers/dr-splat]]
 - 对比方法: [[concepts/nerf]]（LERF为NeRF-based）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/3d-language-field]], [[concepts/tile-based-rasterization]], [[concepts/alpha-compositing]]

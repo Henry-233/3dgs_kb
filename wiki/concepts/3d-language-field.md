@@ -4,7 +4,11 @@ tags: [concept, semantics]
 ---
 
 ## 定义
-3D语言场（3D Language Field）是三维场景的一种语义表示形式，将场景中的每个空间位置映射到语言特征向量（通常来自CLIP等多模态模型）。用户通过自然语言查询即可定位场景中的物体或区域，实现开放词汇的3D场景理解。LangSplat首次用3D高斯实现语言场——每个高斯携带低维语言特征（经场景级自编码器从CLIP蒸馏），通过tile-based splatting渲染语言特征图。
+3D语言场（3D Language Field）是三维场景的一种语义表示形式，将场景中的每个空间位置映射到语言特征向量（通常来自CLIP等多模态模型）。用户通过自然语言查询即可定位场景中的物体或区域，实现开放词汇的3D场景理解。
+
+两种构建范式：
+- **渲染训练**（LangSplat）：通过可微渲染训练每个高斯的语言特征，最小化渲染特征与SAM+CLIP目标特征的差异
+- **直接注册**（Dr. Splat）：将CLIP特征直接分配给每个像素光线穿过的"主导高斯"（top-K alpha贡献），无需渲染训练和梯度反传
 
 ## 直觉理解
 3D语言场可以理解为给3D场景"涂上了一层语义颜料"——每个点不仅有颜色和形状，还带有"这是什么"的语言描述能力。当你用"红色的椅子"查询场景时，语言场在所有高斯中搜索与"红色椅子"语义最匹配的区域并高亮显示。
@@ -41,5 +45,5 @@ SAM（Segment Anything Model, ViT-H）对每张训练图像输入32×32均匀点
 - 消除对DINO特征的依赖
 
 ## 关联
-- 相关概念: [[concepts/3d-gaussian]], [[concepts/nerf]], [[concepts/tile-based-rasterization]]
-- 用到该概念的论文: [[papers/langsplat]]
+- 相关概念: [[concepts/3d-gaussian]], [[concepts/nerf]], [[concepts/tile-based-rasterization]], [[concepts/product-quantization]]
+- 用到该概念的论文: [[papers/langsplat]], [[papers/dr-splat]]

@@ -34,5 +34,5 @@ status: done
 - 训练时间约30-60分钟（单GPU）
 
 ## 关联
-- 被引用: [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/langsplat]]
+- 被引用: [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/langsplat]], [[papers/dr-splat]]
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/covariance-matrix]], [[concepts/spherical-harmonics]], [[concepts/alpha-compositing]], [[concepts/tile-based-rasterization]], [[concepts/adaptive-density-control]], [[concepts/projection-transform]], [[concepts/ssim-loss]]

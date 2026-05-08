@@ -2,7 +2,12 @@
   "permissions": {
     "allow": [
       "Bash(pdfinfo \"raw/papers/LangSplat 3D Language Gaussian Splatting.pdf\")",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(curl -sL \"https://export.arxiv.org/api/query?id_list=2502.16652&max_results=1\")",
+      "Bash(curl -sL \"https://arxiv.org/abs/2502.16652\")",
+      "Bash(curl -sL \"https://drsplat.github.io/\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/kaist-ami/Dr-Splat/main/README.md\")",
+      "Bash(pip install *)"
     ]
   }
 }

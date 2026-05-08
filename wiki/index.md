@@ -10,6 +10,7 @@
 - [[papers/gaussian-opacity-fields|Gaussian Opacity Fields]] (Yu et al., arxiv 2024)
 - [[papers/mobile-gs|Mobile-GS: Real-time Gaussian Splatting for Mobile Devices]] (2024)
 - [[papers/langsplat|LangSplat: 3D Language Gaussian Splatting]] (Qin et al., CVPR 2024)
+- [[papers/dr-splat|Dr. Splat: Direct Language Embedding Registration]] (Kim et al., CVPR 2025 Highlight)
 
 ### Applications
 - [[papers/street-gaussians|Street Gaussians: Modeling Dynamic Urban Scenes]] (Yan et al., ECCV 2024)
@@ -36,6 +37,7 @@
 ### Compression
 - [[concepts/gaussian-compression|高斯压缩]]
 - [[concepts/neural-view-dependent-enhancement|神经视角依赖增强]]
+- [[concepts/product-quantization|乘积量化]]
 
 ### Semantics
 - [[concepts/3d-language-field|3D语言场]]
