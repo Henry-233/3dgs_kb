@@ -15,6 +15,9 @@
 ### Applications
 - [[papers/street-gaussians|Street Gaussians: Modeling Dynamic Urban Scenes]] (Yan et al., ECCV 2024)
 
+### Related Methods
+- [[papers/vggt|VGGT: Visual Geometry Grounded Transformer]] (Wang et al., CVPR 2025 Best Paper)
+
 ---
 
 ## Concepts
@@ -41,6 +44,9 @@
 
 ### Semantics
 - [[concepts/3d-language-field|3D语言场]]
+
+### 3D Vision Foundations
+- [[concepts/structure-from-motion|运动恢复结构（SfM）]]
 
 ### Comparison Methods
 - [[concepts/nerf|NeRF]]

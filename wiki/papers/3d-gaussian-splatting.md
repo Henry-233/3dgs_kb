@@ -15,7 +15,7 @@ status: done
 
 ## 核心方法
 三个关键创新：
-1. **3D高斯表示**：从SfM稀疏点云初始化3D高斯，每个高斯携带位置、协方差矩阵、不透明度和球谐函数颜色系数
+1. **3D高斯表示**：从 [[concepts/structure-from-motion|SfM]] 稀疏点云初始化3D高斯，每个高斯携带位置、协方差矩阵、不透明度和球谐函数颜色系数。VGGT等前馈模型可替代SfM提供更稠密的初始几何
 2. **自适应密度优化**：训练中周期性执行高斯的克隆、分裂和剪枝操作，自动适应场景几何复杂度
 3. **Tile-based快速渲染**：将屏幕划分为16×16 tile，每个tile独立排序和Alpha合成，GPU友好
 
@@ -35,4 +35,5 @@ status: done
 
 ## 关联
 - 被引用: [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/langsplat]], [[papers/dr-splat]]
-- 涉及概念: [[concepts/3d-gaussian]], [[concepts/covariance-matrix]], [[concepts/spherical-harmonics]], [[concepts/alpha-compositing]], [[concepts/tile-based-rasterization]], [[concepts/adaptive-density-control]], [[concepts/projection-transform]], [[concepts/ssim-loss]]
+- 相关方法: [[papers/vggt]]（替代SfM初始化）
+- 涉及概念: [[concepts/3d-gaussian]], [[concepts/covariance-matrix]], [[concepts/spherical-harmonics]], [[concepts/alpha-compositing]], [[concepts/tile-based-rasterization]], [[concepts/adaptive-density-control]], [[concepts/projection-transform]], [[concepts/ssim-loss]], [[concepts/structure-from-motion]]
