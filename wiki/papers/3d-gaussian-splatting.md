@@ -34,6 +34,6 @@ status: done
 - 训练时间约30-60分钟（单GPU）
 
 ## 关联
-- 被引用: [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/langsplat]], [[papers/dr-splat]]
+- 被引用: [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/langsplat]], [[papers/dr-splat]], [[papers/gs-livo]]
 - 相关方法: [[papers/vggt]]（替代SfM初始化）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/covariance-matrix]], [[concepts/spherical-harmonics]], [[concepts/alpha-compositing]], [[concepts/tile-based-rasterization]], [[concepts/adaptive-density-control]], [[concepts/projection-transform]], [[concepts/ssim-loss]], [[concepts/structure-from-motion]]

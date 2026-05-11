@@ -32,3 +32,5 @@ Mobile-GS在标准ADC基础上提出贡献度剪枝（Contribution-based Pruning
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/gaussian-compression]]
 - 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/street-gaussians]], [[papers/mobile-gs]]
+
+GS-LIVO不采用标准的ADC（克隆/分裂/剪枝），而是通过LiDAR点云直接初始化高斯（基于八叉树叶节点体素采样），避免了昂贵的手工启发式增密过程。高斯结构的初始化质量由LiDAR测量精度保证。

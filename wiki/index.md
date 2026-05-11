@@ -14,6 +14,7 @@
 
 ### Applications
 - [[papers/street-gaussians|Street Gaussians: Modeling Dynamic Urban Scenes]] (Yan et al., ECCV 2024)
+- [[papers/gs-livo|GS-LIVO: Real-Time LiDAR-Inertial-Visual Odometry With Gaussian Mapping]] (Hong et al., IEEE TRO 2025)
 
 ### Related Methods
 - [[papers/vggt|VGGT: Visual Geometry Grounded Transformer]] (Wang et al., CVPR 2025 Best Paper)
@@ -47,6 +48,10 @@
 
 ### 3D Vision Foundations
 - [[concepts/structure-from-motion|运动恢复结构（SfM）]]
+
+### SLAM & State Estimation
+- [[concepts/slam|SLAM（同步定位与建图）]]
+- [[concepts/ieskf|IESKF（迭代误差状态卡尔曼滤波）]]
 
 ### Comparison Methods
 - [[concepts/nerf|NeRF]]

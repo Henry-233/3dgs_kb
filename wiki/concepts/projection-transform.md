@@ -21,4 +21,4 @@ $$\Sigma' = J W \Sigma W^T J^T$$
 
 ## 关联
 - 相关概念: [[concepts/covariance-matrix]], [[concepts/3d-gaussian]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]]
+- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/gs-livo]]
