@@ -48,6 +48,11 @@
 
 ### 3D Vision Foundations
 - [[concepts/structure-from-motion|运动恢复结构（SfM）]]
+- [[concepts/point-map|点图（Point Map）]]
+
+### Neural 3D Reconstruction
+- [[concepts/feed-forward-3d-reconstruction|前馈式3D重建]]
+- [[concepts/alternating-attention|交替注意力（Alternating-Attention）]]
 
 ### SLAM & State Estimation
 - [[concepts/slam|SLAM（同步定位与建图）]]

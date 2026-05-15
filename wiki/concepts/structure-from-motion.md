@@ -40,6 +40,6 @@ $$x_2^T F x_1 = 0$$
 3DGS标准流程的第一步是用COLMAP进行SfM → 获得相机参数和稀疏点云 → 在稀疏点处初始化3D高斯。SfM的失败（如相机估计错误）会直接导致3DGS重建失败。VGGT作为SfM的替代方案，有望提升3DGS初始化的鲁棒性和速度。
 
 ## 关联
-- 相关概念: [[concepts/projection-transform]]
+- 相关概念: [[concepts/projection-transform]]、[[concepts/point-map]]
 - 用到该概念的论文: [[papers/3d-gaussian-splatting]]
-- 替代方案: [[papers/vggt]]
+- 替代范式: [[concepts/feed-forward-3d-reconstruction]]（代表性工作: [[papers/vggt]]）

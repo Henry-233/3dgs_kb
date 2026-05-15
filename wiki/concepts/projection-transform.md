@@ -20,5 +20,5 @@ $$\Sigma' = J W \Sigma W^T J^T$$
 该近似对于小尺寸高斯足够精确。
 
 ## 关联
-- 相关概念: [[concepts/covariance-matrix]], [[concepts/3d-gaussian]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/gs-livo]]
+- 相关概念: [[concepts/covariance-matrix]]、[[concepts/3d-gaussian]]、[[concepts/point-map]]（投影的逆操作）
+- 用到该概念的论文: [[papers/3d-gaussian-splatting]]、[[papers/gs-livo]]、[[papers/vggt]]

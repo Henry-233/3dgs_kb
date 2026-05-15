@@ -18,6 +18,17 @@
 - [[concepts/adaptive-density-control]], [[concepts/ssim-loss]]
 - [[concepts/nerf]], [[concepts/instant-ngp]], [[concepts/mip-nerf]], [[concepts/tensorf]]
 
+## 2026-05-12 — Ingest VGGT (deep read from PDF)
+- Read [[papers/vggt]] PDF in full detail (CVPR 2025 Best Paper, 20 pages)
+- Rewrote paper page with complete methodology: problem definition, AA architecture, token design, all prediction heads, loss functions, training details, and all experimental results (Tables 1-10)
+- Created 3 new concept pages:
+  - [[concepts/point-map]] — per-pixel 3D world coordinate representation, key difference from depth map
+  - [[concepts/alternating-attention]] — frame-wise + global self-attention alternating pattern
+  - [[concepts/feed-forward-3d-reconstruction]] — paradigm shift from optimization-based to neural 3D reconstruction
+- Updated [[concepts/structure-from-motion]] with links to new concepts
+- Updated [[concepts/projection-transform]] with link to point-map
+- Updated index.md (3 new concepts, new "Neural 3D Reconstruction" section)
+
 ## 2026-05-07 — Ingest Mobile-GS (deep read from PDF)
 - Read [[papers/mobile-gs]] PDF in full detail (ICLR 2026, 19 pages)
 - Rewrote paper page with complete methodology, all mathematical formulations (Eq. 2-10), experimental results (Tables 1-8), and limitations
