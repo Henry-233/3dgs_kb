@@ -31,6 +31,16 @@ Mobile-GS在标准ADC基础上提出贡献度剪枝（Contribution-based Pruning
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/gaussian-compression]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/street-gaussians]], [[papers/mobile-gs]]
+- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/g2-mapping]]
 
 GS-LIVO不采用标准的ADC（克隆/分裂/剪枝），而是通过LiDAR点云直接初始化高斯（基于八叉树叶节点体素采样），避免了昂贵的手工启发式增密过程。高斯结构的初始化质量由LiDAR测量精度保证。
+
+## G²-Mapping的场景更新策略
+
+G²-Mapping提出了一套完全不同的场景更新机制，不依赖梯度驱动的克隆/分裂：
+
+**高斯添加（渲染管线感知）**：沿alpha合成管线搜索，直接判断像素深度处是否已有高斯。仅当深度处无高斯、或渲染不透明度不足、或深度不确定性低时才添加。比SplaTAM减少70~95%的点数。
+
+**高斯初始化（深度驱动）**：对新添加的3D点构建kd-tree，对邻居点做SVD获得特征值和特征向量，用于初始化高斯的缩放和旋转。颜色初始化SH零阶系数，α初始化为0.5。比随机初始化收敛更快。
+
+**高斯删除（透明性自然衰减）**：利用可微深度渲染的梯度——错误点在持续观测中不透明度自然降低，每200帧删除α < 0.1的点。比GS-SLAM手动按距离降低不透明度更优雅。

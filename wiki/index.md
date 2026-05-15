@@ -15,6 +15,7 @@
 ### Applications
 - [[papers/street-gaussians|Street Gaussians: Modeling Dynamic Urban Scenes]] (Yan et al., ECCV 2024)
 - [[papers/gs-livo|GS-LIVO: Real-Time LiDAR-Inertial-Visual Odometry With Gaussian Mapping]] (Hong et al., IEEE TRO 2025)
+- [[papers/g2-mapping|G²-Mapping: General Gaussian Mapping for Monocular, RGB-D, and LiDAR-Inertial-Visual Systems]] (Chen et al., IEEE TASE 2025)
 
 ### Related Methods
 - [[papers/vggt|VGGT: Visual Geometry Grounded Transformer]] (Wang et al., CVPR 2025 Best Paper)

@@ -1,0 +1,158 @@
+[
+  {
+    "page": 1,
+    "phrase": "differentiable rendering approach that leverages both depth and color",
+    "category": "core_contribution",
+    "note": "核心贡献：提出同时支持颜色和深度的可微渲染方法，补全了3DGS缺失的深度和位姿梯度"
+  },
+  {
+    "page": 1,
+    "phrase": "scale consistency and uncertainty weighted optimization",
+    "category": "method",
+    "note": "方法：提出尺度一致性和不确定性加权的深度优化，消除单目深度预测的误差影响"
+  },
+  {
+    "page": 1,
+    "phrase": "surpasses feature-based SLAM in localization precision",
+    "category": "result",
+    "note": "实验结果：定位精度超越传统特征法SLAM，渲染质量超过最新神经SLAM方法"
+  },
+  {
+    "page": 2,
+    "phrase": "comprehensive differentiable renderer that handles both color and depth",
+    "category": "core_contribution",
+    "note": "核心贡献：构建包含颜色和深度的完整可微渲染器，含相机位姿的Jacobian推导"
+  },
+  {
+    "page": 2,
+    "phrase": "simplified odometry approach that provides a metric depth estimation",
+    "category": "method",
+    "note": "方法：提出简化里程计为单目提供度量深度估计，解决场景初始化难题"
+  },
+  {
+    "page": 2,
+    "phrase": "gaussian scene updating strategy that meticulously integrates depth-based",
+    "category": "method",
+    "note": "方法：高斯场景更新策略整合深度初始化、管线感知添加和透明性删除"
+  },
+  {
+    "page": 3,
+    "phrase": "comprehensive differentiable renderer with Taichi",
+    "category": "method",
+    "note": "方法：用Taichi语言实现全面可微渲染器，充分利用深度、颜色和位姿的反向传播信息"
+  },
+  {
+    "page": 3,
+    "phrase": "first general 3DGS mapping framework that supports multi-source data input",
+    "category": "core_contribution",
+    "note": "核心贡献：首个通用3DGS建图框架，同时支持单目、RGB-D和LIV三种传感器模态"
+  },
+  {
+    "page": 3,
+    "phrase": "scale-consistent and uncertainty-weighted depth optimization method",
+    "category": "method",
+    "note": "方法：尺度一致且不确定性加权的深度优化，减少深度预测的误差估计"
+  },
+  {
+    "page": 4,
+    "phrase": "PyTorch lacks an automatic differentiation mechanism for gaussian scene",
+    "category": "method",
+    "note": "技术背景：PyTorch缺少对高斯场景的自动微分机制，原3DGS用CUDA仅实现了颜色可微"
+  },
+  {
+    "page": 4,
+    "phrase": "differentiable depth to optimize gaussian point attributes",
+    "category": "core_contribution",
+    "note": "核心贡献：引入可微深度来优化高斯点属性，推导了深度对位置、协方差和不透明度的完整导数"
+  },
+  {
+    "page": 4,
+    "phrase": "depth continuously reduces the opacity",
+    "category": "method",
+    "note": "实现技巧：深度会持续降低观测高斯的透明度导致错误删除，因此对深度梯度乘1e-4系数"
+  },
+  {
+    "page": 5,
+    "phrase": "pre-tracking process is designed to maintain a local map",
+    "category": "method",
+    "note": "方法：基于特征的预跟踪维护局部地图保证尺度一致性，失败时优雅降级为恒速假设"
+  },
+  {
+    "page": 5,
+    "phrase": "project the depth maps of nearby frames onto the current frame",
+    "category": "method",
+    "note": "方法：多视图一致性检验——将邻近帧深度图投影到当前帧计算深度差异作为不确定性"
+  },
+  {
+    "page": 5,
+    "phrase": "reduce the number of gaussian points by 70",
+    "category": "result",
+    "note": "实验结果：管线感知的高斯添加策略比SplaTAM减少70%~95%的高斯点数"
+  },
+  {
+    "page": 6,
+    "phrase": "implemented in the Taichi language",
+    "category": "method",
+    "note": "实现细节：可微渲染器用Taichi语言实现，Adam优化器学习率1e-5，运行于NVIDIA RTX 4090"
+  },
+  {
+    "page": 6,
+    "phrase": "64.6% reduction in trajectory error",
+    "category": "result",
+    "note": "实验结果：RGB-D模式ATE仅1.21cm，比SplaTAM的3.42cm降低64.6%"
+  },
+  {
+    "page": 6,
+    "phrase": "38.9% decrease in trajectory error, from 1.98 cm to 1.21 cm",
+    "category": "result",
+    "note": "实验结果：比特征法ORB-SLAM2的1.98cm降低38.9%，达到1.21cm"
+  },
+  {
+    "page": 7,
+    "phrase": "surpasses the second-best method by 5.19dB",
+    "category": "result",
+    "note": "实验结果：渲染PSNR比第二名高5.19dB（↑15.2%），LPIPS提升0.08（↑80%）"
+  },
+  {
+    "page": 7,
+    "phrase": "outperforms NICER-SLAM by 3.65",
+    "category": "result",
+    "note": "实验结果：单目新视角合成全面超越NICER-SLAM，PSNR提升3.65（↑15.3%）"
+  },
+  {
+    "page": 8,
+    "phrase": "depth constraint has little impact on the fidelity of the training view",
+    "category": "result",
+    "note": "消融发现：深度约束对训练视图影响小但显著提升新视角——消除了纯颜色的几何歧义"
+  },
+  {
+    "page": 8,
+    "phrase": "isotropic regularization leads to a decrease in fidelity",
+    "category": "result",
+    "note": "消融发现：各向同性正则化降低新视角保真度（与颜色损失冲突），但对深度优化有益"
+  },
+  {
+    "page": 9,
+    "phrase": "sets a new benchmark for future research in scene representation",
+    "category": "core_contribution",
+    "note": "总结：为场景表示和渲染设立新基准，开辟通用Gaussian SLAM的新方向"
+  },
+  {
+    "page": 10,
+    "phrase": "relies on the median of scene depth to maintain scale consistency",
+    "category": "limitation",
+    "note": "局限性：单目跟踪失败时依赖场景深度中值维持尺度一致性，复杂场景下可能不准确"
+  },
+  {
+    "page": 10,
+    "phrase": "linear mapping to calculate depth values",
+    "category": "limitation",
+    "note": "局限性：深度估计模块使用线性映射计算深度值，误差会传播到高斯初始化"
+  },
+  {
+    "page": 10,
+    "phrase": "Sparse-guided depth completion presents a promising solution",
+    "category": "limitation",
+    "note": "未来方向：稀疏引导的深度补全可利用预跟踪稀疏点提升深度精度"
+  }
+]

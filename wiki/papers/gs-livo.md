@@ -81,4 +81,5 @@ $$\theta^* = \arg\min_\theta \|I_{obs} - I_{render}(T_{WC}; \theta)\|$$
 ## 关联
 - 基于: [[papers/3d-gaussian-splatting]]
 - 相关方法: [[concepts/slam]], [[concepts/ieskf]]
+- 后续工作: [[papers/g2-mapping]]（首个通用多模态Gaussian-SLAM框架，支持单目/RGB-D/LIV）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/covariance-matrix]], [[concepts/projection-transform]], [[concepts/alpha-compositing]], [[concepts/tile-based-rasterization]], [[concepts/spherical-harmonics]], [[concepts/adaptive-density-control]]

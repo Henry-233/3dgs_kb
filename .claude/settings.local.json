@@ -8,7 +8,15 @@
       "Bash(python -c \"import pdfplumber; print\\('pdfplumber available'\\)\")",
       "Bash(pdftotext \"F:/A2026/Obsidian/3dgs_kb/3dgs-kb/raw/papers/Mobile-GS Real-time Gaussian Splatting for Mobile Devices.pdf\" -)",
       "WebFetch(domain:langsplat.github.io)",
-      "Bash(curl -sL \"https://export.arxiv.org/api/query?id_list=2312.16084&max_results=1\")"
+      "Bash(curl -sL \"https://export.arxiv.org/api/query?id_list=2312.16084&max_results=1\")",
+      "Bash(curl -s \"https://api.semanticscholar.org/graph/v1/paper/search?query=G2-Mapping+General+Gaussian+Mapping&limit=3&fields=title,authors,year,venue\")",
+      "Bash(curl *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(json.dumps\\({'title':r['title'],'authors':[a['author']['display_name'] for a in r.get\\('authorships',[]\\)],'year':r['publication_year'],'venue':r.get\\('primary_location',{}\\).get\\('source',{}\\).get\\('display_name',''\\)},indent=2\\)\\) for r in d.get\\('results',[]\\)]\")",
+      "Bash(python3 -c ' *)",
+      "Bash(python -c ' *)",
+      "Bash(pdftotext \"F:/A2026/Obsidian/3dgs_kb/3dgs-kb/raw/papers/G-Mapping_General_Gaussian_Mapping_for_Monocular_RGB-D_and_LiDAR-Inertial-Visual_Systems.pdf\" \"F:/A2026/Obsidian/3dgs_kb/3dgs-kb/.temp_g2mapping.txt\")",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(python *)"
     ]
   }
 }
