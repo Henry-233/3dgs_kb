@@ -139,15 +139,15 @@ $$\mathcal{L}_{depth} = \log(\sigma^2) + \frac{(\hat{D} - D)^2}{\sigma^2}$$
 
 ## 与前作的区别
 
-| 前作 | 关键区别 |
-|------|---------|
-| **SplaTAM** (Keetha et al., 2023) | G²-Mapping支持三种模态（vs. 仅RGB-D）；实现完整的深度+位姿可微渲染（vs. 无深度反向传播）；场景更新减少70-95%高斯点；速度快66% |
-| **GS-SLAM** (Yan et al., 2023) | G²-Mapping用预跟踪里程计替代恒速假设（处理大基线运动）；透明性自然衰减替代手动调整；单目ATE降低30.27%（3.7→2.58cm） |
-| **MonoGS** (Matsuki et al., 2023) | G²-Mapping的预跟踪+尺度一致性深度估计解决了MonoGS在大运动下的跟踪困难；不会在平均深度处插入噪声点 |
-| **LIV-GaussMap** (Hong et al., 2024) | G²-Mapping充分利用深度优化场景和位姿（vs. 仅用颜色）；首个通用三模态框架 |
-| **Point-SLAM** (Sandström et al., 2023) | G²-Mapping用显式高斯替代神经点云+特征插值体渲染；渲染速度大幅提升 |
-| **GS-LIVO** (Hong et al., 2025) | G²-Mapping是通用框架（vs. GS-LIVO专注LIV）；GS-LIVO有嵌入式部署（Jetson Orin NX）和IESKF紧耦合融合的优势 |
-| **NICER-SLAM** (Zhu et al., 2023) | G²-Mapping在单目新视角合成上全面超越：PSNR +3.65 (+15.3%), LPIPS +0.02 (+75%) |
+| 前作                                      | 关键区别                                                                            |
+| --------------------------------------- | ------------------------------------------------------------------------------- |
+| **SplaTAM** (Keetha et al., 2023)       | G²-Mapping支持三种模态（vs. 仅RGB-D）；实现完整的深度+位姿可微渲染（vs. 无深度反向传播）；场景更新减少70-95%高斯点；速度快66% |
+| **GS-SLAM** (Yan et al., 2023)          | G²-Mapping用预跟踪里程计替代恒速假设（处理大基线运动）；透明性自然衰减替代手动调整；单目ATE降低30.27%（3.7→2.58cm）        |
+| **MonoGS** (Matsuki et al., 2023)       | G²-Mapping的预跟踪+尺度一致性深度估计解决了MonoGS在大运动下的跟踪困难；不会在平均深度处插入噪声点                       |
+| **LIV-GaussMap** (Hong et al., 2024)    | G²-Mapping充分利用深度优化场景和位姿（vs. 仅用颜色）；首个通用三模态框架                                     |
+| **Point-SLAM** (Sandström et al., 2023) | G²-Mapping用显式高斯替代神经点云+特征插值体渲染；渲染速度大幅提升                                          |
+| **GS-LIVO** (Hong et al., 2025)         | G²-Mapping是通用框架（vs. GS-LIVO专注LIV）；GS-LIVO有嵌入式部署（Jetson Orin NX）和IESKF紧耦合融合的优势   |
+| **NICER-SLAM** (Zhu et al., 2023)       | G²-Mapping在单目新视角合成上全面超越：PSNR +3.65 (+15.3%), LPIPS +0.02 (+75%)                 |
 
 ## 实验结论
 

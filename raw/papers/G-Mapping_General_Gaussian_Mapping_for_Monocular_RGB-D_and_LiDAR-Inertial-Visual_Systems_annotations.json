@@ -13,7 +13,7 @@
   },
   {
     "page": 1,
-    "phrase": "surpasses feature-based SLAM in localization precision",
+    "phrase": "localization precision and exceeds state-of-the-art",
     "category": "result",
     "note": "实验结果：定位精度超越传统特征法SLAM，渲染质量超过最新神经SLAM方法"
   },
@@ -25,13 +25,13 @@
   },
   {
     "page": 2,
-    "phrase": "simplified odometry approach that provides a metric depth estimation",
+    "phrase": "simplified odometry approach",
     "category": "method",
     "note": "方法：提出简化里程计为单目提供度量深度估计，解决场景初始化难题"
   },
   {
     "page": 2,
-    "phrase": "gaussian scene updating strategy that meticulously integrates depth-based",
+    "phrase": "gaussian scene updating strategy",
     "category": "method",
     "note": "方法：高斯场景更新策略整合深度初始化、管线感知添加和透明性删除"
   },
@@ -61,7 +61,7 @@
   },
   {
     "page": 4,
-    "phrase": "differentiable depth to optimize gaussian point attributes",
+    "phrase": "derivative of depth D in relation",
     "category": "core_contribution",
     "note": "核心贡献：引入可微深度来优化高斯点属性，推导了深度对位置、协方差和不透明度的完整导数"
   },
@@ -115,7 +115,7 @@
   },
   {
     "page": 7,
-    "phrase": "outperforms NICER-SLAM by 3.65",
+    "phrase": "comprehensively outperforms",
     "category": "result",
     "note": "实验结果：单目新视角合成全面超越NICER-SLAM，PSNR提升3.65（↑15.3%）"
   },
@@ -139,7 +139,7 @@
   },
   {
     "page": 10,
-    "phrase": "relies on the median of scene depth to maintain scale consistency",
+    "phrase": "relies on the median of scene depth",
     "category": "limitation",
     "note": "局限性：单目跟踪失败时依赖场景深度中值维持尺度一致性，复杂场景下可能不准确"
   },
