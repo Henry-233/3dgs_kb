@@ -11,11 +11,13 @@
 - [[papers/mobile-gs|Mobile-GS: Real-time Gaussian Splatting for Mobile Devices]] (2024)
 - [[papers/langsplat|LangSplat: 3D Language Gaussian Splatting]] (Qin et al., CVPR 2024)
 - [[papers/dr-splat|Dr. Splat: Direct Language Embedding Registration]] (Kim et al., CVPR 2025 Highlight)
+- [[papers/proxy-gs|Proxy-GS: Unified Occlusion Priors for Structured 3DGS]] (Gao et al., arxiv 2025)
 
 ### Applications
 - [[papers/street-gaussians|Street Gaussians: Modeling Dynamic Urban Scenes]] (Yan et al., ECCV 2024)
 - [[papers/gs-livo|GS-LIVO: Real-Time LiDAR-Inertial-Visual Odometry With Gaussian Mapping]] (Hong et al., IEEE TRO 2025)
 - [[papers/g2-mapping|G²-Mapping: General Gaussian Mapping for Monocular, RGB-D, and LiDAR-Inertial-Visual Systems]] (Chen et al., IEEE TASE 2025)
+- [[papers/wildgs-slam|WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments]] (Zheng et al., arxiv 2025)
 
 ### Related Methods
 - [[papers/vggt|VGGT: Visual Geometry Grounded Transformer]] (Wang et al., CVPR 2025 Best Paper)
@@ -28,12 +30,15 @@
 - [[concepts/3d-gaussian|3D高斯]]
 - [[concepts/covariance-matrix|协方差矩阵]]
 - [[concepts/spherical-harmonics|球谐函数]]
+- [[concepts/mlp-based-3dgs|MLP驱动的3DGS]]
 
 ### Rendering
 - [[concepts/projection-transform|投影变换]]
 - [[concepts/tile-based-rasterization|Tile-based光栅化]]
 - [[concepts/alpha-compositing|Alpha合成]]
 - [[concepts/order-independent-rendering|顺序无关渲染]]
+- [[concepts/occlusion-aware-culling|遮挡感知剔除]]
+- [[concepts/proxy-rendering|代理渲染]]
 
 ### Training & Optimization
 - [[concepts/adaptive-density-control|自适应密度控制]]
@@ -58,6 +63,7 @@
 ### SLAM & State Estimation
 - [[concepts/slam|SLAM（同步定位与建图）]]
 - [[concepts/ieskf|IESKF（迭代误差状态卡尔曼滤波）]]
+- [[concepts/uncertainty-aware-mapping|不确定性感知建图]]
 
 ### Comparison Methods
 - [[concepts/nerf|NeRF]]

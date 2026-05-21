@@ -32,4 +32,4 @@ $$\frac{\partial D}{\partial P} = \frac{\partial D}{\partial a}\frac{\partial a}
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/tile-based-rasterization]], [[concepts/order-independent-rendering]], [[concepts/neural-view-dependent-enhancement]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/gs-livo]], [[papers/g2-mapping]]
+- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/proxy-gs]]
