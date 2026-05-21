@@ -37,10 +37,41 @@ iMAP、NICE-SLAM、ESLAM等将NeRF用作隐式地图表示，但因体渲染计�
 | PhotoSLAM | Mono/Stereo/RGB-D | 结合ORB特征与高斯金字塔 |
 | **GS-LIVO** | **LiDAR+IMU+Camera** | **多传感器融合+哈希八叉树+滑动窗口** |
 | **G²-Mapping** | **Mono/RGB-D/LIV** | **通用可微渲染器（颜色+深度+位姿）+ 渲染管线感知高斯增删 + 深度不确定性加权** |
+| **WildGS-SLAM** | **Mono** | **不确定性感知（DINOv2+MLP预测不确定性图）+ 动态场景鲁棒跟踪建图** |
+| **Pseudo Depth Meets Gaussian** | **Mono** | **前馈循环网络直接从光流预测位姿（替代迭代优化）+ 伪深度驱动3DGS建图，跟踪速度>10×提升** |
+| **LangGS-SLAM** | **RGB-D** | **Top-K渲染高维语言特征 + 多标准地图管理 + 混合场优化，15 FPS在线语义+几何双场SLAM** |
 
 Gaussian-SLAM的优势：渲染快、表示显式可调、可微渲染天然适合位姿优化。挑战：地图更新频率、GPU显存、大场景可扩展性——GS-LIVO通过滑动窗口和多传感器融合针对性解决了这些问题。
 
+**3DGS对伪深度的独特适应性**：Pseudo Depth Meets Gaussian的对比实验揭示了一个关键发现——在三种3D表示中，只有3D高斯能在伪深度（替代真值深度传感器）下维持可用重建。网格（Grids）因固定单元错位崩溃，点云（Points）因无空间扩散性暴露深度误差，而高斯椭球的协方差矩阵天然编码空间不确定性，将伪深度误差"模糊化"为连续平滑区域。这使纯RGB（无深度传感器）的SLAM成为可能。
+
+### 前馈式SLAM（Feed-forward SLAM）
+
+传统Gaussian-SLAM的跟踪环节依赖迭代非线性优化（如SplaTAM的RGB-D对齐、G²-Mapping的地图位姿优化、WildGS-SLAM的DBA），每帧需数十到数百毫秒。
+
+**Pseudo Depth Meets Gaussian**提出前馈式替代方案：用循环神经网络直接从稠密光流预测相机位姿——将跟踪从迭代优化压缩为单次网络前向pass（<10ms/帧）。这与[[concepts/feed-forward-pose-prediction|前馈式位姿预测]]和伪深度驱动的高斯建图配合，构建了首个完整的前馈式Gaussian-SLAM基线。
+
+核心权衡：前馈式跟踪极快但泛化受训练数据分布限制；优化式跟踪较慢但无训练域限制。
+
+## 动态SLAM（Dynamic SLAM）
+
+传统SLAM假设场景刚性（static world assumption），动态物体会破坏特征匹配和光度一致性，导致严重跟踪漂移。动态SLAM的核心挑战是在跟踪和建图中识别并排除动态干扰物。
+
+### 主要策略
+| 策略 | 方法 | 局限 |
+|------|------|------|
+| 语义分割 | DynaSLAM（Mask R-CNN）、DG-SLAM（YOLO）、DDN-SLAM（目标检测+高斯混合模型） | 依赖预定义物体类别，对未知动态物体失效 |
+| 几何残差 | ReFusion（TSDF+深度残差）、StaticFusion | 需要RGB-D深度传感器 |
+| 光流/运动检测 | RoDyn-SLAM（光流+刚性运动）、DynaMoN（运动分割+语义） | 纹理弱区域不可靠 |
+| **不确定性感知** | **WildGS-SLAM（DINOv2+MLP预测不确定性加权DBA和渲染损失）** | 仅需单目RGB，无类别先验，在线适应 |
+
+### WildGS-SLAM的不确定性感知方案
+- 预训练DINOv2（3D-aware微调）提取特征 → 浅层MLP在线预测逐像素不确定性 $\beta$
+- **跟踪**：不确定性加权DBA $\sum \|\tilde{p}_{ij} - \Pi(\cdots)\|^2_{\Sigma_{ij}/\beta_i^2}$
+- **建图**：不确定性加权渲染损失 $\mathcal{L}_{\text{render}} = (\mathcal{L}_{\text{color}} + \lambda \mathcal{L}_{\text{depth}})/\beta^2$
+- 不确定性预测器与高斯地图独立优化，梯度互不传播
+
 ## 关联
-- 相关概念: [[concepts/ieskf]]
-- 用到该概念的论文: [[papers/gs-livo]], [[papers/g2-mapping]]
+- 相关概念: [[concepts/ieskf]], [[concepts/uncertainty-aware-mapping]], [[concepts/feed-forward-pose-prediction]], [[concepts/local-graph-rendering]]
+- 用到该概念的论文: [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/pseudo-depth-meets-gaussian]], [[papers/langgs-slam]]
 - 基于该范式的Gaussian-SLAM: [[papers/3d-gaussian-splatting]]

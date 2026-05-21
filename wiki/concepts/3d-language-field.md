@@ -6,9 +6,10 @@ tags: [concept, semantics]
 ## 定义
 3D语言场（3D Language Field）是三维场景的一种语义表示形式，将场景中的每个空间位置映射到语言特征向量（通常来自CLIP等多模态模型）。用户通过自然语言查询即可定位场景中的物体或区域，实现开放词汇的3D场景理解。
 
-两种构建范式：
-- **渲染训练**（LangSplat）：通过可微渲染训练每个高斯的语言特征，最小化渲染特征与SAM+CLIP目标特征的差异
-- **直接注册**（Dr. Splat）：将CLIP特征直接分配给每个像素光线穿过的"主导高斯"（top-K alpha贡献），无需渲染训练和梯度反传
+三种构建范式：
+- **离线渲染训练**（LangSplat）：通过可微渲染训练每个高斯的语言特征，逐场景自编码器压缩，<1 FPS
+- **离线直接注册**（Dr. Splat）：将CLIP特征直接分配给主导高斯，通用PQ压缩，无需渲染训练
+- **在线SLAM**（LangGS-SLAM）：RGB-D SLAM在线构建语言场，Top-K渲染替代alpha-blending做特征渲染，无压缩存储原始VLM特征，15 FPS
 
 ## 直觉理解
 3D语言场可以理解为给3D场景"涂上了一层语义颜料"——每个点不仅有颜色和形状，还带有"这是什么"的语言描述能力。当你用"红色的椅子"查询场景时，语言场在所有高斯中搜索与"红色椅子"语义最匹配的区域并高亮显示。
@@ -44,6 +45,12 @@ SAM（Segment Anything Model, ViT-H）对每张训练图像输入32×32均匀点
 - 三层语义预定义尺度 → 无需多尺度密集搜索
 - 消除对DINO特征的依赖
 
+## Alpha-blending的语义歧义问题
+
+LangGS-SLAM发现：将alpha-blending直接用于渲染高维语言特征存在概念性问题——渲染会混合沿光线的多个表面（前景+背景）的语义向量，产生不可解释的"平均语义"。这类似于将"桌子"和"墙壁"的CLIP特征按透明度混合，得到既不是桌子也不是墙壁的无意义向量。
+
+解决方案：[[concepts/top-k-rendering|Top-K渲染]]——仅聚合贡献最高的K个表面高斯，避免跨表面语义混合。
+
 ## 关联
-- 相关概念: [[concepts/3d-gaussian]], [[concepts/nerf]], [[concepts/tile-based-rasterization]], [[concepts/product-quantization]]
-- 用到该概念的论文: [[papers/langsplat]], [[papers/dr-splat]]
+- 相关概念: [[concepts/3d-gaussian]], [[concepts/nerf]], [[concepts/tile-based-rasterization]], [[concepts/product-quantization]], [[concepts/top-k-rendering]]
+- 用到该概念的论文: [[papers/langsplat]], [[papers/dr-splat]], [[papers/langgs-slam]]

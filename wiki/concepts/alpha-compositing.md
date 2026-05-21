@@ -30,6 +30,12 @@ $$\frac{\partial D}{\partial P} = \frac{\partial D}{\partial a}\frac{\partial a}
 ## 变体：顺序无关渲染
 标准Alpha合成需要按深度排序高斯，这是移动端的主要计算瓶颈。Mobile-GS提出了深度感知的顺序无关渲染（Order-Independent Rendering），用深度加权混合替代排序，大幅加速渲染但可能引入重叠区域伪影（需神经增强修正）。
 
+## 局限性：语义歧义
+
+LangGS-SLAM发现：Alpha-blending用于渲染高维语言特征（CLIP/LSeg的512维向量）时存在概念性缺陷——混合沿光线的多个表面（前景+背景）的语义向量，产生不可解释的"平均语义"。3通道RGB混合在物理上合理（叠加透光），但512维语义方向向量混合无物理意义。
+
+解决方案是[[concepts/top-k-rendering|Top-K渲染]]：仅聚合alpha贡献最高的K个高斯，重归一化权重，避免跨表面语义混合。
+
 ## 关联
-- 相关概念: [[concepts/3d-gaussian]], [[concepts/tile-based-rasterization]], [[concepts/order-independent-rendering]], [[concepts/neural-view-dependent-enhancement]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/gs-livo]], [[papers/g2-mapping]]
+- 相关概念: [[concepts/3d-gaussian]], [[concepts/tile-based-rasterization]], [[concepts/order-independent-rendering]], [[concepts/neural-view-dependent-enhancement]], [[concepts/top-k-rendering]]
+- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/proxy-gs]], [[papers/langgs-slam]]

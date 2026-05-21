@@ -31,9 +31,19 @@ Mobile-GS在标准ADC基础上提出贡献度剪枝（Contribution-based Pruning
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/gaussian-compression]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/g2-mapping]]
+- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/g2-mapping]], [[papers/proxy-gs]]
 
 GS-LIVO不采用标准的ADC（克隆/分裂/剪枝），而是通过LiDAR点云直接初始化高斯（基于八叉树叶节点体素采样），避免了昂贵的手工启发式增密过程。高斯结构的初始化质量由LiDAR测量精度保证。
+
+## Proxy-GS的遮挡感知密度引导
+
+Proxy-GS在标准ADC的基础上引入了遮挡先验，将密度控制从"仅看梯度"升级为"梯度+遮挡感知"：
+
+**遮挡引导的密度迁移**：代理系统生成的遮挡深度图标识出可见表面和不被看到的区域。训练时利用该先验引导高斯密度从遮挡区域向可见表面迁移：
+- 被遮挡区域的高斯受到抑制（降低不透明度或增大位置梯度向表面移动）
+- 可见表面的高斯获得增强（允许正常克隆/分裂以提升细节）
+
+相比标准ADC仅依据视图空间位置梯度（$\nabla L > \tau_{grad}$）决策，遮挡感知引导避免了在遮挡区域产生"幽灵几何"——那些梯度大但因被遮挡而对渲染无贡献的高斯。这在MatrixCity Streets等严重遮挡场景中尤为关键。
 
 ## G²-Mapping的场景更新策略
 

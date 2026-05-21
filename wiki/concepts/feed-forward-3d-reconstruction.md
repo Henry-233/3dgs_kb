@@ -36,9 +36,15 @@ tags: [concept, paradigm, reconstruction, neural]
 3. **精度上限**：当前纯前馈精度可能不如包含BA的混合方法（但差距快速缩小）
 4. **动态场景**：大多数前馈方法假设静态场景
 
+## 与前馈式位姿预测的区分
+
+前馈式3D重建关注**场景几何的直接预测**（点图、深度图），通常离线批量处理。[[concepts/feed-forward-pose-prediction|前馈式位姿预测]]关注**SLAM中跟踪环节的前馈化**——用神经网络在线逐帧预测相机位姿，替代迭代优化。两者都是"用网络推理替代优化"的前馈范式，但作用领域不同（几何重建 vs. 实时跟踪）。
+
 ## 关联
 - 代表性工作: [[papers/vggt]]
+- 前馈式SLAM: [[papers/pseudo-depth-meets-gaussian]]
 - 前驱工作: DUSt3R (Wang et al., 2024), MASt3R
 - 传统基线: [[concepts/structure-from-motion]]
 - 架构创新: [[concepts/alternating-attention]]
 - 核心输出: [[concepts/point-map]]
+- 相关概念: [[concepts/feed-forward-pose-prediction]]
