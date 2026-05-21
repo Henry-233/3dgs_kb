@@ -186,3 +186,26 @@ pattern:
   二叉树: 递归遍历 / 层序遍历
   高级结构: BST / 堆 / 字典树 / 图
   综合算法: 回溯 / DFS / BFS / 分治 / 动态规划 / 贪心 / 数学 / 最短路径
+
+
+## Auto git sync rule
+After EVERY operation that modifies any file in this vault:
+1. Stage all changes: git add .
+2. Commit with descriptive message: 
+   git commit -m "auto: {{operation_type}} - {{affected_files_summary}}"
+3. Push to remote: git push
+
+Operation type examples:
+- ingest: when processing a new clip
+- update: when updating existing pages  
+- create: when creating new pages
+- progress: when updating progress.md
+- restructure: when reorganizing directories
+
+Example commit messages:
+- "auto: ingest - 差分数组 pattern + 3 problem stubs"
+- "auto: update - 滑动窗口 pattern page"
+- "auto: progress - solved 1-两数之和"
+
+Never skip git sync even if only log.md was changed.
+Always run git push after commit, not just git commit.
