@@ -63,25 +63,25 @@ Proxy-GS的改进：
 效果：密度从遮挡区域向可见表面迁移，避免"幽灵几何"——被遮挡但因梯度大而持续存在的高斯。
 
 ## 关键数学形式
-| 组件 | 公式 |
-|------|------|
-| MLP解码 | $\{\mu_j, \Sigma_j, c_j, \alpha_j\}_{j=1}^{M} = \text{MLP}_\theta(f_i, v_i)_{i=1}^{N}$ |
-| NDC→像素 | $x_{pix} = \frac{x_{ndc}+1}{2}W,\quad y_{pix} = \frac{y_{ndc}+1}{2}H$ |
-| 硬件深度→线性深度 | $d_{mesh} = \frac{nf}{f - z_{hw}(f-n)}$ |
-| 遮挡剔除 | $\text{Cull}(p) = \mathbf{1}[z_h > d_{mesh} + \varepsilon]$ |
-| Hi-Z金字塔 | $Z^{(\ell+1)}(u,v) = \max_{x,y\in\{0,1\}} Z^{(\ell)}(2u+x, 2v+y)$ |
-| QEM边折叠 | $x^* = -A^{-1}b,\quad \Delta = E([x^*, 1])$ |
+| 组件        | 公式                                                                                     |
+| --------- | -------------------------------------------------------------------------------------- |
+| MLP解码     | $\{\mu_j, \Sigma_j, c_j, \alpha_j\}_{j=1}^{M} = \text{MLP}_\theta(f_i, v_i)_{i=1}^{N}$ |
+| NDC→像素    | $x_{pix} = \frac{x_{ndc}+1}{2}W,\quad y_{pix} = \frac{y_{ndc}+1}{2}H$                  |
+| 硬件深度→线性深度 | $d_{mesh} = \frac{nf}{f - z_{hw}(f-n)}$                                                |
+| 遮挡剔除      | $\text{Cull}(p) = \mathbf{1}[z_h > d_{mesh} + \varepsilon]$                            |
+| Hi-Z金字塔   | $Z^{(\ell+1)}(u,v) = \max_{x,y\in\{0,1\}} Z^{(\ell)}(2u+x, 2v+y)$                      |
+| QEM边折叠    | $x^* = -A^{-1}b,\quad \Delta = E([x^*, 1])$                                            |
 
 ## 与前作的区别
-| 前作 | 区别 |
-|------|------|
-| 3DGS | Proxy-GS针对MLP-based结构化变体，用遮挡先验同时加速训练和推理 |
-| Octree-GS | 在LOD基础上增加遮挡感知剔除，解码锚点数减少75%+，速度2.5×以上 |
-| Scaffold-GS | 保留锚点框架，增加遮挡感知的锚点选择和表面引导增密 |
-| OccluGaussian | 逐像素代理引导过滤（保留细节）vs 场景分簇推理遮挡 |
-| Ye et al. [37] | 硬件光栅化代理（<1ms）vs surfel渲染深度图，速度快一个数量级 |
-| Cache-GS | Proxy-GS不缓存解码高斯，而是从源头减少需解码的锚点；无质量损失 |
-| 标准剪枝（LightGaussian等） | 从贡献度驱动升级为实际几何遮挡驱动，更精确 |
+| 前作                   | 区别                                      |
+| -------------------- | --------------------------------------- |
+| 3DGS                 | Proxy-GS针对MLP-based结构化变体，用遮挡先验同时加速训练和推理 |
+| Octree-GS            | 在LOD基础上增加遮挡感知剔除，解码锚点数减少75%+，速度2.5×以上    |
+| Scaffold-GS          | 保留锚点框架，增加遮挡感知的锚点选择和表面引导增密               |
+| OccluGaussian        | 逐像素代理引导过滤（保留细节）vs 场景分簇推理遮挡              |
+| Ye et al. [37]       | 硬件光栅化代理（<1ms）vs surfel渲染深度图，速度快一个数量级    |
+| Cache-GS             | Proxy-GS不缓存解码高斯，而是从源头减少需解码的锚点；无质量损失     |
+| 标准剪枝（LightGaussian等） | 从贡献度驱动升级为实际几何遮挡驱动，更精确                   |
 
 ## 实验结论
 
@@ -127,4 +127,4 @@ Proxy-GS在全部5个Block上同时实现最高质量和最高速度（Block 5�
 ## 关联
 - 基于: [[papers/3d-gaussian-splatting]]
 - 对比方法: Octree-GS, Scaffold-GS, Hierarchical-GS, Cache-GS, OccluGaussian
-- 涉及概念: [[concepts/mlp-based-3dgs]], [[concepts/3d-gaussian]], [[concepts/occlusion-aware-culling]], [[concepts/proxy-rendering]], [[concepts/adaptive-density-control]], [[concepts/tile-based-rasterization]], [[concepts/alpha-compositing]]
+- 涉及概念: [[concepts/mlp-based-3dgs]], [[concepts/3d-gaussian]], [[concepts/occlusion-aware-culling]], [[concepts/proxy-rendering]], [[concepts/adaptive-density-control]], [[concepts/tile-based-rasterization]], [[concepts/alpha-compositing]], [[concepts/surface-reconstruction-from-3dgs]], [[concepts/spatial-data-structures]]

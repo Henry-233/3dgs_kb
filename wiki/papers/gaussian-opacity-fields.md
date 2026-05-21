@@ -31,4 +31,4 @@ status: done
 
 ## 关联
 - 基于: [[papers/3d-gaussian-splatting]]
-- 涉及概念: [[concepts/3d-gaussian]], [[concepts/alpha-compositing]], [[concepts/ssim-loss]]
+- 涉及概念: [[concepts/3d-gaussian]], [[concepts/alpha-compositing]], [[concepts/ssim-loss]], [[concepts/surface-reconstruction-from-3dgs]]

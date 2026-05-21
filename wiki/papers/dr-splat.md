@@ -115,4 +115,4 @@ $$f_i = \frac{\sum_{v: i \in \mathcal{G}_v} w_i(v) \cdot L(v)}{\sum_{v: i \in \m
 ## 关联
 - 基于: [[papers/3d-gaussian-splatting]]
 - 对比/继承: [[papers/langsplat]]
-- 涉及概念: [[concepts/3d-gaussian]], [[concepts/3d-language-field]], [[concepts/product-quantization]], [[concepts/alpha-compositing]]
+- 涉及概念: [[concepts/3d-gaussian]], [[concepts/3d-language-field]], [[concepts/product-quantization]], [[concepts/alpha-compositing]], [[concepts/clip]], [[concepts/sam]]

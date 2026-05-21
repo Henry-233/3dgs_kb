@@ -312,7 +312,8 @@ VGGT的Depth+Cam反投影方案达到最佳性能，验证了复杂任务分解�
 - 引入概念: [[concepts/point-map]]、[[concepts/alternating-attention]]、[[concepts/feed-forward-3d-reconstruction]]
 - 对比方法: DUSt3R, MASt3R, VGGSfM, COLMAP
 - 可初始化: [[papers/3d-gaussian-splatting]]
-- 涉及概念: [[concepts/projection-transform]]、[[concepts/alpha-compositing]]
+- 前馈SLAM: [[papers/pseudo-depth-meets-gaussian]]（将前馈范式扩展到SLAM跟踪）
+- 涉及概念: [[concepts/projection-transform]]、[[concepts/alpha-compositing]]、[[concepts/dinov2]]、[[concepts/bundle-adjustment]]、[[concepts/monocular-depth-estimation]]
 - 追踪组件: CoTracker2架构
 - 特征提取: DINOv2（ViT-L）
 - 稠密预测头: DPT（Dense Prediction Transformer）

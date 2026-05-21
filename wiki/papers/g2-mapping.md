@@ -198,5 +198,5 @@ $$\mathcal{L}_{depth} = \log(\sigma^2) + \frac{(\hat{D} - D)^2}{\sigma^2}$$
 
 ## 关联
 - 基于: [[papers/3d-gaussian-splatting]]
-- 相关方法: [[papers/gs-livo]]（首个LIV Gaussian-SLAM，G²-Mapping在此基础上扩展到通用多模态）, [[papers/wildgs-slam]]（单目动态场景鲁棒SLAM）
-- 涉及概念: [[concepts/3d-gaussian]], [[concepts/covariance-matrix]], [[concepts/alpha-compositing]], [[concepts/projection-transform]], [[concepts/slam]], [[concepts/adaptive-density-control]], [[concepts/spherical-harmonics]], [[concepts/ssim-loss]]
+- 相关方法: [[papers/gs-livo]]（首个LIV Gaussian-SLAM，G²-Mapping在此基础上扩展到通用多模态）, [[papers/wildgs-slam]]（单目动态场景鲁棒SLAM）, [[papers/pseudo-depth-meets-gaussian]]（前馈式跟踪替代迭代优化，G²-Mapping仍使用优化式跟踪）
+- 涉及概念: [[concepts/3d-gaussian]], [[concepts/covariance-matrix]], [[concepts/alpha-compositing]], [[concepts/projection-transform]], [[concepts/slam]], [[concepts/adaptive-density-control]], [[concepts/spherical-harmonics]], [[concepts/ssim-loss]], [[concepts/differentiable-rendering]], [[concepts/monocular-depth-estimation]]

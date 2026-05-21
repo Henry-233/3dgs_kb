@@ -18,6 +18,8 @@
 - [[papers/gs-livo|GS-LIVO: Real-Time LiDAR-Inertial-Visual Odometry With Gaussian Mapping]] (Hong et al., IEEE TRO 2025)
 - [[papers/g2-mapping|G²-Mapping: General Gaussian Mapping for Monocular, RGB-D, and LiDAR-Inertial-Visual Systems]] (Chen et al., IEEE TASE 2025)
 - [[papers/wildgs-slam|WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments]] (Zheng et al., arxiv 2025)
+- [[papers/pseudo-depth-meets-gaussian|Pseudo Depth Meets Gaussian: A Feed-forward RGB SLAM Baseline]] (Zhao et al., arxiv 2025)
+- [[papers/langgs-slam|LangGS-SLAM: Real-Time Language-Feature Gaussian Splatting SLAM]] (Ha et al., arxiv 2026)
 
 ### Related Methods
 - [[papers/vggt|VGGT: Visual Geometry Grounded Transformer]] (Wang et al., CVPR 2025 Best Paper)
@@ -36,6 +38,7 @@
 - [[concepts/projection-transform|投影变换]]
 - [[concepts/tile-based-rasterization|Tile-based光栅化]]
 - [[concepts/alpha-compositing|Alpha合成]]
+- [[concepts/top-k-rendering|Top-K渲染]]
 - [[concepts/order-independent-rendering|顺序无关渲染]]
 - [[concepts/occlusion-aware-culling|遮挡感知剔除]]
 - [[concepts/proxy-rendering|代理渲染]]
@@ -43,6 +46,7 @@
 ### Training & Optimization
 - [[concepts/adaptive-density-control|自适应密度控制]]
 - [[concepts/ssim-loss|SSIM损失]]
+- [[concepts/hybrid-field-optimization|混合场优化]]
 
 ### Compression
 - [[concepts/gaussian-compression|高斯压缩]]
@@ -64,9 +68,29 @@
 - [[concepts/slam|SLAM（同步定位与建图）]]
 - [[concepts/ieskf|IESKF（迭代误差状态卡尔曼滤波）]]
 - [[concepts/uncertainty-aware-mapping|不确定性感知建图]]
+- [[concepts/bundle-adjustment|Bundle Adjustment / DBA]]
+- [[concepts/feed-forward-pose-prediction|前馈式位姿预测]]
+- [[concepts/local-graph-rendering|局部图渲染 (LGR)]]
+- [[concepts/monocular-depth-estimation|单目深度估计]]
+
+### Geometry & Scaling
+- [[concepts/differentiable-rendering|可微渲染]]
+- [[concepts/surface-reconstruction-from-3dgs|3DGS表面重建]]
+- [[concepts/spatial-data-structures|空间数据结构]]
+
+### External Models
+- [[concepts/clip|CLIP]]
+- [[concepts/sam|SAM]]
+- [[concepts/dinov2|DINOv2]]
 
 ### Comparison Methods
 - [[concepts/nerf|NeRF]]
 - [[concepts/instant-ngp|Instant-NGP]]
 - [[concepts/mip-nerf|Mip-NeRF]]
 - [[concepts/tensorf|TensoRF]]
+
+---
+
+## Meta
+- [[log|Ingest Log]] — 记录所有变更历史
+- [[synthesis/timeline|3DGS发展时间线]] — 论文年代脉络与研究主线

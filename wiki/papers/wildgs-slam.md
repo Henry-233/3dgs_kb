@@ -197,5 +197,5 @@ Fast版本速度接近MonoGS/Splat-SLAM，精度仅微降（ATE 0.46→0.48）�
 - 不确定性感知思想来源: NeRF On-the-go (Ren et al. CVPR 2024), WildGaussians (Kulhanek et al. NeurIPS 2024)
 - 跟踪框架: DROID-SLAM (Teed & Deng, NeurIPS 2021)
 - 地图框架: MonoGS (Matsuki et al. CVPR 2024), Splat-SLAM (Sandström et al. 2024)
-- 相关SLAM: [[papers/gs-livo]], [[papers/g2-mapping]]
-- 涉及概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/uncertainty-aware-mapping]], [[concepts/alpha-compositing]], [[concepts/projection-transform]]
+- 相关SLAM: [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/pseudo-depth-meets-gaussian]]（前馈式SLAM，WildGS-SLAM仍使用优化式DBA跟踪）
+- 涉及概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/uncertainty-aware-mapping]], [[concepts/alpha-compositing]], [[concepts/projection-transform]], [[concepts/dinov2]], [[concepts/bundle-adjustment]], [[concepts/monocular-depth-estimation]]
