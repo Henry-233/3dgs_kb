@@ -4,8 +4,8 @@
   "title": "Explain 3DGS paper innovation",
   "titleGenerationStatus": "success",
   "createdAt": 1779428071722,
-  "updatedAt": 1779428312435,
-  "lastResponseAt": 1779428312435,
+  "updatedAt": 1779429011882,
+  "lastResponseAt": 1779429011882,
   "sessionId": "95218b04-20c8-4269-b9b6-22323c6c916d",
   "providerState": {
     "providerSessionId": "95218b04-20c8-4269-b9b6-22323c6c916d"
@@ -13,11 +13,11 @@
   "currentNote": "wiki/papers/proxy-gs.md",
   "usage": {
     "model": "haiku",
-    "inputTokens": 155,
+    "inputTokens": 674,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 25216,
+    "cacheReadInputTokens": 26112,
     "contextWindow": 1000000,
-    "contextTokens": 25371,
+    "contextTokens": 26786,
     "percentage": 3,
     "contextWindowIsAuthoritative": true
   }
