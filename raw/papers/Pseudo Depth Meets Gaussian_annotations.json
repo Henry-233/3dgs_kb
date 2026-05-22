@@ -1,0 +1,122 @@
+[
+  {
+    "page": 1,
+    "phrase": "feed-forward recurrent prediction module",
+    "category": "method",
+    "note": "提出前馈循环预测模块，直接从光流推断相机位姿，替代慢速的迭代优化"
+  },
+  {
+    "page": 1,
+    "phrase": "reducing tracking time by more than 90%",
+    "category": "result",
+    "note": "跟踪时间相比SplaTAM减少90%以上，大幅提升系统效率"
+  },
+  {
+    "page": 1,
+    "phrase": "online 3D reconstruction method using",
+    "category": "core_contribution",
+    "note": "提出使用3D高斯SLAM结合伪深度的在线RGB重建方法，无需深度传感器"
+  },
+  {
+    "page": 1,
+    "phrase": "local graph rendering technique to enhance",
+    "category": "method",
+    "note": "引入局部图渲染技术增强前馈位姿预测的鲁棒性"
+  },
+  {
+    "page": 2,
+    "phrase": "3D gaussian mapping can surprisingly solve",
+    "category": "core_contribution",
+    "note": "发现3D高斯建图能有效解决伪深度几何误差导致的建图问题"
+  },
+  {
+    "page": 2,
+    "phrase": "feed-forward pose prediction module",
+    "category": "method",
+    "note": "前馈位姿预测模块渲染局部图进行循环位姿细化，纯网络推理"
+  },
+  {
+    "page": 2,
+    "phrase": "purely done by network inference",
+    "category": "method",
+    "note": "位姿跟踪完全由网络推理完成，比优化方法快得多"
+  },
+  {
+    "page": 2,
+    "phrase": "multiple iterations of pose optimization",
+    "category": "core_contribution",
+    "note": "传统3D高斯SLAM跟踪需多次迭代优化导致极慢，本方法用前馈网络替代"
+  },
+  {
+    "page": 3,
+    "phrase": "naturally encodes uncertainty",
+    "category": "method",
+    "note": "3D高斯表示自然编码不确定性，容忍伪深度误差实现平滑过渡"
+  },
+  {
+    "page": 3,
+    "phrase": "errors in pseudo-depth are directly manifested",
+    "category": "core_contribution",
+    "note": "网格与点表示中伪深度误差直接导致重建不一致，高斯可有效缓解"
+  },
+  {
+    "page": 4,
+    "phrase": "continuously refines both the Gaussian representation",
+    "category": "method",
+    "note": "交替优化方法持续细化高斯表示与相机位姿，适合实时场景重建"
+  },
+  {
+    "page": 4,
+    "phrase": "substituting the optimization-based pose tracking",
+    "category": "method",
+    "note": "用前馈预测替代基于优化的位姿跟踪，消除系统的主要效率瓶颈"
+  },
+  {
+    "page": 4,
+    "phrase": "graph rendering for feed-forward tracking",
+    "category": "method",
+    "note": "通过图渲染构建局部图，利用多个渲染视图约束提升位姿预测精度"
+  },
+  {
+    "page": 5,
+    "phrase": "spherical sampling technique based on",
+    "category": "method",
+    "note": "基于相机惯性的球面采样技术，确保与目标帧最大重叠"
+  },
+  {
+    "page": 6,
+    "phrase": "outperforms SplaTAM across various room",
+    "category": "result",
+    "note": "在Replica数据集上跟踪精度优于SplaTAM，对伪深度输入适应性更强"
+  },
+  {
+    "page": 6,
+    "phrase": "over 10 times the tracking speed",
+    "category": "result",
+    "note": "跟踪速度超过SplaTAM的10倍，即使添加LGR仍快近5倍"
+  },
+  {
+    "page": 7,
+    "phrase": "ATE RMSE of 10.96",
+    "category": "result",
+    "note": "前馈方法达到10.96cm的ATE RMSE，优于SplaTAM的12.48cm"
+  },
+  {
+    "page": 7,
+    "phrase": "feed-forward network accelerates the",
+    "category": "result",
+    "note": "前馈网络加速跟踪性能同时不牺牲建图质量，部分样本甚至优于GT深度"
+  },
+  {
+    "page": 8,
+    "phrase": "dense visual SLAM with 3D Gaussian mapping",
+    "category": "method",
+    "note": "将稠密视觉SLAM与3D高斯建图结合实现高效场景表示"
+  },
+  {
+    "page": 8,
+    "phrase": "real-time 3D reconstruction and novel-view",
+    "category": "result",
+    "note": "仅使用RGB流即可实现实时3D重建与新视角合成"
+  }
+]

@@ -1,0 +1,134 @@
+[
+  {
+    "page": 1,
+    "phrase": "occlusion-aware training and inference framework",
+    "category": "core_contribution",
+    "note": "提出遮挡感知的训练与推理框架，统一处理3D高斯泼溅中的遮挡问题"
+  },
+  {
+    "page": 1,
+    "phrase": "fast proxy system capable of producing",
+    "category": "method",
+    "note": "快速代理系统可在1ms内生成1000×1000分辨率的精确遮挡深度图"
+  },
+  {
+    "page": 1,
+    "phrase": "significant redundancy still remains due to",
+    "category": "core_contribution",
+    "note": "分析揭示现有方法因缺乏遮挡感知存在严重的冗余高斯"
+  },
+  {
+    "page": 2,
+    "phrase": "proxy-guided training pipeline",
+    "category": "method",
+    "note": "代理引导的训练管线将代理网格的结构先验融入锚点选择与增密"
+  },
+  {
+    "page": 2,
+    "phrase": "hardware rasterization to reduce the time",
+    "category": "method",
+    "note": "利用硬件光栅化将遮挡深度图获取时间降至1ms以下"
+  },
+  {
+    "page": 2,
+    "phrase": "FPS speedup over the LOD",
+    "category": "result",
+    "note": "在遮挡丰富场景上相比LOD基线实现3倍以上帧率加速"
+  },
+  {
+    "page": 3,
+    "phrase": "octree representation, enabling the scene to be modeled",
+    "category": "core_contribution",
+    "note": "Octree-GS用八叉树替代体素网格进行多层级场景建模，但缺少遮挡感知"
+  },
+  {
+    "page": 3,
+    "phrase": "LOD mechanisms have also been",
+    "category": "core_contribution",
+    "note": "LOD机制已扩展到MLP基高斯，通过距离层级选择减少解码锚点"
+  },
+  {
+    "page": 4,
+    "phrase": "lightweight proxy meshes for hardware rasterization",
+    "category": "method",
+    "note": "利用轻量级代理网格进行硬件光栅化，以极小时间成本获取遮挡关系"
+  },
+  {
+    "page": 4,
+    "phrase": "fuse the occlusion culling and frustum culling",
+    "category": "method",
+    "note": "在单个CUDA内核中融合遮挡剔除与视锥剔除，高效过滤被遮挡锚点"
+  },
+  {
+    "page": 4,
+    "phrase": "mismatch between the decoded anchors",
+    "category": "core_contribution",
+    "note": "观察到解码锚点与精确渲染所需锚点之间存在严重不匹配"
+  },
+  {
+    "page": 5,
+    "phrase": "proxy-guided densification",
+    "category": "method",
+    "note": "代理引导增密将锚点投影到代理网格表面，避免在遮挡区域生成冗余锚点"
+  },
+  {
+    "page": 5,
+    "phrase": "projects anchors onto the surface",
+    "category": "method",
+    "note": "通过预计算代理深度图将新锚点反投影到代理网格表面上"
+  },
+  {
+    "page": 6,
+    "phrase": "consistently outperform existing methods",
+    "category": "result",
+    "note": "在MatrixCity大规模街景上渲染质量与速度均超越所有基线方法"
+  },
+  {
+    "page": 6,
+    "phrase": "Novel View Synthesis and rendering FPS",
+    "category": "result",
+    "note": "在新视角合成质量与渲染帧率两项指标上达到最优权衡"
+  },
+  {
+    "page": 7,
+    "phrase": "brings more than a",
+    "category": "result",
+    "note": "仅推理时使用代理引导即可获3倍FPS提升，但训练推理不一致导致质量下降"
+  },
+  {
+    "page": 7,
+    "phrase": "proxy-guided training and rendering",
+    "category": "method",
+    "note": "训练与推理一致使用代理引导，结合代理引导增密实现最佳质量-速度平衡"
+  },
+  {
+    "page": 7,
+    "phrase": "Integration with different 3DGS",
+    "category": "result",
+    "note": "与FlashGS和硬件3DGS等加速方法正交兼容，可叠加进一步提升帧率"
+  },
+  {
+    "page": 8,
+    "phrase": "varying the proxy resolution has only a",
+    "category": "result",
+    "note": "代理分辨率变化对渲染质量影响很小，粗粒度代理即可保持遮挡结构"
+  },
+  {
+    "page": 8,
+    "phrase": "inherent offset between the anchors",
+    "category": "result",
+    "note": "锚点与解码高斯间存在固有偏移，使方法对顶点噪声具有一定鲁棒性"
+  },
+  {
+    "page": 9,
+    "phrase": "consistently improves both rendering quality",
+    "category": "result",
+    "note": "代理引导框架在各种场景下均能持续提升渲染质量与效率"
+  },
+  {
+    "page": 9,
+    "phrase": "new state-of-the-art in efficient 3D scene representation",
+    "category": "result",
+    "note": "在高效3D场景表示方面建立了新的最优水平"
+  }
+]

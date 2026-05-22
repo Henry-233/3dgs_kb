@@ -36,13 +36,13 @@ status: done
 ## 解决的问题
 现有SLAM在动态环境中失效的原因及已有方法局限：
 
-| 方法类型 | 代表工作 | 为什么不够 |
-|---------|---------|-----------|
-| 静态假设SLAM | MonoGS, Splat-SLAM, DROID-SLAM | 动态物体破坏光度一致性→严重漂移 |
-| 语义分割法 | DG-SLAM, DDN-SLAM, DynaSLAM | 依赖预定义类别，不认识ANYmal机器人/雨伞等 |
-| 几何残差法 | ReFusion, StaticFusion | 需要RGB-D深度，单目不可用 |
-| 光流/运动法 | RoDyn-SLAM, DynaMoN | 纹理弱区域失效；DynaMoN需离线精化 |
-| 稀疏视图去干扰 | NeRF On-the-go, WildGaussians | 假设已知位姿，不支持SLAM序列跟踪 |
+| 方法类型     | 代表工作                           | 为什么不够                    |
+| -------- | ------------------------------ | ------------------------ |
+| 静态假设SLAM | MonoGS, Splat-SLAM, DROID-SLAM | 动态物体破坏光度一致性→严重漂移         |
+| 语义分割法    | DG-SLAM, DDN-SLAM, DynaSLAM    | 依赖预定义类别，不认识ANYmal机器人/雨伞等 |
+| 几何残差法    | ReFusion, StaticFusion         | 需要RGB-D深度，单目不可用          |
+| 光流/运动法   | RoDyn-SLAM, DynaMoN            | 纹理弱区域失效；DynaMoN需离线精化     |
+| 稀疏视图去干扰  | NeRF On-the-go, WildGaussians  | 假设已知位姿，不支持SLAM序列跟踪       |
 
 **核心挑战**：仅用单目RGB，不依赖任何类别先验，如何在线识别并排除任意动态物体？
 

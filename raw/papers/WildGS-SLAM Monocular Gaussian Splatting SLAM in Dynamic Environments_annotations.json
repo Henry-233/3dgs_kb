@@ -1,0 +1,122 @@
+[
+  {
+    "page": 1,
+    "phrase": "robust and efficient monocular RGB SLAM system",
+    "category": "core_contribution",
+    "note": "提出鲁棒高效的单目RGB SLAM系统，专为动态环境设计"
+  },
+  {
+    "page": 1,
+    "phrase": "uncertainty-aware geometric mapping",
+    "category": "core_contribution",
+    "note": "核心创新：通过不确定性感知的几何建图来处理动态场景"
+  },
+  {
+    "page": 1,
+    "phrase": "artifact-free view synthesis",
+    "category": "result",
+    "note": "实现无伪影的视图合成效果，验证方法有效性"
+  },
+  {
+    "page": 2,
+    "phrase": "uncertainty-aware tracking and mapping pipeline",
+    "category": "method",
+    "note": "不确定性感知的跟踪与建图管线，无需深度或语义先验即可去除动态干扰物"
+  },
+  {
+    "page": 2,
+    "phrase": "accurate removal of dynamic distractors",
+    "category": "method",
+    "note": "精确移除动态干扰物，实现高保真静态场景重建"
+  },
+  {
+    "page": 2,
+    "phrase": "Wild-SLAM Dataset",
+    "category": "core_contribution",
+    "note": "贡献新数据集Wild-SLAM，涵盖多样室内外无约束真实场景"
+  },
+  {
+    "page": 3,
+    "phrase": "purely geometric even with monocular input",
+    "category": "method",
+    "note": "即使单目输入也采用纯几何方法，不依赖语义先验知识"
+  },
+  {
+    "page": 3,
+    "phrase": "pre-trained 2D foundation model DINOv2",
+    "category": "method",
+    "note": "利用预训练的2D基础模型DINOv2提取鲁棒图像特征"
+  },
+  {
+    "page": 4,
+    "phrase": "pre-trained DINOv2 feature extractor",
+    "category": "method",
+    "note": "使用经3D感知微调的DINOv2作为特征提取器，注入3D意识"
+  },
+  {
+    "page": 4,
+    "phrase": "shallow uncertainty MLP",
+    "category": "method",
+    "note": "浅层MLP将DINOv2特征解码为逐像素不确定性图"
+  },
+  {
+    "page": 4,
+    "phrase": "Uncertainty Loss Function",
+    "category": "method",
+    "note": "不确定性损失函数结合修正SSIM损失、正则化项与L1深度损失"
+  },
+  {
+    "page": 5,
+    "phrase": "serves as a weighting factor",
+    "category": "method",
+    "note": "不确定性图作为渲染损失的加权因子，抑制动态干扰物在建图优化中的影响"
+  },
+  {
+    "page": 5,
+    "phrase": "separately optimize the 3D Gaussian map",
+    "category": "method",
+    "note": "3D高斯地图与不确定性MLP独立优化，确保各自达到最佳性能"
+  },
+  {
+    "page": 6,
+    "phrase": "Novel View Synthesis Evaluation",
+    "category": "result",
+    "note": "在新视角合成评估中PSNR/SSIM/LPIPS指标均优于基线方法"
+  },
+  {
+    "page": 6,
+    "phrase": "best novel view synthesis performance",
+    "category": "result",
+    "note": "得益于不确定性感知建图，获得所有方法中最佳新视角合成性能"
+  },
+  {
+    "page": 8,
+    "phrase": "We ablate our key design choices",
+    "category": "result",
+    "note": "消融实验验证不确定性掩码、L1深度损失、视差正则化等关键设计的有效性"
+  },
+  {
+    "page": 8,
+    "phrase": "purely geometric framework",
+    "category": "method",
+    "note": "纯几何框架，不依赖语义分割或深度传感器的类别先验"
+  },
+  {
+    "page": 8,
+    "phrase": "state-of-the-art performance in dynamic SLAM",
+    "category": "result",
+    "note": "在动态SLAM任务的跟踪精度与新视角合成上均达到当时最优性能"
+  },
+  {
+    "page": 8,
+    "phrase": "making it challenging to",
+    "category": "limitation",
+    "note": "在线训练方式导致在观测视角不足时难以准确区分干扰物"
+  },
+  {
+    "page": 8,
+    "phrase": "Introducing motion priors could improve",
+    "category": "limitation",
+    "note": "引入运动先验可进一步改善动态场景处理与跟踪鲁棒性"
+  }
+]
