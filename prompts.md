@@ -87,6 +87,48 @@ trade-offs.
 
 ---
 
+### PDF高亮标注
+
+`</`
+
+
+`>`
+
+Read raw/papers/论文名.pdf in full detail.
+
+When processing figures with system overview or architecture diagrams,
+apply enhanced annotation to the figure captions ONLY.
+Do not annotate the figures themselves.
+
+For each architecture figure caption:
+
+1. DECOMPOSE the caption into individual claims:
+
+   - One claim per module or mechanism described
+   - One claim per design decision explained
+   - One claim per connection between modules
+2. For each claim generate a highlight annotation:
+   {
+   "page": N,
+   "phrase": "exact phrase under 10 words from the caption",
+   "category": "module | dataflow | design_decision | loss | frozen_component",
+   "note": "模块职责/数据流向/设计原因 的详细中文解释，2-3句，
+   包含：是什么 + 为什么这样设计 + 对应图中哪个部分"
+   }
+3. Annotation coverage requirements for architecture captions:
+
+   - Every named module must have at least one highlight
+   - Every input/output relationship must have a highlight
+   - Every "due to / because / to mitigate" clause must have a highlight
+     (these explain design decisions, highest priority)
+   - Loss function mentions must be highlighted
+   - Frozen vs trained component distinctions must be highlighted
+4. Note field must follow this structure:
+   "【模块/机制名】+ 具体功能描述 + 与其他模块的关联 +
+   对应图中颜色/位置（如：对应图中紫色Trained Online模块）"
+5. Save as annotations JSON and run annotate_pdf.py
+
+
 ### 建议保存方式
 
 把这些提示词存成一个文件放在 vault 里：

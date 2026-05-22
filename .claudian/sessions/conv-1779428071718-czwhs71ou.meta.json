@@ -1,0 +1,24 @@
+{
+  "id": "conv-1779428071718-czwhs71ou",
+  "providerId": "claude",
+  "title": "Explain 3DGS paper innovation",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779428071722,
+  "updatedAt": 1779428312435,
+  "lastResponseAt": 1779428312435,
+  "sessionId": "95218b04-20c8-4269-b9b6-22323c6c916d",
+  "providerState": {
+    "providerSessionId": "95218b04-20c8-4269-b9b6-22323c6c916d"
+  },
+  "currentNote": "wiki/papers/proxy-gs.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 155,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 25216,
+    "contextWindow": 1000000,
+    "contextTokens": 25371,
+    "percentage": 3,
+    "contextWindowIsAuthoritative": true
+  }
+}

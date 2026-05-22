@@ -1,122 +1,212 @@
 [
   {
     "page": 1,
-    "phrase": "robust and efficient monocular RGB SLAM system",
-    "category": "core_contribution",
-    "note": "提出鲁棒高效的单目RGB SLAM系统，专为动态环境设计"
+    "phrase": "Figure 1. WildGS-SLAM.",
+    "category": "module",
+    "note": "【系统总览图】WildGS-SLAM完整系统渲染效果展示图，呈现最终的3D高斯地图(静态场景重建)、相机跟踪轨迹(红色曲线)以及与基线方法的新视角合成对比。对应图中最上方的标题与整体布局。"
   },
   {
     "page": 1,
-    "phrase": "uncertainty-aware geometric mapping",
-    "category": "core_contribution",
-    "note": "核心创新：通过不确定性感知的几何建图来处理动态场景"
+    "phrase": "monocular video sequence captured in the wild with dynamic distractors",
+    "category": "dataflow",
+    "note": "【输入数据流】系统仅接收单目RGB视频序列作为输入，且场景中含有任意类型的动态干扰物(行人/机器人/雨伞等)。这是系统处理的最通用场景设定——无需深度传感器、无需语义标签、无需预定义物体类别。对应图中左侧的输入帧序列。"
   },
   {
     "page": 1,
-    "phrase": "artifact-free view synthesis",
-    "category": "result",
-    "note": "实现无伪影的视图合成效果，验证方法有效性"
+    "phrase": "accurately tracks the camera trajectory",
+    "category": "module",
+    "note": "【跟踪模块输出】系统在动态环境中仍能精确估计相机位姿轨迹。通过不确定性加权DBA机制,动态物体上的像素对位姿优化的贡献被大幅削弱,使跟踪不受运动干扰物影响。对应图中红色相机轨迹曲线。"
   },
   {
-    "page": 2,
-    "phrase": "uncertainty-aware tracking and mapping pipeline",
-    "category": "method",
-    "note": "不确定性感知的跟踪与建图管线，无需深度或语义先验即可去除动态干扰物"
+    "page": 1,
+    "phrase": "reconstructs a 3D Gaussian map for static elements",
+    "category": "module",
+    "note": "【建图模块输出】系统重建仅包含静态场景元素的3D高斯地图,动态物体被自动排除。通过不确定性加权渲染损失,高不确定性区域的梯度被抑制,高斯优化不会在动态物体上浪费容量。对应图中渲染的3D高斯场景几何。"
   },
   {
-    "page": 2,
-    "phrase": "accurate removal of dynamic distractors",
-    "category": "method",
-    "note": "精确移除动态干扰物，实现高保真静态场景重建"
+    "page": 1,
+    "phrase": "effectively removing all dynamic components",
+    "category": "design_decision",
+    "note": "【核心设计目标】系统通过不确定性感知机制自动识别并移除所有动态组件,这是WildGS-SLAM区别于传统静态假设SLAM的根本能力。设计原因：传统SLAM假设场景静止,动态物体破坏光度一致性假设导致跟踪严重漂移。对应图中干净的无伪影渲染结果。"
   },
   {
-    "page": 2,
-    "phrase": "Wild-SLAM Dataset",
-    "category": "core_contribution",
-    "note": "贡献新数据集Wild-SLAM，涵盖多样室内外无约束真实场景"
+    "page": 1,
+    "phrase": "enables high-fidelity rendering even in complex, dynamic scenes",
+    "category": "dataflow",
+    "note": "【最终输出质量】得益于不确定性感知的建图和跟踪,即使在高度复杂的动态场景中也能实现高保真渲染。这是系统端到端输出的最终评价指标。对应图中与基线方法(Splat-SLAM等)的新视角合成对比。"
+  },
+  {
+    "page": 1,
+    "phrase": "final 3D Gaussian map, the camera tracking trajectory",
+    "category": "dataflow",
+    "note": "【系统双输出】系统的两大核心输出：(1)仅含静态场景的3D高斯地图——用于新视角合成；(2)相机跟踪轨迹(红色)——用于定位。两者通过不确定性模块协同优化但不互相干扰。对应图中展示的地图几何与红色轨迹线。"
+  },
+  {
+    "page": 1,
+    "phrase": "view synthesis comparisons with baseline methods",
+    "category": "dataflow",
+    "note": "【评估方式】通过新视角合成质量对比基线方法(如Splat-SLAM、MonoGS等)来验证动态物体去除效果。渲染质量(PSNR/SSIM/LPIPS)是衡量静态场景重建纯度的重要指标。对应图中各方法的渲染对比图。"
   },
   {
     "page": 3,
-    "phrase": "purely geometric even with monocular input",
-    "category": "method",
-    "note": "即使单目输入也采用纯几何方法，不依赖语义先验知识"
+    "phrase": "Figure 2. System Overview.",
+    "category": "module",
+    "note": "【架构总览图】WildGS-SLAM完整系统架构图,展示三个核心阶段:不确定性预测(DINOv2+MLP)、不确定性感知跟踪(深度与不确定性引导的DBA)、以及不确定性感知建图(加权渲染损失优化的3D高斯地图)。图中灰色虚线表示梯度隔离,防止P与G互相干扰。"
   },
   {
     "page": 3,
-    "phrase": "pre-trained 2D foundation model DINOv2",
-    "category": "method",
-    "note": "利用预训练的2D基础模型DINOv2提取鲁棒图像特征"
+    "phrase": "sequence of RGB images as input",
+    "category": "dataflow",
+    "note": "【系统输入】单目RGB图像序列{I_i}为唯一传感器输入,无需深度相机或IMU等额外传感器。输入帧分别流向三个分支:DINOv2特征提取器、Metric3D深度估计器和ConvGRU光流网络。对应图中左上角的'Input: RGB frames'。"
   },
   {
-    "page": 4,
-    "phrase": "pre-trained DINOv2 feature extractor",
-    "category": "method",
-    "note": "使用经3D感知微调的DINOv2作为特征提取器，注入3D意识"
+    "page": 3,
+    "phrase": "estimates the camera poses",
+    "category": "module",
+    "note": "【跟踪输出—位姿估计】系统的跟踪分支(Pose Tracking)输出关键帧相机位姿ω。通过不确定性加权DBA层优化光流重投影误差,动态物体像素因高不确定性而权重极低,使位姿估计不受干扰。对应图中右下'Pose Tracking'区域,优化层(Optimization Layer)输出Pose。"
   },
   {
-    "page": 4,
-    "phrase": "shallow uncertainty MLP",
-    "category": "method",
-    "note": "浅层MLP将DINOv2特征解码为逐像素不确定性图"
+    "page": 3,
+    "phrase": "3D Gaussian map G of the static scene",
+    "category": "module",
+    "note": "【建图输出—高斯地图】系统建图分支(Mapping)输出仅含静态场景的3D高斯地图G。高斯地图通过不确定性加权渲染损失在线增量优化,高不确定性(动态)区域的梯度被抑制。对应图中右上'Mapping'区域,紫色'Trained Online'模块中的3D Gaussians。"
   },
   {
-    "page": 4,
-    "phrase": "Uncertainty Loss Function",
-    "category": "method",
-    "note": "不确定性损失函数结合修正SSIM损失、正则化项与L1深度损失"
+    "page": 3,
+    "phrase": "due to the uncertainty",
+    "category": "design_decision",
+    "note": "【核心设计动机】系统对动态环境鲁棒的根本原因在于不确定性估计模块。设计原因：传统SLAM在动态场景中失效是因为所有像素被一视同仁地用于跟踪和建图优化,运动物体的像素会误导位姿估计和场景重建。不确定性机制为每个像素分配可信度权重,自动抑制动态区域的贡献。对应图中上半部分的整个'Uncertainty Est.'分支。"
   },
   {
-    "page": 5,
-    "phrase": "serves as a weighting factor",
-    "category": "method",
-    "note": "不确定性图作为渲染损失的加权因子，抑制动态干扰物在建图优化中的影响"
+    "page": 3,
+    "phrase": "uncertainty estimation module",
+    "category": "module",
+    "note": "【不确定性估计模块】系统核心创新模块,由两个组件串联构成:(1)预训练DINOv2(3D-aware微调版)提取图像语义特征,(2)在线训练浅层MLP将特征解码为逐像素不确定性图β。该模块是整个系统的'动态物体检测器',输出引导后续跟踪和建图。对应图中上半部分'Uncertainty Est.'虚线框内区域。"
   },
   {
-    "page": 5,
-    "phrase": "separately optimize the 3D Gaussian map",
-    "category": "method",
-    "note": "3D高斯地图与不确定性MLP独立优化，确保各自达到最佳性能"
+    "page": 3,
+    "phrase": "pretrained DINOv2 model",
+    "category": "frozen_component",
+    "note": "【冻结组件—DINOv2特征提取器】使用经3D-aware微调的预训练DINOv2模型作为固定特征提取器,不参与在线训练。选择3D-aware版本而非原版的原因是它注入了3D几何意识,特征对多视图一致性更敏感。该模型看过数亿张图片,提供强大的语义和几何先验。对应图中左上'Feature Extractor'绿色'Frozen Network'模块。"
   },
   {
-    "page": 6,
-    "phrase": "Novel View Synthesis Evaluation",
-    "category": "result",
-    "note": "在新视角合成评估中PSNR/SSIM/LPIPS指标均优于基线方法"
+    "page": 3,
+    "phrase": "extract the image features",
+    "category": "dataflow",
+    "note": "【特征提取数据流】DINOv2将输入RGB图像编码为特征图F_i = F(I_i),分辨率为原始图像的1/14。这些特征包含丰富的语义和几何信息,但自身不区分动态/静态——需要后续MLP将其解码为不确定性。对应图中从Frozen Network(DINOv2)到Trained Online(Uncertainty MLP)的箭头数据流。"
   },
   {
-    "page": 6,
-    "phrase": "best novel view synthesis performance",
-    "category": "result",
-    "note": "得益于不确定性感知建图，获得所有方法中最佳新视角合成性能"
+    "page": 3,
+    "phrase": "uncertainty MLP P",
+    "category": "module",
+    "note": "【可训练组件—不确定性解码器MLP】浅层多层感知机P,在线训练,将DINOv2特征解码为逐像素不确定性图β_i = P(F_i)。MLP随视频流增量训练,无需人工标注,通过不确定性损失(L_uncer)自监督学习。对应图中上半部分紫色'Trained Online'区域中的'Uncertainty MLP'。"
   },
   {
-    "page": 8,
-    "phrase": "We ablate our key design choices",
-    "category": "result",
-    "note": "消融实验验证不确定性掩码、L1深度损失、视差正则化等关键设计的有效性"
+    "page": 3,
+    "phrase": "predict per-pixel uncertainty",
+    "category": "dataflow",
+    "note": "【不确定性输出数据流】MLP P输出逐像素不确定性图β,经过双线性上采样恢复到原始图像分辨率。低β=可信静态区域,高β=不可信动态区域。该不确定性图同时流向两个下游模块:跟踪(DBA加权)和建图(渲染损失加权)。对应图中从Uncertainty MLP分叉到Pose Tracking和Mapping的两条箭头。"
   },
   {
-    "page": 8,
-    "phrase": "purely geometric framework",
-    "category": "method",
-    "note": "纯几何框架，不依赖语义分割或深度传感器的类别先验"
+    "page": 3,
+    "phrase": "predicted uncertainty as the weight",
+    "category": "dataflow",
+    "note": "【不确定性→跟踪数据流】预测的不确定性图被用作DBA层中光流重投影误差的权重因子。协方差矩阵被缩放为Σ_ij/β_i²:动态物体上β_i大→权重极小→不影响位姿优化。这是不确定性从'检测'到'执行'的关键桥梁。对应图中从Uncertainty流向Pose Tracking中'Depth & Uncer. Guided DBA'的箭头。"
   },
   {
-    "page": 8,
-    "phrase": "state-of-the-art performance in dynamic SLAM",
-    "category": "result",
-    "note": "在动态SLAM任务的跟踪精度与新视角合成上均达到当时最优性能"
+    "page": 3,
+    "phrase": "bundle adjustment (DBA) layer",
+    "category": "module",
+    "note": "【跟踪核心—不确定性引导DBA层】基于DROID-SLAM框架的稠密光束法平差层,联合优化关键帧位姿ω和视差d。与传统DBA的区别在于:光流重投影误差被不确定性β_i²加权,并引入视差正则化项约束估计视差接近Metric3D v2单目深度预测。对应图中右下橙色'Optimization Layer'区域。"
   },
   {
-    "page": 8,
-    "phrase": "making it challenging to",
-    "category": "limitation",
-    "note": "在线训练方式导致在观测视角不足时难以准确区分干扰物"
+    "page": 3,
+    "phrase": "mitigate the impact of dynamic distractors",
+    "category": "design_decision",
+    "note": "【设计决策—DBA中抑制动态干扰】在DBA层中通过不确定性加权来削弱动态干扰物对位姿估计的影响。设计原因：传统DBA假设所有像素的光流一致性等价可靠,但动态物体上的光流反映的是物体自身运动而非相机运动,直接使用会导致跟踪严重漂移。通过除以β²,高不确定性像素的误差贡献被有效清零。对应图中灰色虚线所示的梯度抑制机制。"
   },
   {
-    "page": 8,
-    "phrase": "Introducing motion priors could improve",
-    "category": "limitation",
-    "note": "引入运动先验可进一步改善动态场景处理与跟踪鲁棒性"
+    "page": 3,
+    "phrase": "monocular metric depth",
+    "category": "module",
+    "note": "【辅助模块—单目度量深度估计】使用Metric3D v2从单目RGB预测度量深度D̃_i,作为跟踪和建图的辅助几何先验。设计原因：在不确定性MLP尚未收敛的跟踪早期阶段,深度先验提供关键的稳定性锚点(消融实验显示移除视差正则化后ATE从0.46暴增至10.97cm)。对应图中左上'Depth Estimator'模块,输出'Metric Depth'。"
+  },
+  {
+    "page": 3,
+    "phrase": "facilitate the pose estimation",
+    "category": "dataflow",
+    "note": "【深度→跟踪数据流】单目度量深度通过视差正则化项辅助位姿估计:鼓励DBA估计的视差d_i接近Metric3D预测的逆深度1/D̃_i。仅在多视图深度一致性高的区域(M_i=1)激活该正则化,避免在不可靠区域强制约束。对应图中从Metric Depth流向DBA层的箭头。"
+  },
+  {
+    "page": 3,
+    "phrase": "incorporated into the rendering loss",
+    "category": "loss",
+    "note": "【不确定性加权渲染损失】建图模块中的渲染损失被不确定性加权:L_render = (λ_5*L_color + λ_6*L_depth)/β² + λ_7*L_iso。不确定性β出现在分母——动态区域高β→损失项趋近于0→高斯优化不受干扰→3D高斯地图自动只包含静态场景。对应图中Mapping区域Loss Function部分。"
+  },
+  {
+    "page": 3,
+    "phrase": "update G",
+    "category": "dataflow",
+    "note": "【渲染损失→高斯地图更新】加权渲染损失反向传播更新3D高斯地图G的参数(位置μ、协方差Σ、颜色c、不透明度o)。关键:由于梯度隔离(gray dashed line),L_render的梯度只流向G,不流向MLP P,确保两者独立优化。对应图中从Loss Function到3D Gaussians的紫色'Trained Online'箭头。"
+  },
+  {
+    "page": 3,
+    "phrase": "uncertainty loss is computed in parallel",
+    "category": "loss",
+    "note": "【不确定性损失—并行训练MLP】不确定性损失L_uncer用于训练MLP P,与渲染损失L_render并行计算但相互独立。L_uncer = (L_SSIM' + λ_1*L_depth)/β² + λ_2*L_reg_V + λ_3*log(β)。其中L_depth = |D̂ - D̃|₁是关键项——渲染深度与Metric3D预测深度的差异显著帮助MLP区分静态几何和运动干扰物。对应图中上半部分Loss Function。"
+  },
+  {
+    "page": 3,
+    "phrase": "train P",
+    "category": "dataflow",
+    "note": "【不确定性损失→MLP训练】L_uncer的反向传播仅更新MLP P的参数,不更新高斯地图G。设计原因:NeRF On-the-go已证明将P和G联合优化会导致两者互相干扰——P可能通过提高所有像素的不确定性来'作弊'降低损失,而非真正识别动态区域。对应图中从Loss Function到Uncertainty MLP的梯度流。"
+  },
+  {
+    "page": 3,
+    "phrase": "P and G are optimized independently",
+    "category": "design_decision",
+    "note": "【关键设计决策—梯度隔离】不确定性MLP P与3D高斯地图G独立优化,通过detach切断两者之间的梯度流。设计原因:如果G的渲染质量影响P的不确定性预测(或反之),会形成不稳定的反馈循环。P可能适应G的误差而非真实的动态/静态区分,导致整体系统退化。对应图中灰色虚线(Gradient Flow)表示被切断的梯度路径。"
+  },
+  {
+    "page": 3,
+    "phrase": "gradient flow in the gray dashed",
+    "category": "design_decision",
+    "note": "【梯度隔离可视化】图中灰色虚线专门标注了P与G之间被切断的梯度流。它表示L_uncer到G的梯度被detach,同时L_render到P的梯度也被detach——两个损失函数计算在同一前向传播中,但反向传播互不干扰。这是系统稳定训练的关键结构约束。"
+  },
+  {
+    "page": 3,
+    "phrase": "Frozen Network",
+    "category": "frozen_component",
+    "note": "【图例—冻结网络】图中绿色标注的'Frozen Network'指预训练DINOv2特征提取器——在SLAM运行期间参数完全固定,不参与任何在线训练。它在训练前已经通过数亿张图像学习了通用的视觉语义特征和3D几何意识。对应图中左上角绿色Feature Extractor模块。"
+  },
+  {
+    "page": 3,
+    "phrase": "Trained Online",
+    "category": "module",
+    "note": "【图例—在线训练模块】图中紫色标注的'Trained Online'包含两个组件:(1)不确定性MLP P——通过L_uncer在线训练;(2)3D高斯地图G——通过L_render在线优化。两者虽同为在线训练但独立优化(梯度隔离)。对应图中所有紫色模块区域。"
+  },
+  {
+    "page": 3,
+    "phrase": "Optimization Layer",
+    "category": "module",
+    "note": "【图例—优化层】图中橙色标注的'Optimization Layer'指DBA(稠密光束法平差)层,通过迭代优化最小化不确定性加权的光流重投影误差来求解关键帧位姿和视差。与神经网络的反向传播不同,DBA是一个显式的非线性最小二乘优化过程。对应图中右下橙色区域。"
+  },
+  {
+    "page": 3,
+    "phrase": "Loss Function",
+    "category": "loss",
+    "note": "【图例—损失函数】图中红色标注的'Loss Function'有两处:(1)不确定性损失L_uncer(上半部分)——训练MLP P,包含SSIM损失、L1深度损失和正则化项;(2)渲染损失L_render(右上部分)——优化高斯地图G,包含L1 RGB、SSIM和L1深度项。两者都经不确定性加权,但梯度流向不同。对应图中所有红色Loss Function标记。"
+  },
+  {
+    "page": 3,
+    "phrase": "Predicted Variable",
+    "category": "dataflow",
+    "note": "【图例—预测变量】图中标注的'Predicted Variable'指由网络预测输出的中间变量,包括Metric Depth(来自深度估计器)和Uncertainty(来自不确定性MLP)。这些变量不是最终输出,而是作为中间信号引导跟踪和建图过程。它们通常用蓝色标注。"
+  },
+  {
+    "page": 3,
+    "phrase": "Gradient Flow",
+    "category": "design_decision",
+    "note": "【图例—梯度流】图中灰色虚线标注的'Gradient Flow'特指P与G之间被切断的梯度路径。这是系统设计中最关键的约束——正常梯度流用实线表示(如L_render→G,L_uncer→P),而虚线表示被明确切断的路径(如L_render↛P和L_uncer↛G)。"
   }
 ]

@@ -1,134 +1,116 @@
 [
   {
     "page": 1,
+    "phrase": "Figure 1. We propose Proxy-GS,",
+    "category": "module",
+    "note": "【系统总览图】Proxy-GS完整系统效果展示图,对比Octree-GS基线展示三大优势:(1)锚点从冗余分布→稀疏分布(通过遮挡剔除),(2)渲染质量从PSNR 24.51→25.80,(3)渲染帧率从32 FPS→150 FPS。对应图中上方标题及三列对比渲染图(Octree-GS/Naive Densify/Proxy-GS)。"
+  },
+  {
+    "page": 1,
     "phrase": "occlusion-aware training and inference framework",
-    "category": "core_contribution",
-    "note": "提出遮挡感知的训练与推理框架，统一处理3D高斯泼溅中的遮挡问题"
+    "category": "module",
+    "note": "【核心框架定位】Proxy-GS是统一的遮挡感知训练与推理框架,训练和推理共享同一套代理引导管线。设计原因:现有MLP基方法(如Octree-GS)在锚点选择时未显式考虑遮挡关系,大量锚点位于被遮挡区域,增加解码负担却不贡献渲染质量。框架通过轻量代理网格为训练和推理两端同时注入遮挡感知能力。"
   },
   {
     "page": 1,
-    "phrase": "fast proxy system capable of producing",
-    "category": "method",
-    "note": "快速代理系统可在1ms内生成1000×1000分辨率的精确遮挡深度图"
+    "phrase": "built upon lightweight proxies",
+    "category": "module",
+    "note": "【基础模块—轻量代理网格】系统的核心基础是轻量代理网格(lightweight proxy mesh),从点云(COLMAP或MapAnything)经表面简化重建而得,仅保留粗略几何结构。设计原因:精确网格非必需——锚点与解码高斯之间存在固有偏移,为方法提供了对网格误差的天然鲁棒性。代理网格在推理时用于硬件光栅化生成遮挡深度图,训练时引导锚点增密。"
   },
   {
     "page": 1,
-    "phrase": "significant redundancy still remains due to",
-    "category": "core_contribution",
-    "note": "分析揭示现有方法因缺乏遮挡感知存在严重的冗余高斯"
-  },
-  {
-    "page": 2,
-    "phrase": "proxy-guided training pipeline",
-    "category": "method",
-    "note": "代理引导的训练管线将代理网格的结构先验融入锚点选择与增密"
-  },
-  {
-    "page": 2,
-    "phrase": "hardware rasterization to reduce the time",
-    "category": "method",
-    "note": "利用硬件光栅化将遮挡深度图获取时间降至1ms以下"
-  },
-  {
-    "page": 2,
-    "phrase": "FPS speedup over the LOD",
-    "category": "result",
-    "note": "在遮挡丰富场景上相比LOD基线实现3倍以上帧率加速"
-  },
-  {
-    "page": 3,
-    "phrase": "octree representation, enabling the scene to be modeled",
-    "category": "core_contribution",
-    "note": "Octree-GS用八叉树替代体素网格进行多层级场景建模，但缺少遮挡感知"
-  },
-  {
-    "page": 3,
-    "phrase": "LOD mechanisms have also been",
-    "category": "core_contribution",
-    "note": "LOD机制已扩展到MLP基高斯，通过距离层级选择减少解码锚点"
-  },
-  {
-    "page": 4,
-    "phrase": "lightweight proxy meshes for hardware rasterization",
-    "category": "method",
-    "note": "利用轻量级代理网格进行硬件光栅化，以极小时间成本获取遮挡关系"
-  },
-  {
-    "page": 4,
-    "phrase": "fuse the occlusion culling and frustum culling",
-    "category": "method",
-    "note": "在单个CUDA内核中融合遮挡剔除与视锥剔除，高效过滤被遮挡锚点"
-  },
-  {
-    "page": 4,
-    "phrase": "mismatch between the decoded anchors",
-    "category": "core_contribution",
-    "note": "观察到解码锚点与精确渲染所需锚点之间存在严重不匹配"
-  },
-  {
-    "page": 5,
     "phrase": "proxy-guided densification",
-    "category": "method",
-    "note": "代理引导增密将锚点投影到代理网格表面，避免在遮挡区域生成冗余锚点"
+    "category": "module",
+    "note": "【训练模块—代理引导增密】训练阶段的核心机制:将锚点投影到代理网格表面上进行增密,而非在3D空间中自由生长。设计原因:传统基于梯度的增密策略会在遮挡区域也生成锚点,而代理引导确保新锚点只出现在可见的几何表面上,避免在不可见/遮挡区域浪费计算。对应图中Proxy-Guided Densify示意图。"
   },
   {
-    "page": 5,
-    "phrase": "projects anchors onto the surface",
-    "category": "method",
-    "note": "通过预计算代理深度图将新锚点反投影到代理网格表面上"
+    "page": 1,
+    "phrase": "guides anchors to grow in more",
+    "category": "design_decision",
+    "note": "【核心设计决策—锚点生长引导】代理网格将锚点生长方向从'自由3D空间'约束为'沿代理表面',使锚点集中在几何有意义的可见区域。设计原因:MLP基方法的锚点是解码高斯的关键——锚点位置决定了高斯图元的空间分布。若锚点大量位于遮挡/不可见区域,解码高斯对渲染无贡献却消耗计算,造成严重冗余。对应图中锚点分布从Redundant→Sparse的可视化对比。"
   },
   {
-    "page": 6,
-    "phrase": "consistently outperform existing methods",
-    "category": "result",
-    "note": "在MatrixCity大规模街景上渲染质量与速度均超越所有基线方法"
+    "page": 1,
+    "phrase": "geometrically meaningful regions",
+    "category": "design_decision",
+    "note": "【增密目标区域】代理引导确保锚点只在'几何有意义'的区域生长——即相机可见的、接近真实场景表面的区域。这避免了遮挡区域的无效锚点,锚点容量被集中用于表达可见场景几何,渲染质量与速度同时提升。对应图中Proxy-GS渲染结果(PSNR 25.80)与Octree-GS(PSNR 24.51)的对比。"
   },
   {
-    "page": 6,
-    "phrase": "Novel View Synthesis and rendering FPS",
-    "category": "result",
-    "note": "在新视角合成质量与渲染帧率两项指标上达到最优权衡"
+    "page": 1,
+    "phrase": "higher rendering quality",
+    "category": "dataflow",
+    "note": "【渲染质量输出】代理引导增密提升了MLP基3DGS的渲染质量(PSNR/SSIM/LPIPS)。原因:锚点集中在可见表面区域→解码高斯更有效地表达场景→遮挡区域不产生伪影。在MatrixCity街景等重度遮挡场景中效果尤为显著。对应图中右侧高保真渲染结果与Ground Truth的对比。"
   },
   {
-    "page": 7,
-    "phrase": "brings more than a",
-    "category": "result",
-    "note": "仅推理时使用代理引导即可获3倍FPS提升，但训练推理不一致导致质量下降"
+    "page": 1,
+    "phrase": "delivers significantly faster rendering",
+    "category": "dataflow",
+    "note": "【渲染速度输出】代理引导同时显著提升渲染帧率(FPS 32→150,约4.7倍加速)。加速来自两方面:(1)遮挡剔除大幅减少需解码的锚点数量,(2)代理深度图获取极快(<1ms)不引入额外延迟。对应图中FPS标注(Octree-GS 32 FPS vs Proxy-GS 150 FPS)。"
   },
   {
-    "page": 7,
-    "phrase": "proxy-guided training and rendering",
-    "category": "method",
-    "note": "训练与推理一致使用代理引导，结合代理引导增密实现最佳质量-速度平衡"
+    "page": 1,
+    "phrase": "state-of-the-art MLP-based 3DGS",
+    "category": "dataflow",
+    "note": "【对比基线】系统与最先进的MLP基3DGS方法(如Octree-GS、Scaffold-GS)对比,这些方法虽有LOD机制但缺乏遮挡感知锚点选择。Proxy-GS提供正交的改进——可与任何MLP基方法叠加,同时提升其质量与速度。"
   },
   {
-    "page": 7,
-    "phrase": "Integration with different 3DGS",
-    "category": "result",
-    "note": "与FlashGS和硬件3DGS等加速方法正交兼容，可叠加进一步提升帧率"
+    "page": 4,
+    "phrase": "Figure 2. Proxy-GS Framework.",
+    "category": "module",
+    "note": "【系统架构总览图】Proxy-GS完整管线架构图,展示三大核心阶段:(1)轻量代理网格构建(离线预处理),(2)推理管线——硬件光栅化生成遮挡深度图→CUDA遮挡剔除→渲染,(3)训练管线——共享推理管线+结构感知锚点增密。图中有明显的训练/推理双分支结构,推理管线被训练过程复用。"
   },
   {
-    "page": 8,
-    "phrase": "varying the proxy resolution has only a",
-    "category": "result",
-    "note": "代理分辨率变化对渲染质量影响很小，粗粒度代理即可保持遮挡结构"
+    "page": 4,
+    "phrase": "construct a lightweight proxy mesh",
+    "category": "module",
+    "note": "【离线模块—代理网格构建】系统第一步:利用现有重建管线(室外用COLMAP稠密点云,室内用MapAnything)构建轻量代理网格,经表面简化仅保留粗略几何结构。该网格在整个训练和推理过程中保持不变(类似冻结组件)。设计原因:利用GPU硬件固定功能单元的吞吐量进行快速深度生成,精确几何非必需。对应图中左侧'Proxy Mesh'输入。"
   },
   {
-    "page": 8,
-    "phrase": "inherent offset between the anchors",
-    "category": "result",
-    "note": "锚点与解码高斯间存在固有偏移，使方法对顶点噪声具有一定鲁棒性"
+    "page": 4,
+    "phrase": "hardware rasterization produces a depth map",
+    "category": "module",
+    "note": "【推理模块—硬件光栅化深度生成】利用GPU硬件光栅化固定功能单元从代理网格生成遮挡深度图,仅需不到1ms(1000×1000分辨率)。技术要点:代理网格被划分为细粒度簇,使用Hi-Z层次化可见性剔除快速跳过不可见簇,Fragment阶段启用Early-Z且保持片元着色器最小化。深度图保持在GPU显存中,避免GPU-CPU-GPU往返开销。对应图中'Hardware Rasterization'→'Depth Map'数据流。"
   },
   {
-    "page": 9,
-    "phrase": "consistently improves both rendering quality",
-    "category": "result",
-    "note": "代理引导框架在各种场景下均能持续提升渲染质量与效率"
+    "page": 4,
+    "phrase": "depth map in under 1 ms",
+    "category": "design_decision",
+    "note": "【设计决策—极速深度获取】深度图获取时间控制在1ms以内(<1000×1000分辨率),这是代理方案可行的关键前提。设计原因:若深度获取本身耗时超过其节省的渲染时间,则遮挡剔除失去意义。硬件光栅化利用GPU固定功能管线的高吞吐量,配合Hi-Z剔除和Early-Z优化,确保开销可忽略不计。对应图中Hardware Rasterization模块标注。"
   },
   {
-    "page": 9,
-    "phrase": "new state-of-the-art in efficient 3D scene representation",
-    "category": "result",
-    "note": "在高效3D场景表示方面建立了新的最优水平"
+    "page": 4,
+    "phrase": "efficiently cull anchors that are occluded",
+    "category": "dataflow",
+    "note": "【数据流—遮挡锚点剔除】代理深度图用于高效剔除被遮挡的锚点:将锚点投影到NDC坐标,与深度图比较——若锚点深度大于代理深度(即位于表面后方),则该锚点被剔除。遮挡剔除与视锥剔除融合在单个CUDA内核中执行,确保计算效率。这是系统加速的核心来源——减少需解码和渲染的锚点/高斯数量。对应图中'Cull'/'Anchor Filter'操作。"
+  },
+  {
+    "page": 4,
+    "phrase": "During training, in addition to",
+    "category": "design_decision",
+    "note": "【设计决策—训练共享推理管线】训练阶段包含与推理完全相同的渲染管线(代理深度→遮挡剔除→渲染)。设计原因:训练-推理一致性对于保证训练效果可迁移到推理时至关重要——若训练时不使用遮挡剔除,则模型会依赖遮挡区域的锚点,推理时剔除它们会导致质量下降。消融实验证实仅推理时使用代理引导可获3倍加速,但质量下降。"
+  },
+  {
+    "page": 4,
+    "phrase": "same rendering pipeline",
+    "category": "dataflow",
+    "note": "【数据流—共享渲染管线】训练与推理使用完全相同的渲染管线:代理网格→硬件光栅化→深度图→遮挡锚点剔除→高斯泼溅渲染。共享管线确保训练时学到的锚点和GS参数在推理时同样有效,不会因管线不一致导致性能退化。对应图中从Proxy Mesh经Hardware Rasterization到Rendering的公共路径。"
+  },
+  {
+    "page": 4,
+    "phrase": "structure-aware anchor densification",
+    "category": "module",
+    "note": "【训练模块—结构感知锚点增密】训练阶段的独有组件:在共享推理管线基础上,引入结构感知的锚点增密策略。具体实现:将需要增密的新锚点通过预计算的代理深度图反投影到代理网格表面,确保锚点沿真实几何结构分布。这是区别于Octree-GS等方法的根本创新——增密不再是空间自由的,而是被代理几何结构约束。对应图中训练分支的'Structure-Aware Anchor Densification'模块。"
+  },
+  {
+    "page": 4,
+    "phrase": "anchors to grow adaptively along",
+    "category": "design_decision",
+    "note": "【核心设计—自适应锚点生长】锚点沿代理网格几何自适应生长,而非在3D空间中自由增密。设计原因:传统增密(基于视图空间位置梯度)在遮挡区域也会生成锚点,导致大量'死锚点'(对渲染无贡献但消耗解码计算)。代理引导的生长确保锚点容量被有效利用——仅可见、近表面的区域获得增密。对应图中训练分支锚点向代理表面聚集的可视化。"
+  },
+  {
+    "page": 4,
+    "phrase": "proxy mesh geometry",
+    "category": "dataflow",
+    "note": "【数据流—代理几何约束锚点】代理网格几何是锚点增密的空间约束边界:新锚点被投影到代理表面上,其位置(x,y,z)由代理深度值决定。即使代理网格存在噪声或分辨率较低,锚点与解码高斯之间的固有偏移也提供了自然容错——轻微顶点扰动(5%以内)对渲染质量的整体影响有限。对应图中训练分支箭头指向代理网格表面。"
   }
 ]
