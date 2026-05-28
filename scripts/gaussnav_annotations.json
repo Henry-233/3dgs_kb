@@ -1,0 +1,104 @@
+[
+  {
+    "page": 3,
+    "phrase": "Framework Overview",
+    "category": "module",
+    "note": "【GaussNav整体框架】三阶段模块化导航框架的总览图。第一episode执行Frontier Exploration + Semantic Gaussian Construction完成场景建图；后续episode直接使用预构建地图执行Gaussian Navigation完成目标定位与路径规划。对应图中左右两大部分：左侧为First Episode的建图流程，右侧为Subsequent Episodes的导航流程。"
+  },
+  {
+    "page": 3,
+    "phrase": "frontier exploration",
+    "category": "module",
+    "note": "【Frontier Exploration模块】智能体在未知环境的首个episode中执行边界探索策略——同时维护探索地图和障碍物地图，检测已探索区域与未探索区域的边界（frontiers），选择最近的可达frontier点作为waypoint。目的是高效覆盖整个环境并收集RGB-D观测数据，为后续Semantic Gaussian建图提供完整的场景覆盖。对应图中左侧第一阶段（绿色区域）。"
+  },
+  {
+    "page": 3,
+    "phrase": "constructing a Semantic Gaussian",
+    "category": "module",
+    "note": "【Semantic Gaussian Construction模块】将Frontier Exploration收集的RGB-D观测构建为Semantic Gaussian地图——每个高斯包含9个参数（RGB颜色c、质心μ、半径r、不透明度o、类别标签l），采用各向同性简化替代原始3DGS的完整协方差矩阵和SH系数，以计算效率换取渲染精度。对应图中左侧第二阶段（中间过渡区域）。"
+  },
+  {
+    "page": 3,
+    "phrase": "pre-constructed Semantic",
+    "category": "dataflow",
+    "note": "【场景级地图复用数据流】预构建的Semantic Gaussian地图从First Episode流向Subsequent Episodes——这是GaussNav的核心设计决策：场景级地图（Scene-specific Map）建一次、用多次，而非之前方法（Mod-IIN、IEVE）的episode级地图（每episode重新建图）。这一设计使导航阶段无需在线语义分割或特征匹配，实现>20 FPS的实时导航。对应图中从左侧建图结果到右侧导航输入的箭头。"
+  },
+  {
+    "page": 3,
+    "phrase": "ground the goal object",
+    "category": "module",
+    "note": "【Goal Grounding模块】Gaussian Navigation的输出端——通过DISK+LightGlue特征匹配从候选物体实例中识别目标，结合DBSCAN空间聚类去噪后确定目标在Semantic Gaussian中的3D位置。这一步骤将IIN（实例图像目标导航）转化为更简单的PointGoal Navigation（点目标导航）。对应图中右侧输出位置（目标定位结果）。"
+  },
+  {
+    "page": 3,
+    "phrase": "guide the agent towards",
+    "category": "dataflow",
+    "note": "【导航执行数据流】从目标定位结果到智能体动作序列的输出流——确定目标3D位置后，将Semantic Gaussian转为点云→体素化为3D体素→投影为2D BEV网格→FMM计算最短距离场→在智能体操作范围内选择局部最优waypoint→根据角度和距离计算离散动作（FORWARD/TURN_LEFT/TURN_RIGHT/STOP），迭代执行直至到达目标。对应图中最右侧的路径规划与动作输出。"
+  },
+  {
+    "page": 4,
+    "phrase": "Semantic Gaussian Construction",
+    "category": "module",
+    "note": "【Semantic Gaussian Construction流水线】迭代交替的建图流水线，由两个子步骤组成：Gaussian Densification（在缺失区域添加新高斯）和Semantic Gaussian Updating（通过可微渲染+梯度优化更新高斯参数）。每帧新观测到来时，先增密后更新，逐步完善场景表示。对应图中展示的迭代循环结构（t-1到t的递进更新）。"
+  },
+  {
+    "page": 4,
+    "phrase": "updates the Gaussians from",
+    "category": "module",
+    "note": "【Gaussian Densification + Updating迭代循环】从t-1时刻的高斯集合出发，通过Densification Mask（Eq.7：轮廓不透明度<0.5 或 深度误差>50倍中位深度误差处添加新高斯）和梯度优化（最小化RGB+深度+语义分割误差）更新到t时刻的高斯集合。这是建图的核心迭代过程——与SplaTAM类似但使用简化版各向同性高斯。对应图中的循环箭头和更新流程。"
+  },
+  {
+    "page": 4,
+    "phrase": "rendered RGB and depth",
+    "category": "dataflow",
+    "note": "【渲染-对比反馈数据流】将t-1时刻高斯的可微渲染结果（RGB+D+Silhouette）与当前帧真值观测进行逐像素比较——RGB差异监督外观、深度差异监督几何、轮廓差异判断高斯覆盖密度。比较结果驱动两个分支：(1)Densification Mask决定哪里需要添加新高斯 (2)Loss反向传播更新已有高斯参数。对应图中Render→Compare→Densification/Updating的闭环。"
+  },
+  {
+    "page": 4,
+    "phrase": "semantic labels are assigned",
+    "category": "module",
+    "note": "【MaskRCNN语义标签分配模块】将MaskRCNN对RGB观测的分割结果赋值给增密后的高斯——每个高斯获得类别标签l（6类之一：chair/couch/plant/bed/toilet/television）。语义标签在后续Gaussian Navigation中用于：(1)分类器缩小搜索空间2.5倍 (2)按类别查询候选物体实例进行匹配。对应图中Concurrently分支的语义标注流程。"
+  },
+  {
+    "page": 4,
+    "phrase": "through differentiable rendering",
+    "category": "module",
+    "note": "【Differentiable Rendering优化模块】通过可微光栅化+梯度优化精炼高斯参数——与原始3DGS不同，GaussNav同时可微渲染RGB、深度、轮廓和语义四种输出（Eq.1-6），损失函数同时最小化颜色、深度和分割误差。优化后的高斯地图既保留了场景纹理细节（供DISK特征匹配使用），又具有语义标签（供分类器查询使用）。对应图中最后的Refinement阶段。"
+  },
+  {
+    "page": 4,
+    "phrase": "Gaussian Navigation",
+    "category": "module",
+    "note": "【Gaussian Navigation流水线】利用预构建Semantic Gaussian执行目标定位与导航的四步流水线：Classifier（ResNet50分类目标类别）→NVS Rendering（围绕候选实例多视角渲染）→Match & Grounding（DISK+LightGlue匹配+DBSCAN定位）→Path Planning（FMM最短路径规划）。将IIN任务转化为PointGoal Navigation，无需额外探索或验证。对应图5展示的从左到右完整流水线。"
+  },
+  {
+    "page": 4,
+    "phrase": "goal image using pre-constructed",
+    "category": "dataflow",
+    "note": "【目标图像+预构建地图的输入数据流】两个关键输入汇聚到Gaussian Navigation：(1)Goal Image（目标物体照片，任意视角、任意相机参数）(2)Pre-constructed Semantic Gaussian（场景的3DGS地图）。分类器利用预构建地图的语义标注将目标图像分类为6个语义类别之一，从而将后续匹配搜索空间从全场景（648个候选观测）压缩到仅同类实例（33个候选观测）——约20倍压缩。对应图中流水线入口的两个输入箭头。"
+  },
+  {
+    "page": 4,
+    "phrase": "generate descriptive images",
+    "category": "module",
+    "note": "【NVS多视角渲染模块】围绕每个候选物体实例，从原始训练视角出发，绕y轴（水平）和x轴（垂直）旋转θ角生成新视角渲染图像（Eq.9-10）。实验中nv=3（θ=±15°水平+垂直）在匹配成功率和渲染伪影之间取得最佳平衡——更大的旋转角（nv=5）会产生空洞伪影降低可匹配特征点数。对应图中Classification之后的Descriptive Image Rendering环节。"
+  },
+  {
+    "page": 4,
+    "phrase": "matched with the target",
+    "category": "module",
+    "note": "【DISK+LightGlue特征匹配模块】用DISK（轻量级局部特征提取器）提取渲染图像和目标图像的关键点+描述符（Eq.13），用LightGlue（基于Transformer的特征匹配器）计算匹配对（Eq.14）。匹配点数κ(s)作为相似度得分——选择κ(s)最大的候选实例作为目标（Eq.12）。相比SIFT+FLANN和GlueStick，DISK+LightGlue在HM3D数据集上表现最优。对应图中Match环节。"
+  },
+  {
+    "page": 4,
+    "phrase": "identify and ground",
+    "category": "module",
+    "note": "【DBSCAN聚类定位模块】匹配选出目标实例后，对该实例的高斯集合执行DBSCAN空间聚类——将紧密聚集的高斯点归为目标物体，将语义分割错误导致的离群点标记为噪声排除。聚类结果的中心位置即为目标的3D坐标P̂g，用于后续路径规划。这一Grounding步骤的精度是性能上限的关键瓶颈之一（Table II：GT定位可将Success从0.723提升至0.946）。对应图中Identify & Ground环节。"
+  },
+  {
+    "page": 4,
+    "phrase": "path planning to compute",
+    "category": "module",
+    "note": "【FMM路径规划模块】将Semantic Gaussian转为点云→体素化为3D体素M3D→投影为2D BEV网格M2D→Fast Marching Method（FMM）计算从起点到目标的最短距离场→在智能体操作范围内选取无碰撞且处于距离场局部最小的waypoint→根据角度和距离输出离散动作（FORWARD 25cm / TURN_LEFT 25° / TURN_RIGHT 25° / STOP）。迭代执行直至到达目标1m范围内。对应图中最后的Path Planning环节。"
+  }
+]
