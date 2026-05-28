@@ -20,7 +20,7 @@
 - [[papers/wildgs-slam|WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments]] (Zheng et al., arxiv 2025)
 - [[papers/pseudo-depth-meets-gaussian|Pseudo Depth Meets Gaussian: A Feed-forward RGB SLAM Baseline]] (Zhao et al., arxiv 2025)
 - [[papers/langgs-slam|LangGS-SLAM: Real-Time Language-Feature Gaussian Splatting SLAM]] (Ha et al., arxiv 2026)
-- [[papers/gaussnav|GaussNav: Gaussian Splatting for Visual Navigation]] (Lei et al., arxiv 2024)
+- [[papers/gaussnav|GaussNav: Gaussian Splatting for Visual Navigation]] (Lei et al., TPAMI 2025)
 
 ### Related Methods
 - [[papers/vggt|VGGT: Visual Geometry Grounded Transformer]] (Wang et al., CVPR 2025 Best Paper)
