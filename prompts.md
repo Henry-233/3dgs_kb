@@ -1,5 +1,7 @@
 针对不同内容类型，分别给你写好提示词模板：
 
+危险启动：claude --dangerously-skip-permissions
+
 ---
 
 ### 摄入新论文（Web Clipper 裁剪后）
@@ -91,7 +93,6 @@ trade-offs.
 
 `</`
 
-
 `>`
 
 Read raw/papers/论文名.pdf in full detail.
@@ -127,7 +128,6 @@ For each architecture figure caption:
    "【模块/机制名】+ 具体功能描述 + 与其他模块的关联 +
    对应图中颜色/位置（如：对应图中紫色Trained Online模块）"
 5. Save as annotations JSON and run annotate_pdf.py
-
 
 ### 建议保存方式
 
