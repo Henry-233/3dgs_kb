@@ -24,7 +24,9 @@ $$G(x) = e^{-\frac{1}{2}(x - \mu)^T \Sigma^{-1} (x - \mu)}$$
 
 ## 关联
 - 相关概念: [[concepts/covariance-matrix]], [[concepts/spherical-harmonics]], [[concepts/projection-transform]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/langsplat]], [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/proxy-gs]], [[papers/wildgs-slam]]
+- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/langsplat]], [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/proxy-gs]], [[papers/wildgs-slam]], [[papers/gaussnav]]
 - 变体: [[concepts/mlp-based-3dgs]]（MLP驱动的结构化3DGS，高斯属性由MLP解码而非直接优化）
 
 3DGS中每个高斯携带颜色和几何信息（SH系数、不透明度、协方差）。LangSplat扩展了这一表示，为每个3D高斯添加语言特征向量（从CLIP蒸馏），使高斯同时具备视觉和语义表达能力。
+
+GaussNav将3D高斯进一步简化为**各向同性+视角无关颜色**（半径 $r$ 替代协方差矩阵，RGB替代SH，9参数/高斯），牺牲照片级渲染换来计算效率，适配导航场景的实时性要求。
