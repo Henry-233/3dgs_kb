@@ -3,3 +3,8 @@
 .obsidian/plugins/
 .DS_Store
 *.tmp
+# 忽略 Claude 配置文件夹
+.claudian/
+
+# 忽略 Obsidian 配置文件夹  
+.obsidian/
