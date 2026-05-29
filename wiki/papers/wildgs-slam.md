@@ -132,12 +132,12 @@ $$\mathcal{L}_{\text{color}} = (1-\lambda_{\text{ssim}})\|\hat{I} - I\|_1 + \lam
 ## 实验结论
 
 ### 数据集
-| 数据集 | 内容 | 用途 |
-|--------|------|------|
-| **Wild-SLAM MoCap** (自采) | 10序列，OptiTrack真值，含ANYmal机器人/篮球/人群/球拍/石头/雨伞等 | 定量跟踪+渲染 |
-| **Wild-SLAM iPhone** (自采) | 7序列非摆拍RGB（购物/街头/停车场/钢琴/美术馆） | 定性评估 |
-| **Bonn RGB-D Dynamic** | 8序列（气球/人群/行人/移动物体） | 定量跟踪+渲染 |
-| **TUM RGB-D** | 高动态序列（f3/ws, wx, wr, whs）+ 静态序列 | 定量跟踪 |
+| 数据集                       | 内容                                          | 用途      |
+| ------------------------- | ------------------------------------------- | ------- |
+| **Wild-SLAM MoCap** (自采)  | 10序列，OptiTrack真值，含ANYmal机器人/篮球/人群/球拍/石头/雨伞等 | 定量跟踪+渲染 |
+| **Wild-SLAM iPhone** (自采) | 7序列非摆拍RGB（购物/街头/停车场/钢琴/美术馆）                 | 定性评估    |
+| **Bonn RGB-D Dynamic**    | 8序列（气球/人群/行人/移动物体）                          | 定量跟踪+渲染 |
+| **TUM RGB-D**             | 高动态序列（f3/ws, wx, wr, whs）+ 静态序列             | 定量跟踪    |
 
 **Wild-SLAM MoCap数据采集**（Supplementary Sec. 6）：Intel RealSense D455 @ 720×1280 30fps，OptiTrack 32×PrimeX-13相机 @ 120fps。同步方案：用iPhone手电筒闪烁产生时间戳对应（平均标准差5.25ms，远小于帧间隔33.33ms）。标定方案：标定板+4个反光标记球+chordal L2旋转平均，旋转偏差0.44°、平移偏差0.24cm。
 
