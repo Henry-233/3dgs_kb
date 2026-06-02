@@ -20,6 +20,7 @@
 - [[papers/wildgs-slam|WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments]] (Zheng et al., arxiv 2025)
 - [[papers/pseudo-depth-meets-gaussian|Pseudo Depth Meets Gaussian: A Feed-forward RGB SLAM Baseline]] (Zhao et al., arxiv 2025)
 - [[papers/langgs-slam|LangGS-SLAM: Real-Time Language-Feature Gaussian Splatting SLAM]] (Ha et al., arxiv 2026)
+- [[papers/up-slam|UP-SLAM: Adaptively Structured Gaussian SLAM with Uncertainty Prediction]] (Zheng et al., ICRA 2026)
 - [[papers/gaussnav|GaussNav: Gaussian Splatting for Visual Navigation]] (Lei et al., TPAMI 2025)
 
 ### Related Methods
@@ -69,6 +70,7 @@
 - [[concepts/slam|SLAM（同步定位与建图）]]
 - [[concepts/ieskf|IESKF（迭代误差状态卡尔曼滤波）]]
 - [[concepts/uncertainty-aware-mapping|不确定性感知建图]]
+- [[concepts/parallel-tracking-mapping|并行跟踪与建图]]
 - [[concepts/bundle-adjustment|Bundle Adjustment / DBA]]
 - [[concepts/feed-forward-pose-prediction|前馈式位姿预测]]
 - [[concepts/local-graph-rendering|局部图渲染 (LGR)]]
@@ -78,6 +80,7 @@
 - [[concepts/differentiable-rendering|可微渲染]]
 - [[concepts/surface-reconstruction-from-3dgs|3DGS表面重建]]
 - [[concepts/spatial-data-structures|空间数据结构]]
+- [[concepts/probabilistic-octree|概率八叉树]]
 
 ### External Models
 - [[concepts/clip|CLIP]]

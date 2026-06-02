@@ -34,6 +34,26 @@ MLP的损失函数包含：
 2. **在线适应**：预测器随数据流式增量训练，动态适应场景特性
 3. **无需显式标签**：通过渲染一致性自监督训练，不需要动态物体的标注
 
+## 训练无关不确定性（UP-SLAM）
+
+UP-SLAM提出了一种与WildGS-SLAM截然不同的不确定性估计范式——无需任何训练或预训练模型：
+
+**多模态残差直接融合**：
+$$\beta_i = f(\|\hat{I}_i - I_i\|, \|\hat{D}_i - D_i\|)$$
+
+核心直觉：高斯地图建模的是静态场景，渲染的RGB/深度与包含动态物体的真实传感器观测之间存在不一致——直接利用这个不一致作为不确定性信号。
+
+**与WildGS-SLAM的关键区别**：
+| | WildGS-SLAM | UP-SLAM |
+|---|---|---|
+| 预测器 | 3D-aware DINOv2 + 在线训练MLP | 无需训练 |
+| 输入 | DINOv2特征 + 渲染RGB | 渲染RGB + 传感器深度 |
+| 传感器 | 单目RGB | RGB-D |
+| 冷启动 | 需MLP预热（前12帧） | 第一帧即可用 |
+| 动态物体范围 | 语义辅助（特征相似性） | 纯几何驱动（残差大小） |
+
+两者的共同点是**不确定性预测器与高斯地图独立优化**——梯度互不传播，避免互相干扰。
+
 ## 在SLAM中的应用
 不确定性感知不仅用于建图，还用于**跟踪**——在Dense Bundle Adjustment (DBA) 中以 $\Sigma_{ij}/\beta_i^2$ 加权残差，使动态物体上的特征匹配误差不影响位姿估计。
 
@@ -47,5 +67,5 @@ MLP的损失函数包含：
 
 ## 关联
 - 相关概念: [[concepts/slam]], [[concepts/3d-gaussian]], [[concepts/alpha-compositing]]
-- 用到该概念的论文: [[papers/wildgs-slam]]
+- 用到该概念的论文: [[papers/wildgs-slam]], [[papers/up-slam]]
 - 相关工作: NeRF On-the-go, WildGaussians

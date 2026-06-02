@@ -18,6 +18,13 @@ tags: [concept, scaling, spatial-partitioning]
 - 全局高斯存在RAM，仅将视场角内的高斯拷贝到VRAM
 - 关键优势：显存使用不随场景增长
 
+### 概率八叉树（UP-SLAM）
+- 在传统八叉树节点上附加存在概率，基于贝叶斯更新
+- 观测触发概率上升→初始化高斯；长期未观测→概率衰减→剪枝
+- 无需手动设置梯度或密度阈值
+- 概率模型天然处理观测噪声和遮挡
+- 关键优势：在线自适应——随SLAM探索逐步构建空间索引
+
 ### Hi-Z层级深度缓冲（Proxy-GS）
 - 构建层级Z缓冲金字塔：$Z^{(\ell+1)}(u,v) = \max_{x,y\in\{0,1\}} Z^{(\ell)}(2u+x, 2v+y)$
 - 在适当层级对三角形簇做保守深度测试：$\text{occluded}(L_k) \iff \hat{z}_k \leq \max Z^{(\ell)}$
@@ -30,5 +37,5 @@ tags: [concept, scaling, spatial-partitioning]
 - 利用连续帧间的大幅重叠减少重复加载
 
 ## 关联
-- 用到空间数据结构的论文: [[papers/gs-livo]], [[papers/proxy-gs]]
-- 相关概念: [[concepts/occlusion-aware-culling]], [[concepts/tile-based-rasterization]], [[concepts/instant-ngp]]
+- 用到空间数据结构的论文: [[papers/gs-livo]], [[papers/proxy-gs]], [[papers/up-slam]]
+- 相关概念: [[concepts/occlusion-aware-culling]], [[concepts/tile-based-rasterization]], [[concepts/instant-ngp]], [[concepts/probabilistic-octree]]

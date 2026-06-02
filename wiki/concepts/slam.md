@@ -40,6 +40,7 @@ iMAP、NICE-SLAM、ESLAM等将NeRF用作隐式地图表示，但因体渲染计�
 | **WildGS-SLAM** | **Mono** | **不确定性感知（DINOv2+MLP预测不确定性图）+ 动态场景鲁棒跟踪建图** |
 | **Pseudo Depth Meets Gaussian** | **Mono** | **前馈循环网络直接从光流预测位姿（替代迭代优化）+ 伪深度驱动3DGS建图，跟踪速度>10×提升** |
 | **LangGS-SLAM** | **RGB-D** | **Top-K渲染高维语言特征 + 多标准地图管理 + 混合场优化，15 FPS在线语义+几何双场SLAM** |
+| **UP-SLAM** | **RGB-D** | **并行框架解耦跟踪建图 + 概率八叉树自适应管理 + 训练无关多模态不确定性估计 + DINO特征场，动态环境实时鲁棒SLAM** |
 
 Gaussian-SLAM的优势：渲染快、表示显式可调、可微渲染天然适合位姿优化。挑战：地图更新频率、GPU显存、大场景可扩展性——GS-LIVO通过滑动窗口和多传感器融合针对性解决了这些问题。
 
@@ -64,6 +65,7 @@ Gaussian-SLAM的优势：渲染快、表示显式可调、可微渲染天然适�
 | 几何残差 | ReFusion（TSDF+深度残差）、StaticFusion | 需要RGB-D深度传感器 |
 | 光流/运动检测 | RoDyn-SLAM（光流+刚性运动）、DynaMoN（运动分割+语义） | 纹理弱区域不可靠 |
 | **不确定性感知** | **WildGS-SLAM（DINOv2+MLP预测不确定性加权DBA和渲染损失）** | 仅需单目RGB，无类别先验，在线适应 |
+| **训练无关不确定性** | **UP-SLAM（多模态残差融合直接估计不确定性 + 并行框架）** | RGB-D，无需任何训练或语义模型，第一帧即可用 |
 
 ### WildGS-SLAM的不确定性感知方案
 - 预训练DINOv2（3D-aware微调）提取特征 → 浅层MLP在线预测逐像素不确定性 $\beta$
@@ -73,6 +75,6 @@ Gaussian-SLAM的优势：渲染快、表示显式可调、可微渲染天然适�
 
 ## 关联
 - 相关概念: [[concepts/ieskf]], [[concepts/uncertainty-aware-mapping]], [[concepts/feed-forward-pose-prediction]], [[concepts/local-graph-rendering]]
-- 用到该概念的论文: [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/pseudo-depth-meets-gaussian]], [[papers/langgs-slam]]
+- 用到该概念的论文: [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/pseudo-depth-meets-gaussian]], [[papers/langgs-slam]], [[papers/up-slam]]
 - 基于该范式的Gaussian-SLAM: [[papers/3d-gaussian-splatting]]
 - 3DGS地图的导航应用: [[papers/gaussnav]]（将Gaussian地图用于视觉导航而非定位——参见[[concepts/visual-navigation|视觉导航]]）

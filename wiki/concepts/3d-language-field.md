@@ -51,6 +51,13 @@ LangGS-SLAM发现：将alpha-blending直接用于渲染高维语言特征存在�
 
 解决方案：[[concepts/top-k-rendering|Top-K渲染]]——仅聚合贡献最高的K个表面高斯，避免跨表面语义混合。
 
+## DINO特征场（区别于语言场）
+
+UP-SLAM提出了一种与语言场技术路线相似但用途不同的DINO特征场：
+- 在3D高斯上附加低维特征向量，通过浅层MLP映射为DINO特征
+- 与LangSplat共享"高斯附加特征+渲染+解码"的技术路线，但目标不是开放词汇查询，而是为不确定性预测提供语义上下文
+- 低维→高维的映射避免在高斯上直接存储完整DINO特征，节省存储开销
+
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/nerf]], [[concepts/tile-based-rasterization]], [[concepts/product-quantization]], [[concepts/top-k-rendering]]
-- 用到该概念的论文: [[papers/langsplat]], [[papers/dr-splat]], [[papers/langgs-slam]]
+- 用到该概念的论文: [[papers/langsplat]], [[papers/dr-splat]], [[papers/langgs-slam]], [[papers/up-slam]]

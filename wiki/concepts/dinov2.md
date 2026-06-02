@@ -22,6 +22,12 @@ DINOv2就像一个"看图高手"——不需要任何文字标签，仅靠看过
 - 浅层MLP将DINOv2特征解码为逐像素不确定性图
 - 消融证明3D-aware版优于原版DINOv2（Wild-SLAM上新视角PSNR +0.02）
 
+### UP-SLAM (ICRA 2026)
+- 在3D高斯上附加低维特征向量，通过浅层MLP映射为DINO特征空间
+- DINO特征场为不确定性估计提供语义上下文——帮助区分"真正的动态物体"和"视点变化导致的正常外观变化"
+- 与WildGS-SLAM的区别：UP-SLAM用DINO特征丰富高斯场（特征场），WildGS-SLAM用DINOv2作为不确定性预测器的输入特征提取器
+- 低维→高维的设计节省存储开销，避免在高斯上直接存储完整DINO特征
+
 ## 与CLIP的区别
 | | CLIP | DINOv2 |
 |---|---|---|
@@ -31,5 +37,5 @@ DINOv2就像一个"看图高手"——不需要任何文字标签，仅靠看过
 | 跨视图一致性 | 中等 | 强（尤其3D-aware版） |
 
 ## 关联
-- 用到DINOv2的论文: [[papers/vggt]], [[papers/wildgs-slam]]
+- 用到DINOv2的论文: [[papers/vggt]], [[papers/wildgs-slam]], [[papers/up-slam]]
 - 相关概念: [[concepts/clip]], [[concepts/feed-forward-3d-reconstruction]], [[concepts/uncertainty-aware-mapping]]
