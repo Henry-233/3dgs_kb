@@ -21,10 +21,17 @@ tags: [concept, spatial-partitioning, slam, adaptive-structure]
 
 ## 数学形式
 
-### 节点概率更新
-每个八叉树节点 $n$ 维护存在概率 $p(n)$，基于观测 $z_t$ 的贝叶斯更新：
+### 节点概率更新（OctoMap贝叶斯公式）
 
-$$p(n \mid z_{1:t}) \propto p(z_t \mid n) \cdot p(n \mid z_{1:t-1})$$
+UP-SLAM采用OctoMap [Hornung et al. 2013]的标准贝叶斯更新公式：
+
+$$P(n \mid z_{1:t}) = \left[1 + \frac{1 - P(n \mid z_t)}{P(n \mid z_t)} \cdot \frac{1 - P(n \mid z_{1:t-1})}{P(n \mid z_{1:t-1})} \cdot \frac{P(n)}{1 - P(n)}\right]^{-1}$$
+
+其中：
+- $P(n)$：先验概率
+- $P(n \mid z_t)$：给定当前观测 $z_t$ 时锚点 $n$ 被占用的概率（似然）
+- $P(n \mid z_{1:t-1})$：基于历史观测的递归估计（后验→新先验）
+- 概率值反映该锚点处的运动程度——动态物体经过的区域概率低，静态区域概率高
 
 ### 观测模型
 $$p(z_t \mid n) = \begin{cases} p_{\text{hit}} & \text{节点被当前帧观测到} \\ p_{\text{miss}} & \text{节点在FoV内但未被观测到} \\ p_{\text{prior}} & \text{节点不在FoV内} \end{cases}$$
@@ -33,11 +40,24 @@ $$p(z_t \mid n) = \begin{cases} p_{\text{hit}} & \text{节点被当前帧观测�
 - $p(n) > \tau_{\text{init}}$ → 在该节点分配新高斯（初始化）
 - $p(n) < \tau_{\text{prune}}$ → 移除该节点及其高斯（剪枝）
 
+### 锚点（Anchor）驱动的结构化高斯
+
+UP-SLAM将3DGS压缩为结构化锚点表示——多个浅层MLP从锚点特征解码高斯属性：
+
+$$\{c_0, ..., c_{k-1}\} = F_c(\hat{f}_v, \delta_{vc}, d_{vc}, \mathbf{t})$$
+
+每个锚点编码 $k$ 个高斯，其属性（颜色、不透明度、旋转、尺度、特征）均由独立MLP从锚点特征 $\hat{f}_v$、相机相对方向 $\delta_{vc}$、距离 $d_{vc}$ 和时间编码 $\mathbf{t}$ 解码得到（基于Scaffold-GS架构）。
+
+锚点配备**概率属性**——概率值反映该锚点处的运动程度。动态物体经过的锚点概率持续走低→触发剪枝→自动删除冗余锚点。
+
+**消融验证**：无概率锚点更新时，Gaussian原语无法有效剪枝→模型大小从7.01 MB膨胀到22.92 MB（↑227%），同时地图更新变慢→残差反馈减弱→定位精度下降（ATE 3.2→3.57 cm）。
+
 ## 在SLAM中的优势
 1. **在线适应**：随SLAM探索逐步构建空间索引，无需事先知道场景范围
 2. **噪声容忍**：概率模型天然平滑偶尔的观测噪声，不会因单帧异常误删高斯
 3. **高效查询**：视锥查询时只需遍历FoV内的八叉树节点，复杂度 O(log N)
-4. **与GS-LIVO哈希八叉树的区别**：GS-LIVO用确定性哈希索引管理大规模显存；概率八叉树用贝叶斯推理自动管理高斯的生灭
+4. **模型压缩**：概率剪枝自动删除动态物体产生的冗余锚点，模型大小降低69.4%
+5. **与GS-LIVO哈希八叉树的区别**：GS-LIVO用确定性哈希索引管理大规模显存；概率八叉树用贝叶斯推理自动管理高斯的生灭
 
 ## 关联
 - 相关概念: [[concepts/spatial-data-structures]], [[concepts/3d-gaussian]], [[concepts/adaptive-density-control]], [[concepts/slam]]
