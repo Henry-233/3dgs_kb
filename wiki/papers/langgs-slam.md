@@ -154,5 +154,5 @@ mIoU超越Feature3DGS-512D（0.673 vs 0.671），FPS快50倍。
 - 基于: [[papers/3d-gaussian-splatting]]
 - 几何骨干: GS-ICP SLAM (Ha et al., ECCV 2024)
 - 语义范式: [[papers/langsplat]]（语言特征嵌入高斯的范式来源）, Feature3DGS (Zhou et al., CVPR 2024)
-- 相关SLAM: [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/pseudo-depth-meets-gaussian]]
+- 相关SLAM: [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/pseudo-depth-meets-gaussian]], [[papers/up-slam]]（DINO特征场 vs 语言场——不同语义嵌入方向的并行探索）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/3d-language-field]], [[concepts/slam]], [[concepts/alpha-compositing]], [[concepts/top-k-rendering]], [[concepts/hybrid-field-optimization]], [[concepts/clip]]
