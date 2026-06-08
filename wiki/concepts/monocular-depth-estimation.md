@@ -52,6 +52,22 @@ Pseudo Depth Meets Gaussian做了系统性对比实验（Fig. 2）：将真值�
 - 关键发现：3DGS的可微渲染能**容忍并从有噪声的伪深度中恢复**——光度损失反向传播修正不准确的深度初始化
 - 与前馈式位姿预测结合，构建无需迭代优化的完整RGB SLAM
 
+### ViMGS-SLAM（度量深度先验）
+- **首次将MViT紧耦合进3DGS-SLAM**：MViT直接预测**度量尺度**的逆深度图（非相对深度），无需与稀疏特征点做尺度对齐
+- MViT架构：三级输入金字塔（640/320/160）→共享权重patch编码→五级特征金字塔（320→20分辨率）→DPT解码器
+- 深度先验的双重作用：(1) 初始化——MViT深度反投影为3D点初始化高斯；(2) 约束——建图时MViT深度作为伪真值 $\mathcal{L}_{\text{depth}}$ 约束高斯优化
+- **关键优势**：MViT在混合度量+非度量数据集上训练后具有zero-shot度量深度能力——输入单张RGB直接输出"多少米"，消除尺度模糊
+- 单目模式下的深度估计精度接近RGB-D传感器水平（PSNR差距仅1.33 dB）
+
+## 深度估计方案对比
+
+| 方法 | 网络 | 深度类型 | 尺度对齐 |
+|------|------|---------|---------|
+| G²-Mapping | Metric3D v2 | 相对深度 | 线性映射到稀疏特征点 |
+| WildGS-SLAM | Metric3D v2 | 相对深度 | 视差正则化锚定 |
+| Pseudo Depth Meets Gaussian | UniDepthV2 | 相对深度 | GRU+DBA在线对齐 |
+| **ViMGS-SLAM** | **MViT** | **度量深度** | **无需对齐**——直接预测绝对尺度 |
+
 ## 关联
-- 用到单目深度的论文: [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/vggt]], [[papers/pseudo-depth-meets-gaussian]]
-- 相关概念: [[concepts/slam]], [[concepts/structure-from-motion]], [[concepts/uncertainty-aware-mapping]], [[concepts/feed-forward-pose-prediction]]
+- 用到单目深度的论文: [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/vggt]], [[papers/pseudo-depth-meets-gaussian]], [[papers/vimgs-slam]]
+- 相关概念: [[concepts/slam]], [[concepts/structure-from-motion]], [[concepts/uncertainty-aware-mapping]], [[concepts/feed-forward-pose-prediction]], [[concepts/vision-transformer]]

@@ -301,6 +301,6 @@ UP-SLAM处理速率**12 FPS**（78 ms/帧），满足机器人实时定位需求
 ## 关联
 - 基于: [[papers/3d-gaussian-splatting]]
 - 动态SLAM同行: [[papers/wildgs-slam]]（单目不确定性感知，串行框架+训练依赖）, DG-SLAM（语义几何一致性，固定掩码）
-- 相关SLAM: [[papers/gs-livo]]（八叉树+多传感器）, [[papers/g2-mapping]]（通用GS-SLAM+深度不确定性）, [[papers/pseudo-depth-meets-gaussian]]（前馈式SLAM）
+- 相关SLAM: [[papers/gs-livo]]（八叉树+多传感器）, [[papers/g2-mapping]]（通用GS-SLAM+深度不确定性）, [[papers/pseudo-depth-meets-gaussian]]（前馈式SLAM）, [[papers/vimgs-slam]]（MViT度量深度先验，同步管线）
 - 在线语义GS-SLAM: [[papers/langgs-slam]]
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/uncertainty-aware-mapping]], [[concepts/spatial-data-structures]], [[concepts/dinov2]], [[concepts/3d-language-field]], [[concepts/alpha-compositing]], [[concepts/projection-transform]], [[concepts/probabilistic-octree]], [[concepts/parallel-tracking-mapping]], [[concepts/adaptive-density-control]]

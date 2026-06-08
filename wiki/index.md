@@ -21,6 +21,7 @@
 - [[papers/pseudo-depth-meets-gaussian|Pseudo Depth Meets Gaussian: A Feed-forward RGB SLAM Baseline]] (Zhao et al., arxiv 2025)
 - [[papers/langgs-slam|LangGS-SLAM: Real-Time Language-Feature Gaussian Splatting SLAM]] (Ha et al., arxiv 2026)
 - [[papers/up-slam|UP-SLAM: Adaptively Structured Gaussian SLAM with Uncertainty Prediction]] (Zheng et al., ICRA 2026)
+- [[papers/vimgs-slam|ViMGS-SLAM: A real-time monocular 3DGS-based SLAM via multiscale vision transformers]] (Zhu et al., Array 2026)
 - [[papers/gaussnav|GaussNav: Gaussian Splatting for Visual Navigation]] (Lei et al., TPAMI 2025)
 
 ### Related Methods
@@ -49,6 +50,7 @@
 - [[concepts/adaptive-density-control|自适应密度控制]]
 - [[concepts/ssim-loss|SSIM损失]]
 - [[concepts/hybrid-field-optimization|混合场优化]]
+- [[concepts/isotropic-regularization|各向同性正则化]]
 
 ### Compression
 - [[concepts/gaussian-compression|高斯压缩]]
@@ -86,6 +88,7 @@
 - [[concepts/clip|CLIP]]
 - [[concepts/sam|SAM]]
 - [[concepts/dinov2|DINOv2]]
+- [[concepts/vision-transformer|视觉Transformer（ViT）]]
 
 ### Embodied AI & Navigation
 - [[concepts/visual-navigation|视觉导航（Visual Navigation）]]

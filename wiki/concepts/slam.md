@@ -41,6 +41,7 @@ iMAP、NICE-SLAM、ESLAM等将NeRF用作隐式地图表示，但因体渲染计�
 | **Pseudo Depth Meets Gaussian** | **Mono** | **前馈循环网络直接从光流预测位姿（替代迭代优化）+ 伪深度驱动3DGS建图，跟踪速度>10×提升** |
 | **LangGS-SLAM** | **RGB-D** | **Top-K渲染高维语言特征 + 多标准地图管理 + 混合场优化，15 FPS在线语义+几何双场SLAM** |
 | **UP-SLAM** | **RGB-D** | **并行框架解耦跟踪建图 + 概率八叉树自适应管理 + 训练无关多模态不确定性估计 + DINO特征场，动态环境实时鲁棒SLAM** |
+| **ViMGS-SLAM** | **Mono/RGB-D** | **MViT度量深度先验 + 3DGS显式表示 + 同步跟踪建图管线 + 自适应关键帧选择 + 各向同性正则化，单目模式下消除尺度模糊** |
 
 Gaussian-SLAM的优势：渲染快、表示显式可调、可微渲染天然适合位姿优化。挑战：地图更新频率、GPU显存、大场景可扩展性——GS-LIVO通过滑动窗口和多传感器融合针对性解决了这些问题。
 
@@ -75,6 +76,6 @@ Gaussian-SLAM的优势：渲染快、表示显式可调、可微渲染天然适�
 
 ## 关联
 - 相关概念: [[concepts/ieskf]], [[concepts/uncertainty-aware-mapping]], [[concepts/feed-forward-pose-prediction]], [[concepts/local-graph-rendering]]
-- 用到该概念的论文: [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/pseudo-depth-meets-gaussian]], [[papers/langgs-slam]], [[papers/up-slam]]
+- 用到该概念的论文: [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/pseudo-depth-meets-gaussian]], [[papers/langgs-slam]], [[papers/up-slam]], [[papers/vimgs-slam]]
 - 基于该范式的Gaussian-SLAM: [[papers/3d-gaussian-splatting]]
 - 3DGS地图的导航应用: [[papers/gaussnav]]（将Gaussian地图用于视觉导航而非定位——参见[[concepts/visual-navigation|视觉导航]]）

@@ -179,6 +179,6 @@ $$I_t^{(k)} = R_{\text{img}}(\mathcal{G}_t, G_t^{(k)}), \quad D_t^{(k)} = R_{\te
 - 基于: [[papers/3d-gaussian-splatting]]
 - 跟踪架构继承: DROID-SLAM (Teed & Deng, NeurIPS 2021), RAFT (Teed & Deng, ECCV 2020)
 - 对比方法: SplaTAM (Keetha et al., CVPR 2024)
-- 相关SLAM: [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/gs-livo]]
+- 相关SLAM: [[papers/g2-mapping]], [[papers/wildgs-slam]], [[papers/gs-livo]], [[papers/vimgs-slam]]（同样用深度先验驱动3DGS建图，但MViT直接预测度量深度省去了尺度对齐步骤）
 - 相关前馈方法: [[papers/vggt]]
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/monocular-depth-estimation]], [[concepts/feed-forward-pose-prediction]], [[concepts/local-graph-rendering]], [[concepts/feed-forward-3d-reconstruction]]
