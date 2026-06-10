@@ -6,6 +6,7 @@
 - [[concepts/3d-gaussian]] — 3D高斯：场景的基本表示单元，带有位置、协方差、不透明度和球谐函数系数的显式椭球体
 - [[concepts/covariance-matrix]] — 协方差矩阵：描述高斯椭球形状和方向的3×3正定矩阵
 - [[concepts/spherical-harmonics]] — 球谐函数：球面上的正交基函数，编码视角依赖颜色
+- [[concepts/relightable-3dgs]] — 可重光照3DGS：将SH替换为物理材质属性（反照率、法向量）+显式光照，支持基于物理的光照编辑
 
 ### 渲染管线
 - [[concepts/projection-transform]] — 投影变换：将3D高斯映射到2D图像平面的数学操作
@@ -39,3 +40,7 @@
 
 ### 应用
 - [[papers/street-gaussians]] — Street Gaussians (Yan et al., ECCV 2024)：动态自动驾驶城市场景建模
+
+### 导航
+- [[papers/gaussnav]] — GaussNav (Lei et al., TPAMI 2025)：首次将3DGS引入具身视觉导航，Semantic Gaussian地图+DISK-LightGlue特征匹配实现实例图像目标导航
+- [[papers/zero-shot-uav-navigation]] — Zero-Shot UAV Navigation (Lv et al., 2026)：Relightable 3DGS+端到端RL，零样本sim-to-real森林UAV导航，10 m/s无碰撞飞行

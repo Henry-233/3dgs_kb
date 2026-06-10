@@ -221,5 +221,5 @@ Semantic Gaussian → 提取点云 → 体素化为3D体素 $M_{3D}$ → 投影�
 ## 关联
 - 基于: [[papers/3d-gaussian-splatting]]（简化了原始3DGS：各向同性高斯+视角无关颜色，去除SH和协方差矩阵）
 - IIN前置工作: Mod-IIN, IEVE（第一作者Lei也是IEVE的一作——从BEV验证范式演进到3DGS直接定位范式）
-- 相关方法: [[papers/gs-livo]]（已验证Gaussian地图可用于A*路径规划）, [[papers/langsplat]]（语义3DGS可为GaussNav提供语言驱动的目标描述替代图像输入）
+- 相关方法: [[papers/gs-livo]]（已验证Gaussian地图可用于A*路径规划）, [[papers/langsplat]]（语义3DGS可为GaussNav提供语言驱动的目标描述替代图像输入）, [[papers/zero-shot-uav-navigation]]（端到端RL范式——不需要显式地图和模块化流水线，直接从RGB预测控制指令）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/visual-navigation]], [[concepts/slam]], [[concepts/alpha-compositing]], [[concepts/tile-based-rasterization]], [[concepts/differentiable-rendering]]

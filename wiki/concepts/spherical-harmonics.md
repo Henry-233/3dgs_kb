@@ -27,6 +27,10 @@ Mobile-GS提出一阶球谐函数蒸馏（First-order SH Distillation），将�
 
 Mobile-GS还将蒸馏后的SH特征进一步分解为漫反射分量 $h_d$ 和视角依赖分量 $h_v$，用轻量MLP重建后参与渲染，避免直接存储完整的SH系数。实验表明一阶SH在质量（27.12 vs 27.15 for 三阶）和存储（4.6 MB vs 9.6 MB）间取得最佳平衡。
 
+## 替代方案：物理材质分解
+
+Relightable 3DGS（[[concepts/relightable-3dgs]]）提出了SH的替代方案：将SH系数替换为显式的物理材质属性（反照率、法向量、粗糙度）+ 环境光照参数。渲染时通过BRDF计算最终颜色，实现可编辑的光照。相比SH的"隐式烘焙"，物理分解更忠实于现实光照原理，但参数效率较低。
+
 ## 关联
-- 相关概念: [[concepts/3d-gaussian]], [[concepts/gaussian-compression]]
+- 相关概念: [[concepts/3d-gaussian]], [[concepts/gaussian-compression]], [[concepts/relightable-3dgs]]
 - 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/gs-livo]]

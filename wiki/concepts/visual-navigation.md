@@ -58,8 +58,35 @@ IIN是视觉导航中最具挑战性的设定：
 | **地图的用途** | 优化当前位姿 | 规划未来路径 |
 | **3DGS的角色** | 可微地图用于位姿优化 | 可渲染地图用于目标匹配 |
 
-GaussNav和Gaussian-SLAM是互补关系：SLAM提供精确定位和高质量地图，导航在地图之上做决策和规划。GS-LIVO已初步验证了Gaussian-SLAM + 路径规划（A*）的可行性。
+### 端到端RL导航（End-to-End RL Navigation）
+
+模块化方法的替代方案：不经历显式的地图构建或路径规划，而是用强化学习训练一个策略网络，直接将原始单目RGB映射为连续控制指令。
+
+$$\mathbf{a}_t = \pi_\theta(I_t, \mathbf{h}_{t-1})$$
+
+其中 $\pi_\theta$ 是策略网络（CNN+RNN），$\mathbf{h}_{t-1}$ 是隐状态（提供时间记忆），$\mathbf{a}_t$ 是控制指令。
+
+**与模块化方法的对比**：
+
+| | 模块化（GaussNav） | 端到端RL（Zero-Shot UAV） |
+|------|---------|------------|
+| 架构 | 探索→建图→匹配→规划 | RGB → 策略网络 → 控制 |
+| 地图 | 显式3DGS地图 | 无显式地图（隐式在策略网络中） |
+| 泛化 | 依赖建图质量 | 依赖训练数据多样性 |
+| 部署 | 需首个episode建图 | 即插即用，无预建图 |
+| 适用场景 | 结构化室内、可反复访问 | 非结构化室外、一次性穿越 |
+
+端到端RL的优势在于部署极简——无需GPU密集的在线建图和特征匹配。代价是策略网络是一个"黑盒"，难以解释和调试。
+
+### UAV森林导航
+
+森林环境对视觉导航提出了独特的挑战：
+- **高速飞行**（10 m/s vs. 室内步行速度）：决策延迟必须极低
+- **剧烈光照变化**：从树冠间隙的直射阳光到浓密树荫，同一个场景可以在几秒内经历数个数量级的光照变化
+- **无结构环境**：无道路、无建筑、无可导航平面——需要从密集的树枝和灌木中自主寻找可通过的路径
+
+Relightable 3DGS通过模拟光照变化来解决sim-to-real gap，使端到端RL策略能在森林中以10 m/s实现零样本无碰撞飞行。
 
 ## 关联
-- 相关概念: [[concepts/3d-gaussian]], [[concepts/slam]]
-- 用到该概念的论文: [[papers/gaussnav]], [[papers/gs-livo]]（已验证Gaussian地图可用于自主导航规划）
+- 相关概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/relightable-3dgs]]
+- 用到该概念的论文: [[papers/gaussnav]], [[papers/gs-livo]]（已验证Gaussian地图可用于自主导航规划）, [[papers/zero-shot-uav-navigation]]（端到端RL+Relightable 3DGS实现森林零样本UAV导航）
