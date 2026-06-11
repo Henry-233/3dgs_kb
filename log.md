@@ -96,6 +96,12 @@
 - [[papers/taming-the-light]] (Taming the Light, arXiv 2025) — IAN+DRB-Loss, illumination-invariant semantic SLAM
 - [[papers/varsplat]] (VarSplat, arXiv 2026) — per-splat variance, uncertainty-aware RGB-D SLAM
 
+## 2026-06-11 — Deep read: Taming the Light
+- Read Taming the Light from arXiv HTML (2511.22968v1) — full methodology and experiments
+- Rewrote [[papers/taming-the-light]] with complete methodology (IAN color quantization → 64-color palette, DRB-Loss SSIM-gated affine exposure compensation, illumination-invariant tracking with albedo matching), math formulations (Eq. 1-10), experimental results (Replica ATE 0.34 cm best, mIoU 92.69%), ablation (Full: Depth L1 0.25 vs Baseline 0.46), and limitations
+- Upgraded [[concepts/intrinsic-appearance-normalization]] stub → full page with IAN vs SH comparison
+- ⚠️ Annotation skipped: no annotate_pdf.py script found
+
 ## 2026-06-11 — Deep read: VarSplat
 - Read VarSplat from arXiv HTML (2603.09673v1) — 8 pages, full methodology and experiments
 - Rewrote [[papers/varsplat]] with complete methodology (law of total variance derivation, variance learning via Gaussian NLL, median-centered log scaling, 3-level uncertainty-guided pose estimation), math formulations (Eq. 1-19), experimental results (Replica ATE 0.23 cm, ScanNet++ 1.69 cm, TUM 3.20 cm), and limitations

@@ -23,8 +23,9 @@ Every pattern must reflect its position in the dependency graph.
   - 二叉树/
   - 高级数据结构/
   - 综合算法/
-- wiki/problems/         → One page per problem (linked to patterns)
-- wiki/synthesis/        → Cross-pattern summaries, learning plans
+- wiki/papers/YYYY-MM-DD/  → Paper pages organized by read date
+  e.g. wiki/papers/2026-06-11/论文名.md
+- wiki/papers/_reading-log.md → Master index of all papers read
 - raw/problems/          → Raw problem statements
 - raw/html-lectures/     → Structured lecture HTML files
 - raw/references/        → Blog posts, editorial references
