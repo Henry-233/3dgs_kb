@@ -66,3 +66,18 @@
 - [[papers/up-slam]] (UP-SLAM, ICRA 2026) — parallel tracking-mapping, probabilistic octree, open-set dynamics
 - [[papers/vimgs-slam]] (ViMGS-SLAM, Array 2026) — multi-scale ViT monocular 3DGS SLAM
 - [[papers/zero-shot-uav-navigation]] (Zero-Shot UAV Nav, arXiv 2026) — relightable 3DGS + RL forest navigation
+
+## 2026-06-11 — Deep read: ADD-SLAM
+- Read ADD-SLAM in full detail from arXiv HTML (PDF encrypted, used raw .md clip with full paper content)
+- Rewrote [[papers/add-slam]] with complete methodology, math formulations (scene consistency analysis, MobileSAM segmentation, temporal Gaussian model, tracking/mapping losses), experimental results (Bonn ATE 2.77 cm, TUM ATE 1.25 cm, PSNR 22.41 dB), and limitations
+- Upgraded 2 concept stubs → full pages:
+  - [[concepts/temporal-gaussian-model]] — time-varying Gaussian representation for dynamic objects
+  - [[concepts/scene-consistency-analysis]] — prior-free motion detection via render-vs-observe comparison
+- ⚠️ Annotation skipped: PDF password-protected
+
+## 2026-06-11 — Deep read: RoGER-SLAM
+- ⚠️ PDF加密无法读取 — PDF is password-protected, raw .md clip is abstract-only (35 lines)
+- Paper page remains at status: skimmed, pending unprotected PDF acquisition
+
+## 2026-06-11 — Cross-paper synthesis
+- Created [[synthesis/dynamic-slam-comparison]] comparing 3 papers addressing dynamic/robust 3DGS-SLAM

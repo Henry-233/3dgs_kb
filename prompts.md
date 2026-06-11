@@ -174,3 +174,60 @@ For each unprocessed paper clip:
 4. Update index.md
 Auto git sync.
 Report: N papers ingested, M concept stubs created.
+
+
+
+## 精读
+Find all papers that need deep reading:
+- Look in wiki/papers/ for pages with status: skimmed
+- These are papers that have been shallow ingested
+  but not yet deep-read (no PDF processing done)
+
+Process them in order of 建议精读优先级 from output/待精读列表.md
+If 待精读列表.md does not exist, process in order of year (newest first)
+
+For each paper with status: skimmed, in priority order:
+
+STEP 1 — VERIFY PDF EXISTS AND CHECK SIZE
+Check if raw/papers/对应论文名.pdf exists.
+If PDF not found: skip, log "⚠️ PDF缺失", continue to next.
+
+Check file size:
+- If under 25MB: read directly
+- If over 25MB: run compression first:
+  python scripts/compress_pdf.py raw/papers/论文名.pdf
+  Then read the _compressed version.
+  Delete compressed file after processing is complete.
+
+STEP 2 — READ PDF
+Read raw/papers/论文名.pdf in full detail.
+
+STEP 3 — UPDATE PAPER PAGE
+Update (never recreate) wiki/papers/论文名.md:
+- Expand 核心方法 with plain language explanation
+- Add ## 数学形式 with key formulations
+- Add ## 与前作的区别 (compare to papers already in wiki)
+- Add ## 实验结论 with key numbers
+- Add ## 局限性
+- Change status: skimmed → done
+- Remove ## 待精读标记
+
+STEP 4 — UPGRADE CONCEPT PAGES
+For each concept page marked stub: true that this paper covers:
+- Expand from one-line stub to full concept page
+- Remove stub: true from front matter
+
+STEP 5 — GENERATE ANNOTATION JSON
+Generate raw/papers/论文名_annotations.json
+following the enhanced annotation format in CLAUDE.md.
+Auto-run annotate_pdf.py to produce 论文名_annotated.pdf.
+
+STEP 6 — CROSS-PAPER SYNTHESIS
+After all papers processed:
+Check if any 2+ papers address the same concept or problem.
+If yes: update wiki/synthesis/ with a comparison page.
+
+Auto git sync after each paper completes.
+Report after each paper: title / sections added / concepts upgraded.
+Report at end: total processed / skipped (PDF missing) / synthesis pages created.
+
