@@ -262,3 +262,157 @@ Reorganize existing wiki/papers/ by read date:
 4. Auto git sync.
 Report: N files moved, M wikilinks updated.
 
+
+
+两个功能分别给你提示词：
+
+---
+
+## 功能一：整理某天论文的方法论创新点
+
+```
+Read wiki/papers/_reading-log.md.
+Find all papers read on [日期, e.g. 2026-06-01].
+Read each corresponding wiki page in wiki/papers/YYYY-MM/.
+
+Generate output/论文整理_[日期].md with the following structure:
+
+# 论文阅读整理 — [日期]
+
+## 概览
+| 论文 | venue | 核心问题 | 方法创新 | 相比baseline提升 |
+|------|-------|---------|---------|----------------|
+
+## 逐篇分析
+
+### 论文名A
+**解决的问题：**
+(一句话，what gap does it address)
+
+**Baseline / 前作：**
+(what method does it compare against or build upon)
+
+**方法创新点：**
+1. (具体创新，不是泛泛而谈)
+2. 
+3. 
+
+**关键结果：**
+(最重要的1-2个数字，说明改进幅度)
+
+**局限性：**
+(作者自己承认的或明显的)
+
+---
+
+(repeat for each paper)
+
+## 横向对比
+(if 2+ papers address similar problems)
+
+| 维度 | 论文A | 论文B | 论文C |
+|------|-------|-------|-------|
+| 核心思路 | | | |
+| 解决的主要问题 | | | |
+| 计算开销 | | | |
+| 适用场景 | | | |
+
+## 可借鉴的方法论
+(cross-paper insights: what ideas could transfer to other problems)
+
+Save to output/论文整理_[日期].md
+Auto git sync.
+```
+
+---
+
+## 功能二：基于某个 Baseline 的方法谱系整理
+
+```
+I want to understand all methods in the wiki that
+build upon or compare against [baseline名称, e.g. 3DGS / MonoGS / SLAM].
+
+Read all pages in wiki/papers/ and wiki/concepts/.
+Find every paper that:
+a. Directly builds on [baseline]
+b. Proposes an alternative to [baseline]
+c. Combines [baseline] with other methods
+
+Generate output/方法谱系_[baseline名称].md:
+
+# [Baseline] 方法谱系
+
+## Baseline 概述
+(what is [baseline], what problem it solves, key limitations)
+
+## 基于该Baseline的改进方向
+
+### 方向一：[改进维度, e.g. 动态场景处理]
+- **论文名**：核心改进 + 如何解决baseline的局限
+- **论文名**：...
+
+### 方向二：[改进维度, e.g. 训练效率]
+- ...
+
+### 方向三：[改进维度]
+- ...
+
+## 方法演进时间线
+[baseline年份] baseline名 → [年份] 论文A（改进点）→ [年份] 论文B（改进点）
+
+## 各方法对比
+| 方法 | 解决baseline哪个问题 | 引入的代价/局限 | 适用场景 |
+|------|-------------------|--------------|---------|
+
+## 仍未解决的问题
+(gaps across all surveyed methods — potential research directions)
+
+Save to output/方法谱系_[baseline名称].md
+Auto git sync.
+```
+
+---
+
+## 功能三：生成可直接发给工程负责人的整理
+
+在功能一或二生成后，再发这条提示词转换格式：
+
+```
+Read output/论文整理_[日期].md (or 方法谱系_xxx.md).
+
+Reformat into a concise technical briefing for an engineering lead.
+Save to output/工程简报_[日期].md
+
+Requirements:
+- Total length: under 500 words
+- No academic jargon without explanation
+- Each paper/method in 3 lines max:
+  问题 → 方法 → 结果
+- End with a section: ## 工程可借鉴点
+  List 2-3 concrete ideas that could apply to real implementation
+  (not "this is interesting" but "specifically, you could do X by Y")
+- Tone: peer-to-peer technical discussion, not a report
+
+Do not include: author lists, citation numbers, venue names
+Do include: actual method names, key numbers, concrete mechanisms
+
+Auto git sync.
+```
+
+---
+
+## 使用流程
+
+```
+当天读完论文
+    ↓
+发功能一 → output/论文整理_日期.md（自己看）
+    ↓
+发功能三 → output/工程简报_日期.md（发给工程负责人）
+
+需要梳理某个方向时
+    ↓
+发功能二 → output/方法谱系_baseline.md（技术选型参考）
+```
+
+三个输出文件定位不同：论文整理是给自己的详细笔记，工程简报是对外沟通用的精简版，方法谱系是做技术选型或找研究方向时用的全景图。
