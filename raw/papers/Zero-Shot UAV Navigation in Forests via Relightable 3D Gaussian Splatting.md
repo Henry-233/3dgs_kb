@@ -1,6 +1,6 @@
 ---
-title: "Zero-Shot UAV Navigation in Forests via Relightable 3D Gaussian Splatting"
-source: "https://arxiv.org/abs/2602.07101"
+title: Zero-Shot UAV Navigation in Forests via Relightable 3D Gaussian Splatting
+source: https://arxiv.org/abs/2602.07101
 author:
   - "[[Zinan Lv]]"
   - "[[Yeqian Qian]]"
@@ -12,7 +12,7 @@ published:
 created: 2026-06-10
 description: "Abstract page for arXiv paper 2602.07101: Zero-Shot UAV Navigation in Forests via Relightable 3D Gaussian Splatting"
 tags:
-  - "clippings"
+  - clippings
 ---
 ## 标题：基于可重点三维高斯散射的森林零目标无人机导航
 
