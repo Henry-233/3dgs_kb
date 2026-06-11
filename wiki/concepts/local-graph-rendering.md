@@ -46,5 +46,5 @@ $$\Delta G_{ij} = \arg\min_{\delta G} \|\tilde{p}_{ij} - \Pi_c(\delta G \cdot \P
 - 关键区别：LGR引入了"从3D表示渲染出的图像"作为图的节点——这些节点位姿精确已知（是采样出来的），为位姿估计提供绝对几何锚定
 
 ## 关联
-- 用到LGR的论文: [[papers/pseudo-depth-meets-gaussian]]
+- 用到LGR的论文: [[papers/2026-05/pseudo-depth-meets-gaussian]]
 - 相关概念: [[concepts/feed-forward-pose-prediction]], [[concepts/slam]], [[concepts/bundle-adjustment]], [[concepts/3d-gaussian]]

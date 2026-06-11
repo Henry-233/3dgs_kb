@@ -30,5 +30,5 @@ $$\arg\min_{\omega, d} \sum_{(i,j)} \|\tilde{p}_{ij} - \Pi_c(...)\|_{\Sigma_{ij}
 动态区域 $\beta_i$ 大 → 权重小 → 不影响位姿优化。后续还有全局BA精化所有关键帧。
 
 ## 关联
-- 用到BA/DBA的论文: [[papers/vggt]], [[papers/wildgs-slam]]
+- 用到BA/DBA的论文: [[papers/2026-05/vggt]], [[papers/2026-05/wildgs-slam]]
 - 相关概念: [[concepts/slam]], [[concepts/ieskf]], [[concepts/structure-from-motion]]

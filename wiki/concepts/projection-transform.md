@@ -21,7 +21,7 @@ $$\Sigma' = J W \Sigma W^T J^T$$
 
 ## 关联
 - 相关概念: [[concepts/covariance-matrix]]、[[concepts/3d-gaussian]]、[[concepts/point-map]]（投影的逆操作）
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]]、[[papers/gs-livo]]、[[papers/vggt]]、[[papers/g2-mapping]]
+- 用到该概念的论文: [[papers/2026-05/3d-gaussian-splatting]]、[[papers/2026-05/gs-livo]]、[[papers/2026-05/vggt]]、[[papers/2026-05/g2-mapping]]
 
 ## 扩展：位姿可微性
 

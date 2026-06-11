@@ -142,7 +142,7 @@ $$\mathcal{L}_{lang} = \sum_{l \in \{s,p,w\}} \sum_{t=1}^{T} d_{lang}(F_t^l(v), 
 4. **动态场景未覆盖**：当前仅处理静态场景，城市场景应用场景（参考Street Gaussians）是可能的扩展方向
 
 ## 关联
-- 基于: [[papers/3d-gaussian-splatting]]
-- 被引用: [[papers/dr-splat]], [[papers/langgs-slam]]（在线语言场SLAM，继承高斯嵌入语言特征的范式）
+- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 被引用: [[papers/2026-05/dr-splat]], [[papers/2026-05/langgs-slam]]（在线语言场SLAM，继承高斯嵌入语言特征的范式）
 - 对比方法: [[concepts/nerf]]（LERF为NeRF-based）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/3d-language-field]], [[concepts/tile-based-rasterization]], [[concepts/alpha-compositing]], [[concepts/clip]], [[concepts/sam]]

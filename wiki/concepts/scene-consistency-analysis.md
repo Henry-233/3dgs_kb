@@ -51,5 +51,5 @@ $$M_{ic}^d = M_{ic} \cap ((D - \hat{D}) < 0)$$
 - [[concepts/differentiable-rendering]] — 渲染比较的基础
 - [[concepts/sam]] — 精细化分割所用模型
 - [[concepts/temporal-gaussian-model]] — 检测后的动态建模方法
-- [[papers/add-slam]] — 首次系统提出该方法的论文
-- [[papers/wildgs-slam]] — 对比方法：基于不确定性的动态检测
+- [[papers/2026-06/add-slam]] — 首次系统提出该方法的论文
+- [[papers/2026-05/wildgs-slam]] — 对比方法：基于不确定性的动态检测

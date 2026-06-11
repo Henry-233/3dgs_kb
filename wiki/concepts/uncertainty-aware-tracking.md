@@ -41,6 +41,6 @@ tags:
 
 - [[concepts/slam]] — SLAM中的跟踪模块
 - [[concepts/alpha-compositing]] — Alpha合成用于不确定性渲染
-- [[papers/varsplat]] — 首次将逐高斯外观方差用于跟踪加权的系统
-- [[papers/wildgs-slam]] — 不确定性用于动态检测的对比方法
-- [[papers/roger-slam]] — 自适应残差平衡是另一种跟踪鲁棒策略
+- [[papers/2026-06/varsplat]] — 首次将逐高斯外观方差用于跟踪加权的系统
+- [[papers/2026-05/wildgs-slam]] — 不确定性用于动态检测的对比方法
+- [[papers/2026-06/roger-slam]] — 自适应残差平衡是另一种跟踪鲁棒策略

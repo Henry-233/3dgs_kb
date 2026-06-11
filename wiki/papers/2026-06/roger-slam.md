@@ -132,7 +132,7 @@ RoGER-SLAM是首个针对**光度退化**（噪声、低光）而非**场景动�
 - [[concepts/alpha-compositing]] — Alpha合成的隐式低通滤波特性是本文核心洞察
 - [[concepts/differentiable-rendering]] — 可微渲染管线
 - [[concepts/ssim-loss]] — 颜色损失中的SSIM分量
-- [[papers/3d-gaussian-splatting]] — 3DGS基础方法
-- [[papers/add-slam]] — 互补方向：动态物体鲁棒性
-- [[papers/wildgs-slam]] — 互补方向：不确定性感知动态SLAM
-- [[papers/up-slam]] — 互补方向：并行架构动态SLAM
+- [[papers/2026-05/3d-gaussian-splatting]] — 3DGS基础方法
+- [[papers/2026-06/add-slam]] — 互补方向：动态物体鲁棒性
+- [[papers/2026-05/wildgs-slam]] — 互补方向：不确定性感知动态SLAM
+- [[papers/2026-06/up-slam]] — 互补方向：并行架构动态SLAM

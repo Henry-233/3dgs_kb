@@ -4,7 +4,7 @@ tags: [concept, external-model, feature-extraction]
 ---
 
 ## 定义
-DINOv2是Meta提出的自监督Vision Transformer（ViT），无需标注数据即可学习稠密视觉特征表示。其自监督训练使特征具有天然的跨视图对应能力。在3DGS中，DINOv2作为特征骨干被用于两个不同方向：[[papers/vggt|VGGT]]用它做图像patchify和全局几何推理，[[papers/wildgs-slam|WildGS-SLAM]]用其3D-aware微调版作为不确定性预测的特征提取器。
+DINOv2是Meta提出的自监督Vision Transformer（ViT），无需标注数据即可学习稠密视觉特征表示。其自监督训练使特征具有天然的跨视图对应能力。在3DGS中，DINOv2作为特征骨干被用于两个不同方向：[[papers/2026-05/vggt|VGGT]]用它做图像patchify和全局几何推理，[[papers/2026-05/wildgs-slam|WildGS-SLAM]]用其3D-aware微调版作为不确定性预测的特征提取器。
 
 ## 直觉理解
 DINOv2就像一个"看图高手"——不需要任何文字标签，仅靠看过几亿张图片，就能学会识别物体、理解场景结构。更妙的是，它看到的特征在不同角度拍同一物体时是相似且可对应的，这对3D任务极其有用。
@@ -53,5 +53,5 @@ UP-SLAM在3DGS中构建**DINO特征场**，用于增强不确定性预测的语�
 | 跨视图一致性 | 中等 | 强（尤其3D-aware版） |
 
 ## 关联
-- 用到DINOv2的论文: [[papers/vggt]], [[papers/wildgs-slam]], [[papers/up-slam]]
+- 用到DINOv2的论文: [[papers/2026-05/vggt]], [[papers/2026-05/wildgs-slam]], [[papers/2026-06/up-slam]]
 - 相关概念: [[concepts/clip]], [[concepts/feed-forward-3d-reconstruction]], [[concepts/uncertainty-aware-mapping]]

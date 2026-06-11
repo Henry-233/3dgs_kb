@@ -217,7 +217,7 @@ ViMGS-SLAM生成95,156个高斯基元，MonoGS仅35,159个（+170.64%）。定�
 5. **静态场景假设**：未专门处理动态物体
 
 ## 关联
-- 基于: [[papers/3d-gaussian-splatting]]
-- 单目SLAM同行: MonoGS (CVPR 2024), [[papers/wildgs-slam]]（单目动态SLAM）, [[papers/pseudo-depth-meets-gaussian]]（前馈式伪深度SLAM）
-- RGB-D SLAM对比: [[papers/up-slam]]（并行框架+概率八叉树）, [[papers/g2-mapping]]（通用GS-SLAM）
+- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 单目SLAM同行: MonoGS (CVPR 2024), [[papers/2026-05/wildgs-slam]]（单目动态SLAM）, [[papers/2026-05/pseudo-depth-meets-gaussian]]（前馈式伪深度SLAM）
+- RGB-D SLAM对比: [[papers/2026-06/up-slam]]（并行框架+概率八叉树）, [[papers/2026-05/g2-mapping]]（通用GS-SLAM）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/monocular-depth-estimation]], [[concepts/vision-transformer]], [[concepts/isotropic-regularization]], [[concepts/alpha-compositing]], [[concepts/projection-transform]], [[concepts/adaptive-density-control]]

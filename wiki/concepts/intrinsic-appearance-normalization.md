@@ -41,4 +41,4 @@ IAN的洞察：**限制反照率的表达能力（量化），网络被迫将光
 
 - [[concepts/spherical-harmonics]] — SH是传统视角依赖编码，IAN是其光照不变性补充
 - [[concepts/3d-gaussian]] — 高斯颜色表示的重构
-- [[papers/taming-the-light]] — 首次提出IAN的论文
+- [[papers/2026-06/taming-the-light]] — 首次提出IAN的论文

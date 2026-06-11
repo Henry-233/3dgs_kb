@@ -48,5 +48,5 @@ $$\{\mu_j, \Sigma_j, c_j, \alpha_j\}_{j=1}^{M} = \text{MLP}_\theta(f_i, v_i)_{i=
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/adaptive-density-control]], [[concepts/occlusion-aware-culling]]
-- 用到该概念的论文: [[papers/proxy-gs]]
+- 用到该概念的论文: [[papers/2026-05/proxy-gs]]
 - 该领域论文: Scaffold-GS, Octree-GS, Cache-GS

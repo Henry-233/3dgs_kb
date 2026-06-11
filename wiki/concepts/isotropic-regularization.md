@@ -50,6 +50,6 @@ ViMGS-SLAM消融实验（TUM-RGB）：
 定性证据：ViMGS-SLAM生成的高斯比MonoGS更接近圆形（各向同性），MonoGS的高斯呈明显的方向性拉伸。
 
 ## 关联
-- 引入该概念的论文: [[papers/vimgs-slam]]
+- 引入该概念的论文: [[papers/2026-06/vimgs-slam]]
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/covariance-matrix]]
 - 对比: [[concepts/adaptive-density-control]]

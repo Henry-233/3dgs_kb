@@ -30,5 +30,5 @@ tags: [concept, surface-reconstruction, geometry]
 | 神经隐式表面（NeuS等） | 显式高斯 + 后提取，渲染更快 |
 
 ## 关联
-- 用到表面重建的论文: [[papers/gaussian-opacity-fields]], [[papers/proxy-gs]]
+- 用到表面重建的论文: [[papers/2026-05/gaussian-opacity-fields]], [[papers/2026-05/proxy-gs]]
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/alpha-compositing]]

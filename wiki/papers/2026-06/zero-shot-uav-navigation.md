@@ -91,8 +91,8 @@ $$\theta_L = (\theta_\text{sun}, I_\text{sun}, I_\text{ambient}, T_\text{color})
 
 | 前作 | 区别 |
 |------|------|
-| [[papers/gaussnav\|GaussNav]] (2025) | **导航范式不同**：GaussNav是模块化方法（探索→建图→匹配→规划），本工作是端到端RL（RGB→控制）；**场景不同**：GaussNav针对室内结构化环境（HM3D），本工作针对非结构化森林；**sim-to-real**：GaussNav纯仿真评估，本工作有真实飞行实验 |
-| [[papers/gs-livo\|GS-LIVO]] (2024) | GS-LIVO用Gaussian-SLAM做定位+路径规划，属模块化方法；本工作的端到端RL不依赖显式定位和地图 |
+| [[papers/2026-05/gaussnav\|GaussNav]] (2025) | **导航范式不同**：GaussNav是模块化方法（探索→建图→匹配→规划），本工作是端到端RL（RGB→控制）；**场景不同**：GaussNav针对室内结构化环境（HM3D），本工作针对非结构化森林；**sim-to-real**：GaussNav纯仿真评估，本工作有真实飞行实验 |
+| [[papers/2026-05/gs-livo\|GS-LIVO]] (2024) | GS-LIVO用Gaussian-SLAM做定位+路径规划，属模块化方法；本工作的端到端RL不依赖显式定位和地图 |
 | 3DGS (Kerbl et al., 2023) | **表示改造**：从SH编码光照改为物理材质分解；**新用途**：从新视角合成扩展到RL训练环境 |
 | 传统sim-to-real方法（域随机化） | 传统域随机化随机调整纹理/颜色/光照（缺乏物理真实性），Relightable 3DGS基于物理的光照编辑提供更接近真实的视觉变化 |
 
@@ -128,6 +128,6 @@ $$\theta_L = (\theta_\text{sun}, I_\text{sun}, I_\text{ambient}, T_\text{color})
 5. **光照模型简化**：使用的物理光照模型可能不完全捕捉所有真实世界的光照现象（如次表面散射、体积光、天空遮挡变化）
 
 ## 关联
-- 基于: [[papers/3d-gaussian-splatting]]（改造了原始3DGS的表示——将SH耦合颜色替换为物理材质属性+显式光照）
-- 相关方法: [[papers/gaussnav]]（3DGS用于视觉导航的模块化方法），[[papers/gs-livo]]（Gaussian-SLAM+导航规划）
+- 基于: [[papers/2026-05/3d-gaussian-splatting]]（改造了原始3DGS的表示——将SH耦合颜色替换为物理材质属性+显式光照）
+- 相关方法: [[papers/2026-05/gaussnav]]（3DGS用于视觉导航的模块化方法），[[papers/2026-05/gs-livo]]（Gaussian-SLAM+导航规划）
 - 涉及概念: [[concepts/relightable-3dgs]], [[concepts/3d-gaussian]], [[concepts/spherical-harmonics]], [[concepts/visual-navigation]], [[concepts/differentiable-rendering]], [[concepts/alpha-compositing]], [[concepts/tile-based-rasterization]]

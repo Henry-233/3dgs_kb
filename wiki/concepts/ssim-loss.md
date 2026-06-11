@@ -22,4 +22,4 @@ $$\text{SSIM}(x, y) = \frac{(2\mu_x\mu_y + C_1)(2\sigma_{xy} + C_2)}{(\mu_x^2 + 
 $$L = (1 - \lambda) L_1 + \lambda (1 - \text{SSIM})$$
 
 ## 关联
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]]
+- 用到该概念的论文: [[papers/2026-05/3d-gaussian-splatting]], [[papers/2026-05/mip-splatting]], [[papers/2026-05/gaussian-opacity-fields]]

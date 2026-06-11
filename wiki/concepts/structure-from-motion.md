@@ -41,5 +41,5 @@ $$x_2^T F x_1 = 0$$
 
 ## 关联
 - 相关概念: [[concepts/projection-transform]]、[[concepts/point-map]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]]
-- 替代范式: [[concepts/feed-forward-3d-reconstruction]]（代表性工作: [[papers/vggt]]）
+- 用到该概念的论文: [[papers/2026-05/3d-gaussian-splatting]]
+- 替代范式: [[concepts/feed-forward-3d-reconstruction]]（代表性工作: [[papers/2026-05/vggt]]）

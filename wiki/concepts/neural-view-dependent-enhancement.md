@@ -42,4 +42,4 @@ $\beta_i$ 作用：在深度感知权重函数中调节每个高斯对不同视�
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/spherical-harmonics]], [[concepts/order-independent-rendering]], [[concepts/alpha-compositing]]
-- 用到该概念的论文: [[papers/mobile-gs]]
+- 用到该概念的论文: [[papers/2026-05/mobile-gs]]

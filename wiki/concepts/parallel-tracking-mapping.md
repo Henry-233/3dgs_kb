@@ -40,5 +40,5 @@ Gaussian SLAM的建图操作（高斯增删、全局优化、回环检测）比�
 
 ## 关联
 - 相关概念: [[concepts/slam]], [[concepts/uncertainty-aware-mapping]]
-- 用到该架构的论文: [[papers/up-slam]]
+- 用到该架构的论文: [[papers/2026-06/up-slam]]
 - 对比架构: 前馈式位姿预测（[[concepts/feed-forward-pose-prediction]]）——通过网络前向pass替代迭代跟踪，是另一种加速思路

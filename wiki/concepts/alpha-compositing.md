@@ -38,4 +38,4 @@ LangGS-SLAM发现：Alpha-blending用于渲染高维语言特征（CLIP/LSeg的5
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/tile-based-rasterization]], [[concepts/order-independent-rendering]], [[concepts/neural-view-dependent-enhancement]], [[concepts/top-k-rendering]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/mip-splatting]], [[papers/gaussian-opacity-fields]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/gs-livo]], [[papers/g2-mapping]], [[papers/proxy-gs]], [[papers/langgs-slam]], [[papers/gaussnav]]
+- 用到该概念的论文: [[papers/2026-05/3d-gaussian-splatting]], [[papers/2026-05/mip-splatting]], [[papers/2026-05/gaussian-opacity-fields]], [[papers/2026-05/street-gaussians]], [[papers/2026-05/mobile-gs]], [[papers/2026-05/gs-livo]], [[papers/2026-05/g2-mapping]], [[papers/2026-05/proxy-gs]], [[papers/2026-05/langgs-slam]], [[papers/2026-05/gaussnav]]

@@ -178,5 +178,5 @@ Waymo ATE相对OpenGS-SLAM降低28.2%，PSNR提升1.39 dB。在低视差长直�
 - [[concepts/ssim-loss]] — 颜色损失中的SSIM分量
 - [[concepts/projection-transform]] — 三焦张量、极线传输的数学基础
 - [[papers/mono-gs]] — 纯RGB 3DGS-SLAM基线方法
-- [[papers/varsplat]] — 互补：VarSplat处理测量不确定性，TVG-SLAM处理几何约束
-- [[papers/taming-the-light]] — 互补：Taming the Light处理光照不变性，TVG-SLAM通过几何绕过光照问题
+- [[papers/2026-06/varsplat]] — 互补：VarSplat处理测量不确定性，TVG-SLAM处理几何约束
+- [[papers/2026-06/taming-the-light]] — 互补：Taming the Light处理光照不变性，TVG-SLAM通过几何绕过光照问题

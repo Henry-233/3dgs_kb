@@ -41,4 +41,4 @@ GS-LIVO使用IESKF顺序融合三种传感测量：
 
 ## 关联
 - 相关概念: [[concepts/slam]]
-- 用到该概念的论文: [[papers/gs-livo]]
+- 用到该概念的论文: [[papers/2026-05/gs-livo]]

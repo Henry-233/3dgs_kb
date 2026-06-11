@@ -113,6 +113,6 @@ $$f_i = \frac{\sum_{v: i \in \mathcal{G}_v} w_i(v) \cdot L(v)}{\sum_{v: i \in \m
 4. **直接注册的稀疏性**：部分像素可能没有足够的主导高斯，导致语义覆盖不完整
 
 ## 关联
-- 基于: [[papers/3d-gaussian-splatting]]
-- 对比/继承: [[papers/langsplat]]
+- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 对比/继承: [[papers/2026-05/langsplat]]
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/3d-language-field]], [[concepts/product-quantization]], [[concepts/alpha-compositing]], [[concepts/clip]], [[concepts/sam]]

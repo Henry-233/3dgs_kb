@@ -49,5 +49,5 @@ $$\mathcal{L}_{\text{map}} = \lambda_{\text{geo}} \underbrace{[(1-\lambda_1)\mat
 3. 实时系统有严格的迭代预算
 
 ## 关联
-- 用到该概念的论文: [[papers/langgs-slam]]
+- 用到该概念的论文: [[papers/2026-05/langgs-slam]]
 - 相关概念: [[concepts/slam]], [[concepts/3d-language-field]], [[concepts/3d-gaussian]]

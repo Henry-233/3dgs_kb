@@ -70,7 +70,7 @@ SplaTAM在噪声+低光下从0.36退化到6.82 cm（恶化19倍），RoGER-SLAM�
 
 ## 关联论文
 
-- [[papers/wildgs-slam]] — 不确定性感知动态SLAM
-- [[papers/add-slam]] — 场景一致性分析+时序高斯动态建模
-- [[papers/up-slam]] — 并行架构+概率八叉树+开放集动态
-- [[papers/roger-slam]] — 噪声/低光鲁棒SLAM（互补维度，ATE提升91%）
+- [[papers/2026-05/wildgs-slam]] — 不确定性感知动态SLAM
+- [[papers/2026-06/add-slam]] — 场景一致性分析+时序高斯动态建模
+- [[papers/2026-06/up-slam]] — 并行架构+概率八叉树+开放集动态
+- [[papers/2026-06/roger-slam]] — 噪声/低光鲁棒SLAM（互补维度，ATE提升91%）

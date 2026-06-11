@@ -21,5 +21,5 @@ CLIP像一个"双语词典"——读过4亿张带文字说明的图片后，它�
 CLIP对细粒度属性（如"生了锈的银色水龙头"）不够鲁棒，因其训练数据以粗粒度图文对为主。
 
 ## 关联
-- 用到CLIP的论文: [[papers/langsplat]], [[papers/dr-splat]]
+- 用到CLIP的论文: [[papers/2026-05/langsplat]], [[papers/2026-05/dr-splat]]
 - 相关概念: [[concepts/3d-language-field]], [[concepts/product-quantization]]

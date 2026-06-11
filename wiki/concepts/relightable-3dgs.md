@@ -53,5 +53,5 @@ Relightable 3DGS的关键应用场景是为RL策略提供光照增强训练：
 
 ## 关联
 - 基于: [[concepts/3d-gaussian]], [[concepts/spherical-harmonics]], [[concepts/differentiable-rendering]]
-- 用到该概念的论文: [[papers/zero-shot-uav-navigation]]
+- 用到该概念的论文: [[papers/2026-06/zero-shot-uav-navigation]]
 - 传统对比: 传统3DGS的SH方案（光照与材质耦合，无法编辑光照条件）

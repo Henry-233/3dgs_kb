@@ -61,4 +61,4 @@ $\varepsilon$ 是最关键的参数，在Small City数据集上：
 
 ## 关联
 - 相关概念: [[concepts/proxy-rendering]], [[concepts/adaptive-density-control]], [[concepts/tile-based-rasterization]], [[concepts/alpha-compositing]], [[concepts/mlp-based-3dgs]]
-- 用到该概念的论文: [[papers/proxy-gs]]
+- 用到该概念的论文: [[papers/2026-05/proxy-gs]]

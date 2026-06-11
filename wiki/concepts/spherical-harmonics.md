@@ -33,4 +33,4 @@ Relightable 3DGS（[[concepts/relightable-3dgs]]）提出了SH的替代方案：
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/gaussian-compression]], [[concepts/relightable-3dgs]]
-- 用到该概念的论文: [[papers/3d-gaussian-splatting]], [[papers/street-gaussians]], [[papers/mobile-gs]], [[papers/gs-livo]]
+- 用到该概念的论文: [[papers/2026-05/3d-gaussian-splatting]], [[papers/2026-05/street-gaussians]], [[papers/2026-05/mobile-gs]], [[papers/2026-05/gs-livo]]
