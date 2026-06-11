@@ -84,3 +84,8 @@
 
 ### 神经3D重建
 - [[papers/vggt]] — VGGT (CVPR 2025 Best Paper)：交替注意力机制的前馈3D重建，从稀疏视图直接预测点图
+
+## 综合专题 (wiki/synthesis/)
+
+- [[synthesis/dynamic-slam-comparison]] — 动态/鲁棒3DGS-SLAM方法对比（WildGS-SLAM, ADD-SLAM, UP-SLAM, RoGER-SLAM）
+- [[synthesis/robustness-dimensions]] — 3DGS-SLAM鲁棒性维度分解（测量/光照/几何三维度 + 组合矩阵 + 统一不确定性视角）

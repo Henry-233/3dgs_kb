@@ -227,7 +227,38 @@ After all papers processed:
 Check if any 2+ papers address the same concept or problem.
 If yes: update wiki/synthesis/ with a comparison page.
 
+STEP 7 — DATE ARCHIVE
+Get today's date (YYYY-MM format).
+Save the paper page to wiki/papers/YYYY-MM-DD/论文名.md
+instead of directly under wiki/papers/.
+Create the YYYY-MM/ directory if it doesn't exist.
+
+Update wiki/papers/_reading-log.md:
+- Add a new row with: today's date / paper title / venue /
+  status / wikilink / concept tags
+- Keep sorted by date descending (newest first)
+
 Auto git sync after each paper completes.
 Report after each paper: title / sections added / concepts upgraded.
 Report at end: total processed / skipped (PDF missing) / synthesis pages created.
+
+
+
+## 论文迁移
+Reorganize existing wiki/papers/ by read date:
+
+1. For each .md file directly under wiki/papers/
+   (not in a date subfolder):
+   - Read the file's date_updated field from front matter
+   - If no date field: use file creation date or today
+   - Move to wiki/papers/YYYY-MM/论文名.md
+
+2. Create wiki/papers/_reading-log.md
+   with one row per paper, sorted by date descending.
+
+3. Update all wikilinks across wiki/ that point to
+   old paths [[papers/论文名]] → [[papers/YYYY-MM/论文名]]
+
+4. Auto git sync.
+Report: N files moved, M wikilinks updated.
 

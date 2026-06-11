@@ -108,5 +108,12 @@
 - Upgraded [[concepts/uncertainty-aware-tracking]] stub → full page with 3 implementation schemes comparison
 - ⚠️ Annotation skipped: no annotate_pdf.py script found
 
+## 2026-06-11 — Deep read: TVG-SLAM
+- Read TVG-SLAM from arXiv HTML (2510.21135v1) — 507KB dense MathML, used Python extraction to get plain text
+- Rewrote [[papers/tvg-slam]] with complete methodology (DUST3R dense tri-view matching → Hybrid Geometric Tracking with photometric+trifocal 2D+3D alignment, DART sigmoid photometric weight decay, TUGI variance-guided Gaussian initialization with opacity attenuation), math formulations (Eq. 1-9), experimental results across 3 outdoor datasets (Waymo ATE 0.602, Small City ATE 1.195, Cambridge ATE 2.009 — 69% reduction vs OpenGS-SLAM), ablation (TUGI removal +38.3% ATE, DART +21.0%), and limitations
+- Upgraded [[concepts/tri-view-geometric-constraints]] stub → full page with trifocal tensor details, vs pairwise geometry comparison table, TUGI uncertainty estimation formula
+- ⚠️ Annotation skipped: no annotate_pdf.py script found
+
 ## 2026-06-11 — Cross-paper synthesis
 - Created [[synthesis/dynamic-slam-comparison]] comparing 3 papers addressing dynamic/robust 3DGS-SLAM
+- Created [[synthesis/robustness-dimensions]] — orthogonal robustness taxonomy (measurement/illumination/geometry) across VarSplat, Taming the Light, TVG-SLAM with combination matrix and unified uncertainty perspective
