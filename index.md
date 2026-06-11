@@ -35,6 +35,11 @@
 - [[concepts/language-feature-registration]] — 语言特征注册：直接将CLIP嵌入分配到3D高斯，无需渲染过程的语言-几何关联方法
 - [[concepts/3d-language-field]] — 3D语言场：将CLIP语言特征嵌入3D高斯，支持开放词汇3D查询
 
+### 动态场景与鲁棒性
+- [[concepts/tri-view-geometric-constraints]] — 三视图几何约束：利用三帧稠密匹配构建跨帧几何约束，抗误匹配能力优于成对几何
+- [[concepts/intrinsic-appearance-normalization]] — 内在外观归一化：将场景反照率与瞬态光照解耦，学习光照不变的标准化颜色表示
+- [[concepts/uncertainty-aware-tracking]] — 不确定性感知跟踪：利用逐像素不确定性图加权跟踪损失，使优化聚焦信息丰富区域
+
 ### 传感器融合
 - [[concepts/multi-sensor-fusion]] — 多传感器融合SLAM：统一支持单目、RGB-D、LiDAR-惯性-视觉数据的通用高斯建图框架
 
@@ -71,6 +76,11 @@
 ### 导航
 - [[papers/gaussnav]] — GaussNav (Lei et al., TPAMI 2025)：首次将3DGS引入具身视觉导航，Semantic Gaussian地图+DISK-LightGlue特征匹配实现实例图像目标导航
 - [[papers/zero-shot-uav-navigation]] — Zero-Shot UAV Navigation (Lv et al., 2026)：Relightable 3DGS+端到端RL，零样本sim-to-real森林UAV导航，10 m/s无碰撞飞行
+
+### 鲁棒性与光照
+- [[papers/tvg-slam]] — TVG-SLAM (Tan et al., arXiv 2025)：三视图几何约束纯RGB SLAM，室外场景ATE降低69%
+- [[papers/taming-the-light]] — Taming the Light (Zhang et al., arXiv 2025)：光照不变语义SLAM，IAN主动去耦+DRB-Loss被动纠正
+- [[papers/varsplat]] — VarSplat (Tran & Kosecka, arXiv 2026)：不确定性感知RGB-D SLAM，逐高斯方差+单pass不确定性渲染
 
 ### 神经3D重建
 - [[papers/vggt]] — VGGT (CVPR 2025 Best Paper)：交替注意力机制的前馈3D重建，从稀疏视图直接预测点图

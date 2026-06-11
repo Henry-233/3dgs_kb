@@ -81,5 +81,20 @@
 - Updated [[synthesis/dynamic-slam-comparison]] with RoGER-SLAM quantitative data table
 - ⚠️ Annotation skipped: PDF still password-protected
 
+## 2026-06-11 — Batch shallow ingest (3 papers, round 2)
+- Processed 3 new unlogged paper clips from raw/papers/
+- Created 3 new paper pages: [[papers/tvg-slam]], [[papers/taming-the-light]], [[papers/varsplat]]
+- Created 3 new concept stubs:
+  - [[concepts/tri-view-geometric-constraints]] — three-view matching for robust cross-frame geometric constraints
+  - [[concepts/intrinsic-appearance-normalization]] — disentangling albedo from transient lighting for illumination-invariant Gaussians
+  - [[concepts/uncertainty-aware-tracking]] — per-pixel uncertainty map guiding tracking/submap registration/loop detection
+- Updated index.md (new section: 鲁棒性与光照, 3 new concepts under 动态场景与鲁棒性)
+- Updated [[output/待精读列表]] with 3 new papers + revised reading roadmap
+
+### Papers ingested (shallow)
+- [[papers/tvg-slam]] (TVG-SLAM, arXiv 2025) — tri-view geometric constraints, RGB-only SLAM, 69% ATE reduction outdoor
+- [[papers/taming-the-light]] (Taming the Light, arXiv 2025) — IAN+DRB-Loss, illumination-invariant semantic SLAM
+- [[papers/varsplat]] (VarSplat, arXiv 2026) — per-splat variance, uncertainty-aware RGB-D SLAM
+
 ## 2026-06-11 — Cross-paper synthesis
 - Created [[synthesis/dynamic-slam-comparison]] comparing 3 papers addressing dynamic/robust 3DGS-SLAM
