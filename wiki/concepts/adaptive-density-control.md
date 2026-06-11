@@ -31,7 +31,7 @@ Mobile-GS在标准ADC基础上提出贡献度剪枝（Contribution-based Pruning
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/gaussian-compression]]
-- 用到该概念的论文: [[papers/2026-05/3d-gaussian-splatting]], [[papers/2026-05/street-gaussians]], [[papers/2026-05/mobile-gs]], [[papers/2026-05/g2-mapping]], [[papers/2026-05/proxy-gs]]
+- 用到该概念的论文: [[papers/2026-05-07/3d-gaussian-splatting]], [[papers/2026-05-07/street-gaussians]], [[papers/2026-05-07/mobile-gs]], [[papers/2026-05-15/g2-mapping]], [[papers/2026-05-21/proxy-gs]]
 
 GS-LIVO不采用标准的ADC（克隆/分裂/剪枝），而是通过LiDAR点云直接初始化高斯（基于八叉树叶节点体素采样），避免了昂贵的手工启发式增密过程。高斯结构的初始化质量由LiDAR测量精度保证。
 
@@ -42,7 +42,7 @@ UP-SLAM用概率八叉树（[[concepts/probabilistic-octree]]）完全替代了A
 - 与传统ADC的核心区别：ADC基于**梯度**（需手动设 $\tau_{grad}$），概率八叉树基于**观测历史**（概率模型自更新）
 - 概率模型天然处理噪声和遮挡，避免了ADC在在线SLAM场景中因视角变化导致的误触发克隆/分裂
 
-详见: [[papers/2026-06/up-slam]]
+详见: [[papers/2026-06-02/up-slam]]
 
 ## Proxy-GS的遮挡感知密度引导
 

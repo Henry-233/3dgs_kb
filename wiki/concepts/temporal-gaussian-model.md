@@ -32,4 +32,4 @@ tags:
 - [[concepts/3d-gaussian]] — 基础表示单元
 - [[concepts/slam]] — SLAM框架
 - [[concepts/scene-consistency-analysis]] — 配套的动态检测方法
-- [[papers/2026-06/add-slam]] — 首次提出该概念
+- [[papers/2026-06-11/add-slam]] — 首次提出该概念

@@ -119,5 +119,5 @@ $$\bm{G}_d^{id}(t) = \{(\mu_i^t, \Sigma_i^t, o_i^t, h_i^t)\}$$
 - [[concepts/temporal-gaussian-model]] — 时序高斯建模动态物体
 - [[concepts/scene-consistency-analysis]] — 无先验的动态检测方法
 - [[concepts/differentiable-rendering]] — 可微渲染管线
-- [[papers/2026-05/wildgs-slam]] — 主要对比方法：不确定性感知动态SLAM
-- [[papers/2026-06/up-slam]] — 同期工作：并行跟踪建图的动态SLAM
+- [[papers/2026-05-21/wildgs-slam]] — 主要对比方法：不确定性感知动态SLAM
+- [[papers/2026-06-02/up-slam]] — 同期工作：并行跟踪建图的动态SLAM

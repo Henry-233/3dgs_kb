@@ -251,7 +251,7 @@ Reorganize existing wiki/papers/ by read date:
    (not in a date subfolder):
    - Read the file's date_updated field from front matter
    - If no date field: use file creation date or today
-   - Move to wiki/papers/YYYY-MM/论文名.md
+   - Move to wiki/papers/YYYY-MM-DD/论文名.md
 
 2. Create wiki/papers/_reading-log.md
    with one row per paper, sorted by date descending.

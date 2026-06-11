@@ -66,4 +66,4 @@ TVG-SLAM首次将三视图几何约束引入3DGS-SLAM跟踪：
 - [[concepts/projection-transform]] — 三焦张量、极线传输的数学基础
 - [[concepts/slam]] — SLAM中的几何约束
 - [[concepts/uncertainty-aware-tracking]] — 三视图方差作为不确定性的量化信号
-- [[papers/2026-06/tvg-slam]] — 首次将该方法引入3DGS-SLAM
+- [[papers/2026-06-11/tvg-slam]] — 首次将该方法引入3DGS-SLAM

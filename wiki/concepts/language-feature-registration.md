@@ -16,5 +16,5 @@ tags:
 - [[concepts/clip]]
 - [[concepts/3d-language-field]]
 - [[concepts/3d-gaussian]]
-- [[papers/2026-05/dr-splat]]
-- [[papers/2026-05/langsplat]]
+- [[papers/2026-05-08/dr-splat]]
+- [[papers/2026-05-07/langsplat]]

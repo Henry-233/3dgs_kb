@@ -56,5 +56,5 @@ K=3为最优平衡——K=1的噪声敏感性 vs K=10的语义歧义之间。
 - [[concepts/tile-based-rasterization|Tile-based光栅化]]：Top-K与tile-based渲染正交——可在每个tile内独立执行
 
 ## 关联
-- 用到Top-K的论文: [[papers/2026-05/langgs-slam]]
+- 用到Top-K的论文: [[papers/2026-05-21/langgs-slam]]
 - 相关概念: [[concepts/alpha-compositing]], [[concepts/3d-gaussian]], [[concepts/3d-language-field]]

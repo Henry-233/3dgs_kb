@@ -146,5 +146,5 @@ $$\mathcal{L}_{\text{mapping}} = \sum_{p \in \mathcal{P}}(\lambda_D\|D-D_{\text{
 - [[concepts/intrinsic-appearance-normalization]] — IAN是本文核心创新
 - [[concepts/ssim-loss]] — SSIM同时用作DRB门控信号和颜色损失分量
 - [[concepts/semantic-slam]] — 紧耦合语义SLAM
-- [[papers/2026-06/roger-slam]] — 互补：RoGER-SLAM处理传感器退化（噪声/低光），本论文处理场景光照变化
-- [[papers/2026-06/varsplat]] — 互补：VarSplat用方差处理测量可靠性，本论文用量化处理光照不变性
+- [[papers/2026-06-11/roger-slam]] — 互补：RoGER-SLAM处理传感器退化（噪声/低光），本论文处理场景光照变化
+- [[papers/2026-06-11/varsplat]] — 互补：VarSplat用方差处理测量可靠性，本论文用量化处理光照不变性

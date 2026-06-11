@@ -151,8 +151,8 @@ mIoU超越Feature3DGS-512D（0.673 vs 0.671），FPS快50倍。
 4. **无回环检测**：当前基线无回环/全局BA
 
 ## 关联
-- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 基于: [[papers/2026-05-07/3d-gaussian-splatting]]
 - 几何骨干: GS-ICP SLAM (Ha et al., ECCV 2024)
-- 语义范式: [[papers/2026-05/langsplat]]（语言特征嵌入高斯的范式来源）, Feature3DGS (Zhou et al., CVPR 2024)
-- 相关SLAM: [[papers/2026-05/gs-livo]], [[papers/2026-05/g2-mapping]], [[papers/2026-05/wildgs-slam]], [[papers/2026-05/pseudo-depth-meets-gaussian]], [[papers/2026-06/up-slam]]（DINO特征场 vs 语言场——不同语义嵌入方向的并行探索）
+- 语义范式: [[papers/2026-05-07/langsplat]]（语言特征嵌入高斯的范式来源）, Feature3DGS (Zhou et al., CVPR 2024)
+- 相关SLAM: [[papers/2026-05-11/gs-livo]], [[papers/2026-05-15/g2-mapping]], [[papers/2026-05-21/wildgs-slam]], [[papers/2026-05-21/pseudo-depth-meets-gaussian]], [[papers/2026-06-02/up-slam]]（DINO特征场 vs 语言场——不同语义嵌入方向的并行探索）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/3d-language-field]], [[concepts/slam]], [[concepts/alpha-compositing]], [[concepts/top-k-rendering]], [[concepts/hybrid-field-optimization]], [[concepts/clip]]

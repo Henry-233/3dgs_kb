@@ -193,10 +193,10 @@ Fast版本速度接近MonoGS/Splat-SLAM，精度仅微降（ATE 0.46→0.48）�
 3. **处理速度**：完整版<1 FPS，比静态SLAM慢（因额外的不确定性预测+加权计算）。Fast版本恢复到~2 FPS
 
 ## 关联
-- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 基于: [[papers/2026-05-07/3d-gaussian-splatting]]
 - 不确定性感知思想来源: NeRF On-the-go (Ren et al. CVPR 2024), WildGaussians (Kulhanek et al. NeurIPS 2024)
 - 跟踪框架: DROID-SLAM (Teed & Deng, NeurIPS 2021)
 - 地图框架: MonoGS (Matsuki et al. CVPR 2024), Splat-SLAM (Sandström et al. 2024)
-- 相关SLAM: [[papers/2026-05/gs-livo]], [[papers/2026-05/g2-mapping]], [[papers/2026-05/pseudo-depth-meets-gaussian]]（前馈式SLAM，WildGS-SLAM仍使用优化式DBA跟踪）
-- 后续工作: [[papers/2026-06/up-slam]]（并行框架 + RGB-D训练无关不确定性估计，将不确定性范式从单目扩展到深度传感器）, [[papers/2026-06/vimgs-slam]]（MViT度量深度先验替代Metric3D v2相对深度，直接预测绝对尺度）
+- 相关SLAM: [[papers/2026-05-11/gs-livo]], [[papers/2026-05-15/g2-mapping]], [[papers/2026-05-21/pseudo-depth-meets-gaussian]]（前馈式SLAM，WildGS-SLAM仍使用优化式DBA跟踪）
+- 后续工作: [[papers/2026-06-02/up-slam]]（并行框架 + RGB-D训练无关不确定性估计，将不确定性范式从单目扩展到深度传感器）, [[papers/2026-06-08/vimgs-slam]]（MViT度量深度先验替代Metric3D v2相对深度，直接预测绝对尺度）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/uncertainty-aware-mapping]], [[concepts/alpha-compositing]], [[concepts/projection-transform]], [[concepts/dinov2]], [[concepts/bundle-adjustment]], [[concepts/monocular-depth-estimation]]

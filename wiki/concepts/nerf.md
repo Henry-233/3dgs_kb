@@ -26,4 +26,4 @@ $$C(\mathbf{r}) = \sum_{i=1}^{N} T_i (1 - \exp(-\sigma_i \delta_i)) \mathbf{c}_i
 
 ## 关联
 - 相关概念: [[concepts/instant-ngp]], [[concepts/mip-nerf]], [[concepts/tensorf]]
-- 与该方法对比的论文: [[papers/2026-05/3d-gaussian-splatting]], [[papers/2026-05/street-gaussians]]
+- 与该方法对比的论文: [[papers/2026-05-07/3d-gaussian-splatting]], [[papers/2026-05-07/street-gaussians]]

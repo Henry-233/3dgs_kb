@@ -3,29 +3,29 @@
 ## Papers
 
 ### Base
-- [[papers/2026-05/3d-gaussian-splatting|3D Gaussian Splatting for Real-Time Radiance Field Rendering]] (Kerbl et al., SIGGRAPH 2023)
+- [[papers/2026-05-07/3d-gaussian-splatting|3D Gaussian Splatting for Real-Time Radiance Field Rendering]] (Kerbl et al., SIGGRAPH 2023)
 
 ### Extensions
-- [[papers/2026-05/mip-splatting|Mip-Splatting: Alias-free 3D Gaussian Splatting]] (Yu et al., CVPR 2024)
-- [[papers/2026-05/gaussian-opacity-fields|Gaussian Opacity Fields]] (Yu et al., arxiv 2024)
-- [[papers/2026-05/mobile-gs|Mobile-GS: Real-time Gaussian Splatting for Mobile Devices]] (2024)
-- [[papers/2026-05/langsplat|LangSplat: 3D Language Gaussian Splatting]] (Qin et al., CVPR 2024)
-- [[papers/2026-05/dr-splat|Dr. Splat: Direct Language Embedding Registration]] (Kim et al., CVPR 2025 Highlight)
-- [[papers/2026-05/proxy-gs|Proxy-GS: Unified Occlusion Priors for Structured 3DGS]] (Gao et al., arxiv 2025)
+- [[papers/2026-05-07/mip-splatting|Mip-Splatting: Alias-free 3D Gaussian Splatting]] (Yu et al., CVPR 2024)
+- [[papers/2026-05-07/gaussian-opacity-fields|Gaussian Opacity Fields]] (Yu et al., arxiv 2024)
+- [[papers/2026-05-07/mobile-gs|Mobile-GS: Real-time Gaussian Splatting for Mobile Devices]] (2024)
+- [[papers/2026-05-07/langsplat|LangSplat: 3D Language Gaussian Splatting]] (Qin et al., CVPR 2024)
+- [[papers/2026-05-08/dr-splat|Dr. Splat: Direct Language Embedding Registration]] (Kim et al., CVPR 2025 Highlight)
+- [[papers/2026-05-21/proxy-gs|Proxy-GS: Unified Occlusion Priors for Structured 3DGS]] (Gao et al., arxiv 2025)
 
 ### Applications
-- [[papers/2026-05/street-gaussians|Street Gaussians: Modeling Dynamic Urban Scenes]] (Yan et al., ECCV 2024)
-- [[papers/2026-05/gs-livo|GS-LIVO: Real-Time LiDAR-Inertial-Visual Odometry With Gaussian Mapping]] (Hong et al., IEEE TRO 2025)
-- [[papers/2026-05/g2-mapping|G²-Mapping: General Gaussian Mapping for Monocular, RGB-D, and LiDAR-Inertial-Visual Systems]] (Chen et al., IEEE TASE 2025)
-- [[papers/2026-05/wildgs-slam|WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments]] (Zheng et al., arxiv 2025)
-- [[papers/2026-05/pseudo-depth-meets-gaussian|Pseudo Depth Meets Gaussian: A Feed-forward RGB SLAM Baseline]] (Zhao et al., arxiv 2025)
-- [[papers/2026-05/langgs-slam|LangGS-SLAM: Real-Time Language-Feature Gaussian Splatting SLAM]] (Ha et al., arxiv 2026)
-- [[papers/2026-06/up-slam|UP-SLAM: Adaptively Structured Gaussian SLAM with Uncertainty Prediction]] (Zheng et al., ICRA 2026)
-- [[papers/2026-06/vimgs-slam|ViMGS-SLAM: A real-time monocular 3DGS-based SLAM via multiscale vision transformers]] (Zhu et al., Array 2026)
-- [[papers/2026-05/gaussnav|GaussNav: Gaussian Splatting for Visual Navigation]] (Lei et al., TPAMI 2025)
+- [[papers/2026-05-07/street-gaussians|Street Gaussians: Modeling Dynamic Urban Scenes]] (Yan et al., ECCV 2024)
+- [[papers/2026-05-11/gs-livo|GS-LIVO: Real-Time LiDAR-Inertial-Visual Odometry With Gaussian Mapping]] (Hong et al., IEEE TRO 2025)
+- [[papers/2026-05-15/g2-mapping|G²-Mapping: General Gaussian Mapping for Monocular, RGB-D, and LiDAR-Inertial-Visual Systems]] (Chen et al., IEEE TASE 2025)
+- [[papers/2026-05-21/wildgs-slam|WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments]] (Zheng et al., arxiv 2025)
+- [[papers/2026-05-21/pseudo-depth-meets-gaussian|Pseudo Depth Meets Gaussian: A Feed-forward RGB SLAM Baseline]] (Zhao et al., arxiv 2025)
+- [[papers/2026-05-21/langgs-slam|LangGS-SLAM: Real-Time Language-Feature Gaussian Splatting SLAM]] (Ha et al., arxiv 2026)
+- [[papers/2026-06-02/up-slam|UP-SLAM: Adaptively Structured Gaussian SLAM with Uncertainty Prediction]] (Zheng et al., ICRA 2026)
+- [[papers/2026-06-08/vimgs-slam|ViMGS-SLAM: A real-time monocular 3DGS-based SLAM via multiscale vision transformers]] (Zhu et al., Array 2026)
+- [[papers/2026-05-28/gaussnav|GaussNav: Gaussian Splatting for Visual Navigation]] (Lei et al., TPAMI 2025)
 
 ### Related Methods
-- [[papers/2026-05/vggt|VGGT: Visual Geometry Grounded Transformer]] (Wang et al., CVPR 2025 Best Paper)
+- [[papers/2026-05-09/vggt|VGGT: Visual Geometry Grounded Transformer]] (Wang et al., CVPR 2025 Best Paper)
 
 ---
 

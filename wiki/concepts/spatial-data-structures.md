@@ -37,5 +37,5 @@ tags: [concept, scaling, spatial-partitioning]
 - 利用连续帧间的大幅重叠减少重复加载
 
 ## 关联
-- 用到空间数据结构的论文: [[papers/2026-05/gs-livo]], [[papers/2026-05/proxy-gs]], [[papers/2026-06/up-slam]]
+- 用到空间数据结构的论文: [[papers/2026-05-11/gs-livo]], [[papers/2026-05-21/proxy-gs]], [[papers/2026-06-02/up-slam]]
 - 相关概念: [[concepts/occlusion-aware-culling]], [[concepts/tile-based-rasterization]], [[concepts/instant-ngp]], [[concepts/probabilistic-octree]]

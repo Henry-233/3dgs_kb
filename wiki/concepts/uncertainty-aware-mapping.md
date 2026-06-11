@@ -100,5 +100,5 @@ $$\Phi(\sigma) = \min_{\sigma} \frac{1}{HW} \sum_{i=1}^{H} \sum_{j=1}^{W} \left[
 
 ## 关联
 - 相关概念: [[concepts/slam]], [[concepts/3d-gaussian]], [[concepts/alpha-compositing]]
-- 用到该概念的论文: [[papers/2026-05/wildgs-slam]], [[papers/2026-06/up-slam]]
+- 用到该概念的论文: [[papers/2026-05-21/wildgs-slam]], [[papers/2026-06-02/up-slam]]
 - 相关工作: NeRF On-the-go, WildGaussians

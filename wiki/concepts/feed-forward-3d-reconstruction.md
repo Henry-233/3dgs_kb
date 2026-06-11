@@ -41,8 +41,8 @@ tags: [concept, paradigm, reconstruction, neural]
 前馈式3D重建关注**场景几何的直接预测**（点图、深度图），通常离线批量处理。[[concepts/feed-forward-pose-prediction|前馈式位姿预测]]关注**SLAM中跟踪环节的前馈化**——用神经网络在线逐帧预测相机位姿，替代迭代优化。两者都是"用网络推理替代优化"的前馈范式，但作用领域不同（几何重建 vs. 实时跟踪）。
 
 ## 关联
-- 代表性工作: [[papers/2026-05/vggt]]
-- 前馈式SLAM: [[papers/2026-05/pseudo-depth-meets-gaussian]]
+- 代表性工作: [[papers/2026-05-09/vggt]]
+- 前馈式SLAM: [[papers/2026-05-21/pseudo-depth-meets-gaussian]]
 - 前驱工作: DUSt3R (Wang et al., 2024), MASt3R
 - 传统基线: [[concepts/structure-from-motion]]
 - 架构创新: [[concepts/alternating-attention]]

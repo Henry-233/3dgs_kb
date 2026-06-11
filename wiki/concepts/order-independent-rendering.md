@@ -50,4 +50,4 @@ SortFreeGS使用简化权重 $w(d_i) = \exp(-\kappa_i d_i)$，仅在求和项中
 
 ## 关联
 - 相关概念: [[concepts/alpha-compositing]], [[concepts/gaussian-compression]], [[concepts/neural-view-dependent-enhancement]]
-- 用到该概念的论文: [[papers/2026-05/mobile-gs]]
+- 用到该概念的论文: [[papers/2026-05-07/mobile-gs]]

@@ -61,5 +61,5 @@ $$\{c_0, ..., c_{k-1}\} = F_c(\hat{f}_v, \delta_{vc}, d_{vc}, \mathbf{t})$$
 
 ## 关联
 - 相关概念: [[concepts/spatial-data-structures]], [[concepts/3d-gaussian]], [[concepts/adaptive-density-control]], [[concepts/slam]]
-- 用到该概念的论文: [[papers/2026-06/up-slam]]
-- 相关数据结构: GS-LIVO的哈希八叉树（[[papers/2026-05/gs-livo]]）
+- 用到该概念的论文: [[papers/2026-06-02/up-slam]]
+- 相关数据结构: GS-LIVO的哈希八叉树（[[papers/2026-05-11/gs-livo]]）

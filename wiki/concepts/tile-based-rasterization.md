@@ -19,7 +19,7 @@ Tile-based光栅化是3DGS中实现实时渲染的关键算法。不同于逐像
 
 ## 关联
 - 相关概念: [[concepts/alpha-compositing]], [[concepts/projection-transform]], [[concepts/occlusion-aware-culling]], [[concepts/proxy-rendering]]
-- 用到该概念的论文: [[papers/2026-05/3d-gaussian-splatting]], [[papers/2026-05/langsplat]], [[papers/2026-05/gs-livo]], [[papers/2026-05/proxy-gs]], [[papers/2026-05/gaussnav]]
+- 用到该概念的论文: [[papers/2026-05-07/3d-gaussian-splatting]], [[papers/2026-05-07/langsplat]], [[papers/2026-05-11/gs-livo]], [[papers/2026-05-21/proxy-gs]], [[papers/2026-05-28/gaussnav]]
 
 LangSplat将tile-based splatting从颜色渲染扩展到语言特征渲染，通过同一光栅化管线高效生成语言特征图。
 

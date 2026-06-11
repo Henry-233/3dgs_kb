@@ -41,6 +41,6 @@ $$t^I \leftarrow \text{SelfAttn}(Q=t^I, K=t^I, V=t^I)$$
 4. **寄存器Token**：每帧附加4个可学习寄存器token，提供额外的信息存储空间
 
 ## 关联
-- 提出论文: [[papers/2026-05/vggt]]
+- 提出论文: [[papers/2026-05-09/vggt]]
 - 受启发于: ViT的全局自注意力设计、视频Transformer中的时空分离注意力（如TimeSformer）
 - 相关概念: [[concepts/feed-forward-3d-reconstruction]]

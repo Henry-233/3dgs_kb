@@ -33,6 +33,6 @@ status: done
 - 支持场景编辑（移除/添加/变换车辆）
 
 ## 关联
-- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 基于: [[papers/2026-05-07/3d-gaussian-splatting]]
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/spherical-harmonics]], [[concepts/adaptive-density-control]], [[concepts/alpha-compositing]]
 - 对比方法: [[concepts/nerf]]

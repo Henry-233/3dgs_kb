@@ -19,4 +19,4 @@ Mip-NeRF 360进一步扩展到无界场景。
 
 ## 关联
 - 相关概念: [[concepts/nerf]]
-- 相关方法: [[papers/2026-05/mip-splatting]]（3DGS中的对应抗混叠方案）
+- 相关方法: [[papers/2026-05-07/mip-splatting]]（3DGS中的对应抗混叠方案）

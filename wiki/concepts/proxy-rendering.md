@@ -49,4 +49,4 @@ Vulkan渲染→导出深度图内存为外部FD→CUDA导入外部内存→映�
 
 ## 关联
 - 相关概念: [[concepts/occlusion-aware-culling]], [[concepts/tile-based-rasterization]], [[concepts/mlp-based-3dgs]]
-- 用到该概念的论文: [[papers/2026-05/proxy-gs]]
+- 用到该概念的论文: [[papers/2026-05-21/proxy-gs]]

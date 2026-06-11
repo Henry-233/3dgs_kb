@@ -54,9 +54,9 @@ ViMGS-SLAM首次将MViT紧耦合进3DGS-SLAM管线：
 | **MViT** (ViMGS-SLAM) | 三尺度输入金字塔 + 五级特征金字塔 + 共享权重编码器 | 单目度量深度估计 |
 | Swin Transformer | 移位窗口自注意力 + patch合并逐步下采样 | 通用骨干网络 |
 | DPT (Dense Prediction Transformer) | ViT编码器 + 多尺度融合解码器 | 密集预测（深度/分割） |
-| DINOv2 | 大规模自监督预训练ViT | 视觉特征提取（[[papers/2026-05/wildgs-slam]], [[papers/2026-06/up-slam]]） |
+| DINOv2 | 大规模自监督预训练ViT | 视觉特征提取（[[papers/2026-05-21/wildgs-slam]], [[papers/2026-06-02/up-slam]]） |
 
 ## 关联
-- 用到ViT的论文: [[papers/2026-06/vimgs-slam]]（MViT深度先验）, [[papers/2026-05/wildgs-slam]]（DINOv2特征提取）, [[papers/2026-06/up-slam]]（DINOv2特征+不确定性）
+- 用到ViT的论文: [[papers/2026-06-08/vimgs-slam]]（MViT深度先验）, [[papers/2026-05-21/wildgs-slam]]（DINOv2特征提取）, [[papers/2026-06-02/up-slam]]（DINOv2特征+不确定性）
 - 相关概念: [[concepts/monocular-depth-estimation]], [[concepts/slam]], [[concepts/dinov2]]
 - 替代方案: [[concepts/monocular-depth-estimation|单目深度估计]]（CNN方案: UniDepthV2, Metric3D v2）

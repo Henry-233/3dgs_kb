@@ -148,6 +148,6 @@ VarSplat区别于CG-SLAM（建模深度方差而非外观方差）和WildGS-SLAM
 - [[concepts/covariance-matrix]] — Σ是几何协方差，σ²是外观方差，两者互补
 - [[concepts/uncertainty-aware-tracking]] — 本文是该概念的核心实例
 - [[concepts/ssim-loss]] — 颜色损失中的SSIM分量
-- [[papers/2026-05/3d-gaussian-splatting]] — 3DGS基础方法
-- [[papers/2026-05/wildgs-slam]] — 不确定性用于动态检测（预训练DINOv2），VarSplat用于跟踪加权（在线学习方差）
-- [[papers/2026-06/roger-slam]] — 互补：RoGER-SLAM用CLIP处理传感器退化，VarSplat用方差处理测量可靠性
+- [[papers/2026-05-07/3d-gaussian-splatting]] — 3DGS基础方法
+- [[papers/2026-05-21/wildgs-slam]] — 不确定性用于动态检测（预训练DINOv2），VarSplat用于跟踪加权（在线学习方差）
+- [[papers/2026-06-11/roger-slam]] — 互补：RoGER-SLAM用CLIP处理传感器退化，VarSplat用方差处理测量可靠性

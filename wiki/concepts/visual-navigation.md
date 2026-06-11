@@ -89,4 +89,4 @@ Relightable 3DGS通过模拟光照变化来解决sim-to-real gap，使端到端R
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/relightable-3dgs]]
-- 用到该概念的论文: [[papers/2026-05/gaussnav]], [[papers/2026-05/gs-livo]]（已验证Gaussian地图可用于自主导航规划）, [[papers/2026-06/zero-shot-uav-navigation]]（端到端RL+Relightable 3DGS实现森林零样本UAV导航）
+- 用到该概念的论文: [[papers/2026-05-28/gaussnav]], [[papers/2026-05-11/gs-livo]]（已验证Gaussian地图可用于自主导航规划）, [[papers/2026-06-10/zero-shot-uav-navigation]]（端到端RL+Relightable 3DGS实现森林零样本UAV导航）

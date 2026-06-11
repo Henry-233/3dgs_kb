@@ -299,8 +299,8 @@ UP-SLAM处理速率**12 FPS**（78 ms/帧），满足机器人实时定位需求
 4. **概率模型参数**：概率八叉树的先验和更新率仍需根据场景类型调参（尽管比手动阈值更鲁棒）
 
 ## 关联
-- 基于: [[papers/2026-05/3d-gaussian-splatting]]
-- 动态SLAM同行: [[papers/2026-05/wildgs-slam]]（单目不确定性感知，串行框架+训练依赖）, DG-SLAM（语义几何一致性，固定掩码）
-- 相关SLAM: [[papers/2026-05/gs-livo]]（八叉树+多传感器）, [[papers/2026-05/g2-mapping]]（通用GS-SLAM+深度不确定性）, [[papers/2026-05/pseudo-depth-meets-gaussian]]（前馈式SLAM）, [[papers/2026-06/vimgs-slam]]（MViT度量深度先验，同步管线）
-- 在线语义GS-SLAM: [[papers/2026-05/langgs-slam]]
+- 基于: [[papers/2026-05-07/3d-gaussian-splatting]]
+- 动态SLAM同行: [[papers/2026-05-21/wildgs-slam]]（单目不确定性感知，串行框架+训练依赖）, DG-SLAM（语义几何一致性，固定掩码）
+- 相关SLAM: [[papers/2026-05-11/gs-livo]]（八叉树+多传感器）, [[papers/2026-05-15/g2-mapping]]（通用GS-SLAM+深度不确定性）, [[papers/2026-05-21/pseudo-depth-meets-gaussian]]（前馈式SLAM）, [[papers/2026-06-08/vimgs-slam]]（MViT度量深度先验，同步管线）
+- 在线语义GS-SLAM: [[papers/2026-05-21/langgs-slam]]
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/uncertainty-aware-mapping]], [[concepts/spatial-data-structures]], [[concepts/dinov2]], [[concepts/3d-language-field]], [[concepts/alpha-compositing]], [[concepts/projection-transform]], [[concepts/probabilistic-octree]], [[concepts/parallel-tracking-mapping]], [[concepts/adaptive-density-control]]

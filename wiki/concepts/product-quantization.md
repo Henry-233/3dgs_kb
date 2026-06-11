@@ -43,4 +43,4 @@ $$\frac{D \times 32}{m \lceil \log_2 k \rceil}$$
 
 ## 关联
 - 相关概念: [[concepts/3d-language-field]], [[concepts/gaussian-compression]]
-- 用到该概念的论文: [[papers/2026-05/dr-splat]]
+- 用到该概念的论文: [[papers/2026-05-08/dr-splat]]

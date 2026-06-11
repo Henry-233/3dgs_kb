@@ -176,9 +176,9 @@ $$I_t^{(k)} = R_{\text{img}}(\mathcal{G}_t, G_t^{(k)}), \quad D_t^{(k)} = R_{\te
 5. **LGR的渲染开销**：渲染N个视角的局部图引入额外开销（0.19→0.53s/帧），N=6为精度-速度最优
 
 ## 关联
-- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 基于: [[papers/2026-05-07/3d-gaussian-splatting]]
 - 跟踪架构继承: DROID-SLAM (Teed & Deng, NeurIPS 2021), RAFT (Teed & Deng, ECCV 2020)
 - 对比方法: SplaTAM (Keetha et al., CVPR 2024)
-- 相关SLAM: [[papers/2026-05/g2-mapping]], [[papers/2026-05/wildgs-slam]], [[papers/2026-05/gs-livo]], [[papers/2026-06/vimgs-slam]]（同样用深度先验驱动3DGS建图，但MViT直接预测度量深度省去了尺度对齐步骤）
-- 相关前馈方法: [[papers/2026-05/vggt]]
+- 相关SLAM: [[papers/2026-05-15/g2-mapping]], [[papers/2026-05-21/wildgs-slam]], [[papers/2026-05-11/gs-livo]], [[papers/2026-06-08/vimgs-slam]]（同样用深度先验驱动3DGS建图，但MViT直接预测度量深度省去了尺度对齐步骤）
+- 相关前馈方法: [[papers/2026-05-09/vggt]]
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/slam]], [[concepts/monocular-depth-estimation]], [[concepts/feed-forward-pose-prediction]], [[concepts/local-graph-rendering]], [[concepts/feed-forward-3d-reconstruction]]

@@ -125,6 +125,6 @@ Proxy-GS在全部5个Block上同时实现最高质量和最高速度（Block 5�
 - ε需按场景调节
 
 ## 关联
-- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 基于: [[papers/2026-05-07/3d-gaussian-splatting]]
 - 对比方法: Octree-GS, Scaffold-GS, Hierarchical-GS, Cache-GS, OccluGaussian
 - 涉及概念: [[concepts/mlp-based-3dgs]], [[concepts/3d-gaussian]], [[concepts/occlusion-aware-culling]], [[concepts/proxy-rendering]], [[concepts/adaptive-density-control]], [[concepts/tile-based-rasterization]], [[concepts/alpha-compositing]], [[concepts/surface-reconstruction-from-3dgs]], [[concepts/spatial-data-structures]]

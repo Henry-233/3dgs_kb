@@ -69,5 +69,5 @@ Pseudo Depth Meets Gaussian做了系统性对比实验（Fig. 2）：将真值�
 | **ViMGS-SLAM** | **MViT** | **度量深度** | **无需对齐**——直接预测绝对尺度 |
 
 ## 关联
-- 用到单目深度的论文: [[papers/2026-05/g2-mapping]], [[papers/2026-05/wildgs-slam]], [[papers/2026-05/vggt]], [[papers/2026-05/pseudo-depth-meets-gaussian]], [[papers/2026-06/vimgs-slam]]
+- 用到单目深度的论文: [[papers/2026-05-15/g2-mapping]], [[papers/2026-05-21/wildgs-slam]], [[papers/2026-05-09/vggt]], [[papers/2026-05-21/pseudo-depth-meets-gaussian]], [[papers/2026-06-08/vimgs-slam]]
 - 相关概念: [[concepts/slam]], [[concepts/structure-from-motion]], [[concepts/uncertainty-aware-mapping]], [[concepts/feed-forward-pose-prediction]], [[concepts/vision-transformer]]

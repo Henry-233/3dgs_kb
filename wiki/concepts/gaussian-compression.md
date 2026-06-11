@@ -67,4 +67,4 @@ $$G_{new} = G \setminus \{g \in G \mid \mathbf{1}[V_g^{(t)} > I_{prune} \cdot v]
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/spherical-harmonics]], [[concepts/adaptive-density-control]], [[concepts/order-independent-rendering]]
-- 用到该概念的论文: [[papers/2026-05/mobile-gs]]
+- 用到该概念的论文: [[papers/2026-05-07/mobile-gs]]

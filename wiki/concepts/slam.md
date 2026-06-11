@@ -76,6 +76,6 @@ Gaussian-SLAM的优势：渲染快、表示显式可调、可微渲染天然适�
 
 ## 关联
 - 相关概念: [[concepts/ieskf]], [[concepts/uncertainty-aware-mapping]], [[concepts/feed-forward-pose-prediction]], [[concepts/local-graph-rendering]]
-- 用到该概念的论文: [[papers/2026-05/gs-livo]], [[papers/2026-05/g2-mapping]], [[papers/2026-05/wildgs-slam]], [[papers/2026-05/pseudo-depth-meets-gaussian]], [[papers/2026-05/langgs-slam]], [[papers/2026-06/up-slam]], [[papers/2026-06/vimgs-slam]]
-- 基于该范式的Gaussian-SLAM: [[papers/2026-05/3d-gaussian-splatting]]
-- 3DGS地图的导航应用: [[papers/2026-05/gaussnav]]（将Gaussian地图用于视觉导航而非定位——参见[[concepts/visual-navigation|视觉导航]]）
+- 用到该概念的论文: [[papers/2026-05-11/gs-livo]], [[papers/2026-05-15/g2-mapping]], [[papers/2026-05-21/wildgs-slam]], [[papers/2026-05-21/pseudo-depth-meets-gaussian]], [[papers/2026-05-21/langgs-slam]], [[papers/2026-06-02/up-slam]], [[papers/2026-06-08/vimgs-slam]]
+- 基于该范式的Gaussian-SLAM: [[papers/2026-05-07/3d-gaussian-splatting]]
+- 3DGS地图的导航应用: [[papers/2026-05-28/gaussnav]]（将Gaussian地图用于视觉导航而非定位——参见[[concepts/visual-navigation|视觉导航]]）

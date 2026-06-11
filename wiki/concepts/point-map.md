@@ -35,6 +35,6 @@ $$\forall i, j: \text{若 } y_i \text{ 和 } y_j \text{ 对应同一3D点}, \tex
 
 ## 关联
 - 首次大规模使用: DUSt3R (Wang et al., 2024)
-- 核心应用: [[papers/2026-05/vggt]]、MASt3R
+- 核心应用: [[papers/2026-05-09/vggt]]、MASt3R
 - 相关概念: [[concepts/projection-transform]]、[[concepts/structure-from-motion]]
 - 可从深度图+相机参数反投影获得，反之可从点图通过PnP求解相机参数

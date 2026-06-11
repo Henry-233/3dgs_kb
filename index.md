@@ -46,44 +46,44 @@
 ## 论文 (wiki/papers/)
 
 ### 基础方法
-- [[papers/2026-05/3d-gaussian-splatting]] — 3DGS (Kerbl et al., SIGGRAPH 2023)：开创性工作，首次实现实时高质量新视角合成
+- [[papers/2026-05-07/3d-gaussian-splatting]] — 3DGS (Kerbl et al., SIGGRAPH 2023)：开创性工作，首次实现实时高质量新视角合成
 
 ### 扩展方法
-- [[papers/2026-05/mip-splatting]] — Mip-Splatting (Yu et al., CVPR 2024)：解决3DGS的多尺度混叠问题
-- [[papers/2026-05/gaussian-opacity-fields]] — GOF (Yu et al., 2024)：从3D高斯原生提取表面几何
-- [[papers/2026-05/proxy-gs]] — Proxy-GS (Gao et al., arXiv 2025)：快速代理系统生成遮挡深度图，统一训练推理中的遮挡感知，速度比Octree-GS快2.5倍
+- [[papers/2026-05-07/mip-splatting]] — Mip-Splatting (Yu et al., CVPR 2024)：解决3DGS的多尺度混叠问题
+- [[papers/2026-05-07/gaussian-opacity-fields]] — GOF (Yu et al., 2024)：从3D高斯原生提取表面几何
+- [[papers/2026-05-21/proxy-gs]] — Proxy-GS (Gao et al., arXiv 2025)：快速代理系统生成遮挡深度图，统一训练推理中的遮挡感知，速度比Octree-GS快2.5倍
 
 ### 移动端/压缩
-- [[papers/2026-05/mobile-gs]] — Mobile-GS (Du et al., ICLR 2026)：首个移动端实时3DGS方法，顺序无关渲染+神经增强+压缩，骁龙8 Gen 3上127 FPS @ 4.6 MB
+- [[papers/2026-05-07/mobile-gs]] — Mobile-GS (Du et al., ICLR 2026)：首个移动端实时3DGS方法，顺序无关渲染+神经增强+压缩，骁龙8 Gen 3上127 FPS @ 4.6 MB
 
 ### 应用
-- [[papers/2026-05/street-gaussians]] — Street Gaussians (Yan et al., ECCV 2024)：动态自动驾驶城市场景建模
+- [[papers/2026-05-07/street-gaussians]] — Street Gaussians (Yan et al., ECCV 2024)：动态自动驾驶城市场景建模
 
 ### 3DGS-SLAM
-- [[papers/2026-05/g2-mapping]] — G²-Mapping (IEEE 2025)：首个通用多传感器融合3DGS-SLAM，支持单目/RGB-D/LiDAR输入
-- [[papers/2026-05/wildgs-slam]] — WildGS-SLAM (Zheng et al., arXiv 2025)：不确定性感知动态SLAM，DINOv2+MLP预测不确定性图引导动态物体移除
-- [[papers/2026-06/add-slam]] — ADD-SLAM (Wu et al., arXiv 2025)：场景一致性分析自适应识别动态物体，时序高斯模型实现动态-静态分离建图
-- [[papers/2026-06/up-slam]] — UP-SLAM (Zheng et al., ICRA 2026)：并行跟踪建图+概率八叉树+无训练不确定性估计器，开放集动态物体处理
-- [[papers/2026-06/roger-slam]] — RoGER-SLAM (Yin et al., arXiv 2025)：噪声/低光鲁棒SLAM，SP-RoFusion多模态融合+CLIP增强
-- [[papers/2026-06/vimgs-slam]] — ViMGS-SLAM (Array 2026)：多尺度ViT+3DGS单目SLAM，ATE提升46%，PSNR 39.6 dB
-- [[papers/2026-05/pseudo-depth-meets-gaussian]] — Pseudo Depth (Zhao et al., arXiv 2025)：Feed-forward位姿预测替代测试时优化，跟踪时间减少90%
+- [[papers/2026-05-15/g2-mapping]] — G²-Mapping (IEEE 2025)：首个通用多传感器融合3DGS-SLAM，支持单目/RGB-D/LiDAR输入
+- [[papers/2026-05-21/wildgs-slam]] — WildGS-SLAM (Zheng et al., arXiv 2025)：不确定性感知动态SLAM，DINOv2+MLP预测不确定性图引导动态物体移除
+- [[papers/2026-06-11/add-slam]] — ADD-SLAM (Wu et al., arXiv 2025)：场景一致性分析自适应识别动态物体，时序高斯模型实现动态-静态分离建图
+- [[papers/2026-06-02/up-slam]] — UP-SLAM (Zheng et al., ICRA 2026)：并行跟踪建图+概率八叉树+无训练不确定性估计器，开放集动态物体处理
+- [[papers/2026-06-11/roger-slam]] — RoGER-SLAM (Yin et al., arXiv 2025)：噪声/低光鲁棒SLAM，SP-RoFusion多模态融合+CLIP增强
+- [[papers/2026-06-08/vimgs-slam]] — ViMGS-SLAM (Array 2026)：多尺度ViT+3DGS单目SLAM，ATE提升46%，PSNR 39.6 dB
+- [[papers/2026-05-21/pseudo-depth-meets-gaussian]] — Pseudo Depth (Zhao et al., arXiv 2025)：Feed-forward位姿预测替代测试时优化，跟踪时间减少90%
 
 ### 语言场
-- [[papers/2026-05/langsplat]] — LangSplat (Qin et al., CVPR 2024)：首个3D高斯语言场，CLIP+SAM分层语义，比LERF快199倍
-- [[papers/2026-05/dr-splat]] — Dr. Splat (Kim et al., arXiv 2025)：直接语言特征注册，无需渲染过程，产品量化压缩嵌入
-- [[papers/2026-05/langgs-slam]] — LangGS-SLAM (Ha et al., arXiv 2026)：实时语言特征SLAM，Top-K渲染+混合场优化，15 FPS
+- [[papers/2026-05-07/langsplat]] — LangSplat (Qin et al., CVPR 2024)：首个3D高斯语言场，CLIP+SAM分层语义，比LERF快199倍
+- [[papers/2026-05-08/dr-splat]] — Dr. Splat (Kim et al., arXiv 2025)：直接语言特征注册，无需渲染过程，产品量化压缩嵌入
+- [[papers/2026-05-21/langgs-slam]] — LangGS-SLAM (Ha et al., arXiv 2026)：实时语言特征SLAM，Top-K渲染+混合场优化，15 FPS
 
 ### 导航
-- [[papers/2026-05/gaussnav]] — GaussNav (Lei et al., TPAMI 2025)：首次将3DGS引入具身视觉导航，Semantic Gaussian地图+DISK-LightGlue特征匹配实现实例图像目标导航
-- [[papers/2026-06/zero-shot-uav-navigation]] — Zero-Shot UAV Navigation (Lv et al., 2026)：Relightable 3DGS+端到端RL，零样本sim-to-real森林UAV导航，10 m/s无碰撞飞行
+- [[papers/2026-05-28/gaussnav]] — GaussNav (Lei et al., TPAMI 2025)：首次将3DGS引入具身视觉导航，Semantic Gaussian地图+DISK-LightGlue特征匹配实现实例图像目标导航
+- [[papers/2026-06-10/zero-shot-uav-navigation]] — Zero-Shot UAV Navigation (Lv et al., 2026)：Relightable 3DGS+端到端RL，零样本sim-to-real森林UAV导航，10 m/s无碰撞飞行
 
 ### 鲁棒性与光照
-- [[papers/2026-06/tvg-slam]] — TVG-SLAM (Tan et al., arXiv 2025)：三视图几何约束纯RGB SLAM，室外场景ATE降低69%
-- [[papers/2026-06/taming-the-light]] — Taming the Light (Zhang et al., arXiv 2025)：光照不变语义SLAM，IAN主动去耦+DRB-Loss被动纠正
-- [[papers/2026-06/varsplat]] — VarSplat (Tran & Kosecka, arXiv 2026)：不确定性感知RGB-D SLAM，逐高斯方差+单pass不确定性渲染
+- [[papers/2026-06-11/tvg-slam]] — TVG-SLAM (Tan et al., arXiv 2025)：三视图几何约束纯RGB SLAM，室外场景ATE降低69%
+- [[papers/2026-06-11/taming-the-light]] — Taming the Light (Zhang et al., arXiv 2025)：光照不变语义SLAM，IAN主动去耦+DRB-Loss被动纠正
+- [[papers/2026-06-11/varsplat]] — VarSplat (Tran & Kosecka, arXiv 2026)：不确定性感知RGB-D SLAM，逐高斯方差+单pass不确定性渲染
 
 ### 神经3D重建
-- [[papers/2026-05/vggt]] — VGGT (CVPR 2025 Best Paper)：交替注意力机制的前馈3D重建，从稀疏视图直接预测点图
+- [[papers/2026-05-09/vggt]] — VGGT (CVPR 2025 Best Paper)：交替注意力机制的前馈3D重建，从稀疏视图直接预测点图
 
 ## 综合专题 (wiki/synthesis/)
 

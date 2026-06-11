@@ -91,9 +91,9 @@ tags:
 
 ## 关联论文
 
-- [[papers/2026-06/varsplat]] — 测量不确定性（外观方差学习）
-- [[papers/2026-06/taming-the-light]] — 光照不变性（IAN + DRB-Loss）
-- [[papers/2026-06/tvg-slam]] — 几何约束（三视图匹配 + DART + TUGI）
+- [[papers/2026-06-11/varsplat]] — 测量不确定性（外观方差学习）
+- [[papers/2026-06-11/taming-the-light]] — 光照不变性（IAN + DRB-Loss）
+- [[papers/2026-06-11/tvg-slam]] — 几何约束（三视图匹配 + DART + TUGI）
 - [[synthesis/dynamic-slam-comparison]] — 动态SLAM对比（互补视角：动态物体 vs 传感器/光照/几何退化）
 
 ## 关联概念

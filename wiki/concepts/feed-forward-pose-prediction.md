@@ -48,5 +48,5 @@ tags: [concept, slam, tracking, feed-forward]
 - [[concepts/slam|SLAM]]：前馈式位姿预测是SLAM中跟踪模块的一种实现方式
 
 ## 关联
-- 用到该概念的论文: [[papers/2026-05/pseudo-depth-meets-gaussian]]
+- 用到该概念的论文: [[papers/2026-05-21/pseudo-depth-meets-gaussian]]
 - 相关概念: [[concepts/slam]], [[concepts/bundle-adjustment]], [[concepts/feed-forward-3d-reconstruction]], [[concepts/monocular-depth-estimation]], [[concepts/local-graph-rendering]]

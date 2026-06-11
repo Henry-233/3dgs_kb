@@ -60,4 +60,4 @@ UP-SLAM提出了一种与语言场技术路线相似但用途不同的DINO特征
 
 ## 关联
 - 相关概念: [[concepts/3d-gaussian]], [[concepts/nerf]], [[concepts/tile-based-rasterization]], [[concepts/product-quantization]], [[concepts/top-k-rendering]]
-- 用到该概念的论文: [[papers/2026-05/langsplat]], [[papers/2026-05/dr-splat]], [[papers/2026-05/langgs-slam]], [[papers/2026-06/up-slam]]
+- 用到该概念的论文: [[papers/2026-05-07/langsplat]], [[papers/2026-05-08/dr-splat]], [[papers/2026-05-21/langgs-slam]], [[papers/2026-06-02/up-slam]]

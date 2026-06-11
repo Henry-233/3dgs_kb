@@ -193,6 +193,6 @@ $$L = L_{rgb} + \lambda_{distill} L_{distill} + \lambda_{depth} L_{depth}$$
 - **教师模型**：Mini-Splatting（传统alpha合成，无量化过程）
 
 ## 关联
-- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 基于: [[papers/2026-05-07/3d-gaussian-splatting]]
 - 涉及概念: [[concepts/alpha-compositing]], [[concepts/spherical-harmonics]], [[concepts/adaptive-density-control]], [[concepts/order-independent-rendering]], [[concepts/gaussian-compression]], [[concepts/neural-view-dependent-enhancement]]
 - 对比方法: SortFreeGS, LightGaussian, Speedy-Splat, C3DGS, GES, LocoGS-S, HAC, AdR-Gaussian

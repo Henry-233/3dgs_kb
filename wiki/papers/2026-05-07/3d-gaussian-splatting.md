@@ -34,7 +34,7 @@ status: done
 - 训练时间约30-60分钟（单GPU）
 
 ## 关联
-- 被引用: [[papers/2026-05/mip-splatting]], [[papers/2026-05/gaussian-opacity-fields]], [[papers/2026-05/street-gaussians]], [[papers/2026-05/mobile-gs]], [[papers/2026-05/langsplat]], [[papers/2026-05/dr-splat]], [[papers/2026-05/gs-livo]], [[papers/2026-05/g2-mapping]], [[papers/2026-05/proxy-gs]], [[papers/2026-05/wildgs-slam]], [[papers/2026-05/pseudo-depth-meets-gaussian]], [[papers/2026-05/langgs-slam]], [[papers/2026-06/zero-shot-uav-navigation]]
-- 相关方法: [[papers/2026-05/vggt]]（替代SfM初始化）
+- 被引用: [[papers/2026-05-07/mip-splatting]], [[papers/2026-05-07/gaussian-opacity-fields]], [[papers/2026-05-07/street-gaussians]], [[papers/2026-05-07/mobile-gs]], [[papers/2026-05-07/langsplat]], [[papers/2026-05-08/dr-splat]], [[papers/2026-05-11/gs-livo]], [[papers/2026-05-15/g2-mapping]], [[papers/2026-05-21/proxy-gs]], [[papers/2026-05-21/wildgs-slam]], [[papers/2026-05-21/pseudo-depth-meets-gaussian]], [[papers/2026-05-21/langgs-slam]], [[papers/2026-06-10/zero-shot-uav-navigation]]
+- 相关方法: [[papers/2026-05-09/vggt]]（替代SfM初始化）
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/covariance-matrix]], [[concepts/spherical-harmonics]], [[concepts/alpha-compositing]], [[concepts/tile-based-rasterization]], [[concepts/adaptive-density-control]], [[concepts/projection-transform]], [[concepts/ssim-loss]], [[concepts/structure-from-motion]], [[concepts/differentiable-rendering]]
 - 衍生范式: [[concepts/mlp-based-3dgs]]（Scaffold-GS、Octree-GS、Proxy-GS等用MLP解码高斯属性的变体），[[concepts/relightable-3dgs]]（将SH替换为物理材质+显式光照，支持光照编辑）

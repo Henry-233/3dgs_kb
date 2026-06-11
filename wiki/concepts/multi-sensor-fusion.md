@@ -15,4 +15,4 @@ tags:
 - [[concepts/slam]]
 - [[concepts/differentiable-rendering]]
 - [[concepts/3d-gaussian]]
-- [[papers/2026-05/g2-mapping]]
+- [[papers/2026-05-15/g2-mapping]]

@@ -38,4 +38,4 @@ $$\frac{\partial \mathbf{P}_c}{\partial \mathbf{q}_{cw}} = 2[J_{\text{imag}} | J
 
 ## 关联
 - 相关概念: [[concepts/projection-transform]], [[concepts/alpha-compositing]], [[concepts/tile-based-rasterization]], [[concepts/3d-gaussian]]
-- 用到可微渲染的论文: [[papers/2026-05/3d-gaussian-splatting]], [[papers/2026-05/g2-mapping]], [[papers/2026-05/gs-livo]]
+- 用到可微渲染的论文: [[papers/2026-05-07/3d-gaussian-splatting]], [[papers/2026-05-15/g2-mapping]], [[papers/2026-05-11/gs-livo]]

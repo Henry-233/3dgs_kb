@@ -33,6 +33,6 @@ status: done
 - 多个数据集上验证有效性
 
 ## 关联
-- 基于: [[papers/2026-05/3d-gaussian-splatting]]
+- 基于: [[papers/2026-05-07/3d-gaussian-splatting]]
 - 涉及概念: [[concepts/3d-gaussian]], [[concepts/alpha-compositing]], [[concepts/ssim-loss]]
 - 相关方法: [[concepts/mip-nerf]]
