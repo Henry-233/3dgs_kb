@@ -96,5 +96,11 @@
 - [[papers/taming-the-light]] (Taming the Light, arXiv 2025) — IAN+DRB-Loss, illumination-invariant semantic SLAM
 - [[papers/varsplat]] (VarSplat, arXiv 2026) — per-splat variance, uncertainty-aware RGB-D SLAM
 
+## 2026-06-11 — Deep read: VarSplat
+- Read VarSplat from arXiv HTML (2603.09673v1) — 8 pages, full methodology and experiments
+- Rewrote [[papers/varsplat]] with complete methodology (law of total variance derivation, variance learning via Gaussian NLL, median-centered log scaling, 3-level uncertainty-guided pose estimation), math formulations (Eq. 1-19), experimental results (Replica ATE 0.23 cm, ScanNet++ 1.69 cm, TUM 3.20 cm), and limitations
+- Upgraded [[concepts/uncertainty-aware-tracking]] stub → full page with 3 implementation schemes comparison
+- ⚠️ Annotation skipped: no annotate_pdf.py script found
+
 ## 2026-06-11 — Cross-paper synthesis
 - Created [[synthesis/dynamic-slam-comparison]] comparing 3 papers addressing dynamic/robust 3DGS-SLAM
