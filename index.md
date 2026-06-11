@@ -26,6 +26,18 @@
 - [[concepts/mip-nerf]] — Mip-NeRF：用锥形截锥体解决多尺度混叠的NeRF改进
 - [[concepts/tensorf]] — TensoRF：用张量分解压缩辐射场表示的混合方案
 
+### 动态场景与鲁棒性
+- [[concepts/temporal-gaussian-model]] — 时序高斯模型：将动态物体表示为随时间变化的高斯椭球体，实现在线增量动态建模
+- [[concepts/scene-consistency-analysis]] — 场景一致性分析：通过比较渲染与观测检测运动区域，无需语义先验的动态识别方法
+- [[concepts/uncertainty-aware-mapping]] — 不确定性感知建图：利用预测的不确定性指导动态物体移除和建图优化
+
+### 语言场与语义
+- [[concepts/language-feature-registration]] — 语言特征注册：直接将CLIP嵌入分配到3D高斯，无需渲染过程的语言-几何关联方法
+- [[concepts/3d-language-field]] — 3D语言场：将CLIP语言特征嵌入3D高斯，支持开放词汇3D查询
+
+### 传感器融合
+- [[concepts/multi-sensor-fusion]] — 多传感器融合SLAM：统一支持单目、RGB-D、LiDAR-惯性-视觉数据的通用高斯建图框架
+
 ## 论文 (wiki/papers/)
 
 ### 基础方法
@@ -34,6 +46,7 @@
 ### 扩展方法
 - [[papers/mip-splatting]] — Mip-Splatting (Yu et al., CVPR 2024)：解决3DGS的多尺度混叠问题
 - [[papers/gaussian-opacity-fields]] — GOF (Yu et al., 2024)：从3D高斯原生提取表面几何
+- [[papers/proxy-gs]] — Proxy-GS (Gao et al., arXiv 2025)：快速代理系统生成遮挡深度图，统一训练推理中的遮挡感知，速度比Octree-GS快2.5倍
 
 ### 移动端/压缩
 - [[papers/mobile-gs]] — Mobile-GS (Du et al., ICLR 2026)：首个移动端实时3DGS方法，顺序无关渲染+神经增强+压缩，骁龙8 Gen 3上127 FPS @ 4.6 MB
@@ -41,6 +54,23 @@
 ### 应用
 - [[papers/street-gaussians]] — Street Gaussians (Yan et al., ECCV 2024)：动态自动驾驶城市场景建模
 
+### 3DGS-SLAM
+- [[papers/g2-mapping]] — G²-Mapping (IEEE 2025)：首个通用多传感器融合3DGS-SLAM，支持单目/RGB-D/LiDAR输入
+- [[papers/wildgs-slam]] — WildGS-SLAM (Zheng et al., arXiv 2025)：不确定性感知动态SLAM，DINOv2+MLP预测不确定性图引导动态物体移除
+- [[papers/add-slam]] — ADD-SLAM (Wu et al., arXiv 2025)：场景一致性分析自适应识别动态物体，时序高斯模型实现动态-静态分离建图
+- [[papers/up-slam]] — UP-SLAM (Zheng et al., ICRA 2026)：并行跟踪建图+概率八叉树+无训练不确定性估计器，开放集动态物体处理
+- [[papers/roger-slam]] — RoGER-SLAM (Yin et al., arXiv 2025)：噪声/低光鲁棒SLAM，SP-RoFusion多模态融合+CLIP增强
+- [[papers/vimgs-slam]] — ViMGS-SLAM (Array 2026)：多尺度ViT+3DGS单目SLAM，ATE提升46%，PSNR 39.6 dB
+- [[papers/pseudo-depth-meets-gaussian]] — Pseudo Depth (Zhao et al., arXiv 2025)：Feed-forward位姿预测替代测试时优化，跟踪时间减少90%
+
+### 语言场
+- [[papers/langsplat]] — LangSplat (Qin et al., CVPR 2024)：首个3D高斯语言场，CLIP+SAM分层语义，比LERF快199倍
+- [[papers/dr-splat]] — Dr. Splat (Kim et al., arXiv 2025)：直接语言特征注册，无需渲染过程，产品量化压缩嵌入
+- [[papers/langgs-slam]] — LangGS-SLAM (Ha et al., arXiv 2026)：实时语言特征SLAM，Top-K渲染+混合场优化，15 FPS
+
 ### 导航
 - [[papers/gaussnav]] — GaussNav (Lei et al., TPAMI 2025)：首次将3DGS引入具身视觉导航，Semantic Gaussian地图+DISK-LightGlue特征匹配实现实例图像目标导航
 - [[papers/zero-shot-uav-navigation]] — Zero-Shot UAV Navigation (Lv et al., 2026)：Relightable 3DGS+端到端RL，零样本sim-to-real森林UAV导航，10 m/s无碰撞飞行
+
+### 神经3D重建
+- [[papers/vggt]] — VGGT (CVPR 2025 Best Paper)：交替注意力机制的前馈3D重建，从稀疏视图直接预测点图

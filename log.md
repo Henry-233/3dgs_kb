@@ -40,3 +40,29 @@
   - [[concepts/alpha-compositing]] — added cross-link to neural view-dependent enhancement
 - Updated [[papers/3d-gaussian-splatting]] with new reference to Mobile-GS
 - Updated index.md (fixed venue to ICLR 2026, added neural-view-dependent-enhancement)
+
+## 2026-06-11 — Batch shallow ingest (13 papers)
+- Processed 13 unlogged paper clips from raw/papers/
+- Created 2 new paper pages: [[papers/add-slam]], [[papers/roger-slam]]
+- Created 4 new concept stubs:
+  - [[concepts/temporal-gaussian-model]] — time-varying Gaussians for dynamic objects
+  - [[concepts/scene-consistency-analysis]] — prior-free dynamic detection via render-vs-observe comparison
+  - [[concepts/language-feature-registration]] — direct CLIP-to-Gaussian embedding assignment
+  - [[concepts/multi-sensor-fusion]] — unified monocular/RGB-D/LiDAR SLAM framework
+- 11 papers already had wiki pages from prior runs (skipped overwrite): Proxy-GS, WildGS-SLAM, Pseudo Depth, LangGS-SLAM, LangSplat, Dr. Splat, G²-Mapping, GaussNav, UP-SLAM, ViMGS-SLAM, Zero-Shot UAV
+- Generated [[output/待精读列表]] with priority rankings
+
+### Papers ingested (shallow)
+- [[papers/add-slam]] (ADD-SLAM, arXiv 2025) — adaptive dynamic dense SLAM, scene consistency analysis + temporal Gaussian model
+- [[papers/roger-slam]] (RoGER-SLAM, arXiv 2025) — robust SLAM for noise/low-light, SP-RoFusion + CLIP enhancement
+- [[papers/proxy-gs]] (Proxy-GS, arXiv 2025) — occlusion-aware rendering via fast proxy system
+- [[papers/wildgs-slam]] (WildGS-SLAM, arXiv 2025) — uncertainty-aware dynamic SLAM with DINOv2
+- [[papers/pseudo-depth-meets-gaussian]] (Pseudo Depth, arXiv 2025) — feed-forward pose prediction, 90% faster tracking
+- [[papers/langgs-slam]] (LangGS-SLAM, arXiv 2026) — real-time language-feature SLAM, Top-K rendering
+- [[papers/langsplat]] (LangSplat, CVPR 2024) — 3D language Gaussian splatting, 199x faster than LERF
+- [[papers/dr-splat]] (Dr. Splat, arXiv 2025) — direct language embedding registration without rendering
+- [[papers/g2-mapping]] (G²-Mapping, IEEE 2025) — general multi-sensor 3DGS mapping framework
+- [[papers/gaussnav]] (GaussNav, TPAMI 2025) — visual navigation with 3DGS for IIN task
+- [[papers/up-slam]] (UP-SLAM, ICRA 2026) — parallel tracking-mapping, probabilistic octree, open-set dynamics
+- [[papers/vimgs-slam]] (ViMGS-SLAM, Array 2026) — multi-scale ViT monocular 3DGS SLAM
+- [[papers/zero-shot-uav-navigation]] (Zero-Shot UAV Nav, arXiv 2026) — relightable 3DGS + RL forest navigation

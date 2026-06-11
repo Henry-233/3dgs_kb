@@ -139,3 +139,38 @@ your-kb/
 ```
 
 用的时候直接复制粘贴，不需要每次重新想。需要我帮你把这些整理成一个完整的 `prompts.md` 文件内容吗？
+
+
+
+## 粗读
+
+
+
+I added multiple papers to raw/papers/.
+Find all .md files in raw/papers/ not yet logged in log.md.
+If log.md is empty or does not exist, treat ALL .md files
+in raw/papers/ as unprocessed.
+
+BATCH SHALLOW INGEST — process all at once:
+
+For each unprocessed paper clip:
+1. Create wiki/papers/论文名.md with:
+   - Front matter (title/authors/year/venue/status: skimmed)
+   - 一句话总结
+   - 解决的问题
+   - 核心贡献 (bullet list, from abstract only)
+   - 关联 (wikilinks to obviously related existing pages)
+   - ## 待精读标记: ⬜ 未精读
+
+2. Create STUB concept pages only for brand-new concepts
+   not yet in wiki/concepts/ — one line definition only,
+   mark as stub: true in front matter
+
+3. After all papers processed, generate output/待精读列表.md:
+   | 论文 | venue | 年份 | 与现有知识的关联度(高/中/低) | 建议精读优先级 |
+   Based on: how many existing concept pages it connects to,
+   venue prestige, recency.
+
+4. Update index.md
+Auto git sync.
+Report: N papers ingested, M concept stubs created.
