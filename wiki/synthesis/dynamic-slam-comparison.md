@@ -55,9 +55,22 @@ WildGS-SLAM (2025.04)
 
 4. **鲁棒性多维度**：动态物体（3篇）和传感器退化（RoGER-SLAM）是正交的鲁棒性维度，理想系统需要同时处理两者
 
+## RoGER-SLAM关键数据
+
+RoGER-SLAM是首个系统研究噪声+低光对3DGS-SLAM耦合影响的论文，其核心数据：
+
+| 条件 | SplaTAM ATE | RoGER-SLAM ATE | 改善 |
+|------|-----------|---------------|------|
+| Replica干净 | 0.36 cm | **0.24 cm** | 50% |
+| Replica噪声+低光 | 6.82 cm | **0.60 cm** | 91% |
+| TUM干净 | 5.48 cm | **4.79 cm** | 12% |
+| TUM噪声+低光 | 12.23 cm | **2.63 cm** | 78% |
+
+SplaTAM在噪声+低光下从0.36退化到6.82 cm（恶化19倍），RoGER-SLAM仅从0.24到0.60 cm。SP-RoFusion处理轻度噪声无需CLIP，CLIP模块仅在严重退化时触发（+46 ms/帧）。
+
 ## 关联论文
 
 - [[papers/wildgs-slam]] — 不确定性感知动态SLAM
 - [[papers/add-slam]] — 场景一致性分析+时序高斯动态建模
 - [[papers/up-slam]] — 并行架构+概率八叉树+开放集动态
-- [[papers/roger-slam]] — 噪声/低光鲁棒SLAM（互补维度）
+- [[papers/roger-slam]] — 噪声/低光鲁棒SLAM（互补维度，ATE提升91%）

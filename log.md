@@ -75,9 +75,11 @@
   - [[concepts/scene-consistency-analysis]] — prior-free motion detection via render-vs-observe comparison
 - ⚠️ Annotation skipped: PDF password-protected
 
-## 2026-06-11 — Deep read: RoGER-SLAM
-- ⚠️ PDF加密无法读取 — PDF is password-protected, raw .md clip is abstract-only (35 lines)
-- Paper page remains at status: skimmed, pending unprotected PDF acquisition
+## 2026-06-11 — Deep read: RoGER-SLAM (retry)
+- Fetched full paper from arXiv HTML (2510.22600v1) via curl — PDF was encrypted
+- Rewrote [[papers/roger-slam]] with complete methodology (SP-RoFusion fusion, adaptive tracking with residual balancing, CLIP enhancement module), math formulations (Eq. 1-17), experimental results (Replica ATE 0.24 cm clean / 0.60 cm noise+low-light, 91% improvement over SplaTAM), and limitations
+- Updated [[synthesis/dynamic-slam-comparison]] with RoGER-SLAM quantitative data table
+- ⚠️ Annotation skipped: PDF still password-protected
 
 ## 2026-06-11 — Cross-paper synthesis
 - Created [[synthesis/dynamic-slam-comparison]] comparing 3 papers addressing dynamic/robust 3DGS-SLAM
