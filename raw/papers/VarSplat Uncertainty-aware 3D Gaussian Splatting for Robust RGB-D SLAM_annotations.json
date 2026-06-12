@@ -1,92 +1,224 @@
 [
   {
     "page": 1,
-    "phrase": "learns per-splat appearance variance. By using the law of total variance with alpha compositing",
-    "category": "core_contribution",
-    "note": "【核心创新——外观方差作为一等量】为每个3D高斯学习外观方差σ²∈ℝ³→通过全方差定律Var[X]=E[Var[X|Z]]+Var(E[X|Z])推导出单pass可微逐像素不确定性渲染：V=Σw_i(σ²_i+c²_i)-(Σw_i c_i)²。V与颜色/深度共享同一次光栅化pass→零额外渲染开销。这是首个在3DGS-SLAM中显式建模外观不确定性的系统。"
+    "phrase": "each 3D Gaussian jointly learns position, orientation, scale, color, opacity, and appearance variance",
+    "category": "module",
+    "note": "【逐高斯外观方差参数化】每个3D高斯在标准参数(μ,Σ,α,s,c)基础上额外学习σ²∈ℝ³——外观方差参数。σ²与几何协方差Σ不同：Σ定义空间范围，σ²编码该高斯在不同视角下颜色观测的一阶不确定性。对应Figure 1中每个椭球体上的方差标注。"
   },
   {
     "page": 1,
-    "phrase": "uncertainty map guides tracking, submap registration, and loop detection",
-    "category": "core_contribution",
-    "note": "【不确定性三级位姿估计】(1)跟踪：ṽ_p加权L1光度损失，仅高不透明度像素(>0.99)；(2)子图配准：ṽ_p加权配准损失定位查询关键帧；(3)回环检测：不透明度比率调制子图相似度r=Σṽ_s αⱼ/Σαⱼ→高不确定性子图更难匹配→减少假阳性回环。"
+    "phrase": "During mapping, σ2 is optimized jointly with other Gaussian parameters",
+    "category": "design_decision",
+    "note": "【端到端联合优化设计】σ²与标准高斯参数(位置/旋转/尺度/颜色/不透明度)和相机位姿一起在线优化——非预训练、非后处理。建图损失L_map包含专门的方差正则项L_var驱动σ²学习。对应Figure 1中Mapping阶段的Trained Online标注。"
   },
   {
     "page": 1,
-    "phrase": "first 3DGS-SLAM system to learn per-splat appearance variance and render per-pixel uncertainty in online setting",
-    "category": "core_contribution",
-    "note": "【首创性声明】VarSplat是首个将外观不确定性作为一等量(first-class quantity)显式建模的3DGS-SLAM系统。区别于CG-SLAM(深度方差)、WildGS-SLAM(预训练DINOv2预测器)和UncLe-SLAM(几何不确定性)。从光栅化过程内部在线学习方差→无需额外网络或采样。"
+    "phrase": "rendered per-pixel uncertainty V serves as a confidence weight during tracking and registration",
+    "category": "dataflow",
+    "note": "【V的数据流——跟踪与配准】渲染的逐像素不确定性V通过中值对数缩放转换为[0,1]置信度权重w̃_p→在跟踪阶段加权L1光度损失(仅高不透明度>0.99像素)→在子图配准阶段加权配准损失→引导优化聚焦可靠区域。对应Figure 1中V箭头流向Tracking和Registration。"
   },
   {
-    "page": 2,
-    "phrase": "appearance uncertainty that directly reflects instability in 3DGS rendering",
-    "category": "method",
-    "note": "【外观不确定性的物理含义】σ²与几何协方差Σ不同：Σ定义高斯在3D空间的空间范围；σ²编码该高斯在不同视角下外观颜色的一阶不确定性→即使SH正确建模了平均颜色，实际观测仍因遮挡变化/反射方向变化/深度不连续处透射率权重突变而产生方差。深度不连续/遮挡边界处方差自然较大。"
+    "page": 1,
+    "phrase": "per-Gaussian variance σ2 further guides loop detection",
+    "category": "dataflow",
+    "note": "【σ²的数据流——回环检测】逐高斯方差σ²经中值对数缩放转换为w̃_s→计算不透明度比率r=Σw̃_s·αⱼ/Σαⱼ(量化子图中可靠外观信息比例)→最终相似度=cross_sim⊙(r_q·r_db)→高不确定性子图更难匹配→减少假阳性回环。对应Figure 1中σ²箭头流向Loop Detection。"
+  },
+  {
+    "page": 4,
+    "phrase": "During mapping, each 3D Gaussian jointly learns position, appearance, and variance",
+    "category": "module",
+    "note": "【Figure 2建图模块——核心训练阶段】Mapping阶段：RGB-D关键帧输入→可微光栅化器渲染颜色Ĉ/深度D̂/不确定性V→联合优化位姿T_j和高斯参数(µ,Σ,α,s,c,σ²)。新建图损失L_var=1/(2V)(‖Î-I‖²+‖D̂-D‖²)+log(V)(高斯NLL)驱动σ²端到端学习。对应图中Mapping框内的Trained Online组件。"
+  },
+  {
+    "page": 4,
+    "phrase": "per-splat variances are composited into per-pixel uncertainty V through the differentiable rasterizer",
+    "category": "module",
+    "note": "【核心渲染模块——全方差定律Alpha合成】V=Σw_i(σ²_i+c²_i)-(Σw_i c_i)²，由两项组成：(1)期望条件方差Σw_i·σ²_i(每个高斯贡献的外观不确定性的加权平均)；(2)不同高斯间颜色均值的方差Σw_i·c²_i-(Σw_i·c_i)²。V与颜色C和深度D共享同一次光栅化pass→零额外渲染开销。对应Figure 2中Differentiable Rasterizer模块。"
+  },
+  {
+    "page": 4,
+    "phrase": "uncertainty map is then served as confidence in tracking and registration",
+    "category": "dataflow",
+    "note": "【Figure 2数据流——V→Tracking/Registration】渲染的逐像素不确定性V→中值中心对数缩放转换为置信度权重w̃_p=exp[-(log V-Ṽ)/τ]→跟踪阶段加权L1光度损失(L_track=Σλ_c(w̃_p⊙‖Î-I‖₁)+(1-λ_c)‖D̂-D‖₁)→配准阶段加权L_registration=Σw̃_p⊙‖Î-I‖₁+‖D̂-D‖₁。对应图中从V指向Tracking和Registration的箭头。"
+  },
+  {
+    "page": 4,
+    "phrase": "σ2 is used for uncertainty-aware loop detection",
+    "category": "dataflow",
+    "note": "【Figure 2数据流——σ²→Loop Detection】逐高斯方差σ²→中值对数缩放→w̃_s=exp[-(log σ²-σ̃²)/τ]→子图级可靠性比率r=Σw̃_s·αⱼ/Σαⱼ→调制NetVLAD特征相似度sim=cross_sim⊙(r_q·r_db)→高不确定性子图在相似度计算中被抑制→减少重复结构导致的假阳性回环。对应图中从σ²指向Loop Detection的箭头。"
+  },
+  {
+    "page": 4,
+    "phrase": "VarSplat architecture",
+    "category": "dataflow",
+    "note": "【Figure 2系统架构总览】完整管线：RGB-D输入→Mapping(逐高斯学习位置/外观/方差σ²→可微光栅化器合成逐像素不确定性V)→Tracking(V加权光度损失+深度损失→帧到子图位姿估计)→Registration(V加权配准损失→子图间对齐)→Loop Detection(σ²调制子图相似度→回环发现与校正)→Submap Merging(TSDF融合→全局精化)。不确定性贯穿全流程三级位姿估计。"
+  },
+  {
+    "page": 1,
+    "phrase": "Given RGB-D inputs",
+    "category": "dataflow",
+    "note": "【Figure 1系统输入】RGB-D图像流作为输入→VarSplat是RGB-D SLAM系统(需要深度传感器)→深度用于：(1)高斯初始化(反投影)；(2)深度损失监督；(3)L_var中的深度残差项(将不确定性与几何绑定)。对应Figure 1中左侧RGB-D input标注。"
+  },
+  {
+    "page": 4,
+    "phrase": "single-pass rasterization as color and depth, V enables efficient, online, in-the-loop reliability",
+    "category": "design_decision",
+    "note": "【设计决策——单pass效率】V与C和D在同一次光栅化中计算→零额外渲染pass。全方差定律的分解形式(Σw_i(σ²_i+c²_i)-(Σw_i c_i)²)天然适合3DGS的累积Alpha合成→每个高斯仅需额外存储3个σ²参数(RGB各一)→额外显存和计算开销极小。这是VarSplat能在在线SLAM中实现不确定性估计的关键架构选择。"
   },
   {
     "page": 3,
-    "phrase": "V = Σ w_i(σ²_i + c²_i) - (Σ w_i c_i)²",
-    "category": "method",
-    "note": "【不确定性渲染公式Eq.9】两项分解：第一项Σw_i(σ²_i+c²_i)=每个高斯贡献的条件方差的加权平均+颜色二阶矩；第二项(Σw_i c_i)²=不同高斯之间颜色均值的方差。合并后在单次光栅化中同时获得颜色C/深度D/不确定性V→零额外渲染开销。w_i=T_i·α_i为标准Alpha合成权重。"
+    "phrase": "larger variances appear near depth discontinuities or occlusion boundaries",
+    "category": "design_decision",
+    "note": "【设计决策——为何深度不连续处方差大】小视角变化即可改变重叠高斯的可见性和alpha权重→颜色观测不一致→外观方差大。σ²显式建模这种物理现象：遮挡边界处透射率权重w_i突变→V通过全方差定律自然放大→跟踪时这些不可靠区域自动降权。这是VarSplat将外观不确定性建模为一等量的物理直觉基础。"
+  },
+  {
+    "page": 3,
+    "phrase": "small view changes can alter visibility and alpha weights of overlapping splats at different depths",
+    "category": "design_decision",
+    "note": "【because从句——外观方差的物理成因】此处解释为何深度不连续/遮挡边界/反射透明区域呈现高方差：重叠高斯在不同深度的alpha权重因微小视角变化剧烈波动→颜色观测不一致→需要σ²显式捕获此不确定性。此设计原因直接驱动了整个VarSplat架构。"
   },
   {
     "page": 4,
-    "phrase": "L_var = (1/(2V))(‖Î-I‖²₂ + ‖D̂-D‖²₂) + log(V)",
+    "phrase": "Using L1 would break this relationship, leading to inconsistent variance estimation",
+    "category": "design_decision",
+    "note": "【设计决策——为何使用MSE而非L1监督方差】L1对应拉普拉斯分布的尺度参数→不匹配高斯负对数似然的二阶矩形式。MSE(L2²)保持高斯NLL的一致性：∂L_var/∂V=-(‖Î-I‖²+‖D̂-D‖²)/(2V²)+1/V→残差大→V增大；残差小→V减小。log(V)正则化项防止V发散到0。若用L1→方差估计不一致→置信度权重不可靠。"
+  },
+  {
+    "page": 4,
+    "phrase": "L_var = 1/(2V)(‖Î-I‖²₂ + ‖D̂-D‖²₂) + log(V)",
     "category": "loss",
-    "note": "【方差学习损失——高斯负对数似然】使用MSE(高斯NLL)而非L1监督方差→L1导致不一致估计。梯度∂L_var/∂V=-(‖Î-I‖²+‖D̂-D‖²)/(2V²)+1/V→残差大→V增大(不确定性上升)；残差小→V减小(置信度提升)。log(V)正则化防止V发散到0。通过链式法则∂V/∂σ²_i=w_i回传到每个高斯。"
-  },
-  {
-    "page": 4,
-    "phrase": "Figure 2: VarSplat architecture",
-    "category": "dataflow",
-    "note": "【系统架构图Figure 2】RGB-D输入→建图阶段：每个3D高斯联合学习位置/外观/方差σ²→通过可微光栅化器将逐高斯方差合成为逐像素不确定性V→跟踪阶段：V作为置信度加权→子图配准：V加权配准→回环检测：σ²调制子图相似度。全流程不确定性感知。"
-  },
-  {
-    "page": 4,
-    "phrase": "median-of-log scaling to convert V and σ² to confidence weights between 0 and 1",
-    "category": "method",
-    "note": "【中值中心对数缩放】ṽ=median_Ω(log(V))→置信度权重w̃_p=exp[-(log V-Ṽ)/τ]。大于中位数的方差→权重<1；小于中位数的方差→权重趋向1。τ控制权重锐度。对数缩放比线性缩放更鲁棒→抑制异常大方差值的影响。"
-  },
-  {
-    "page": 4,
-    "phrase": "loop detection: r = (Σ w̃_s αⱼ)/(Σ αⱼ)",
-    "category": "method",
-    "note": "【不确定性感知回环检测】不透明度比率调制子图相似度：r=Σṽₛαⱼ/Σαⱼ→r高表示子图中可靠外观信息多→r低表示高不确定性。最终相似度=cross_sim⊙(r_q·r_db)→使高不确定性子图更难匹配→减少假阳性回环。"
+    "note": "【方差学习损失——高斯负对数似然(Eq.13)】第一项1/(2V)(‖Î-I‖²+‖D̂-D‖²)使V与重建残差成正比(大残差→大V→高不确定性)；第二项log(V)为正则化项防止V→0(过拟合)。∂L_var/∂σ²_i=∂L_var/∂V·w_i通过链式法则将梯度回传至每个高斯→σ²随场景自适应学习。"
   },
   {
     "page": 4,
     "phrase": "L_map = λ_color·L_color + λ_depth·L_depth + λ_reg·L_reg + λ_var·L_var",
     "category": "loss",
-    "note": "【建图总损失】颜色损失L_color=(1-λ_SSIM)L1+λ_SSIM(1-SSIM)、深度损失L_depth=L1(D̂-D)、正则化损失L_reg=‖ŝ-s‖₁(控制高斯尺度)、方差损失L_var(高斯NLL)。λ_var控制不确定性学习强度，平衡建图精度与方差估计质量。"
+    "note": "【建图总损失(Eq.10)】四分量：L_color=(1-λ_SSIM)L1+λ_SSIM(1-SSIM)(标准3DGS颜色损失)；L_depth=‖D̂-D‖₁(深度L1)；L_reg=‖ŝ-s‖₁(高斯尺度正则化，防止尺度爆炸)；L_var=高斯NLL(驱动σ²端到端学习)。λ_var控制方差学习强度→平衡建图精度与方差估计质量。"
+  },
+  {
+    "page": 5,
+    "phrase": "freeze variance parameters and stop gradients through w̃_p",
+    "category": "design_decision",
+    "note": "【冻结设计——跟踪时停止方差梯度】跟踪阶段冻结σ²参数+停止w̃_p梯度→防止位姿优化与方差学习相互干扰(两个目标可能冲突)→确保跟踪稳定收敛。σ²仅在建图阶段通过L_var更新。这是VarSplat的关键训练策略——与WildGS-SLAM的预训练预测器(无需此设计)形成架构差异。"
+  },
+  {
+    "page": 5,
+    "phrase": "median-centered log scaling to convert V and σ² to confidence weights",
+    "category": "module",
+    "note": "【中值中心对数缩放模块(Eq.16)】两步转换：(1)取对数log(V)将方差的指数级差异压缩到线性范围→(2)以中位数Ṽ为中心计算exp[-(log V-Ṽ)/τ]→方差>中位数→权重<1；方差<中位数→权重趋向1。τ控制权重锐度。对数缩放比线性缩放更鲁棒→抑制异常大方差值的过度惩罚。逐像素和逐splat独立缩放。"
+  },
+  {
+    "page": 5,
+    "phrase": "L_track = Σ λ_c(w̃_p⊙‖Î-I‖₁) + (1-λ_c)‖D̂-D‖₁",
+    "category": "loss",
+    "note": "【跟踪损失(Eq.17)】仅在高不透明度像素(>0.99)上计算→λ_c平衡光度与几何损失。关键创新：光度L1项由w̃_p逐像素加权→低置信度区域(纹理缺失/反射/遮挡边界)自动降权→深度损失(不加权)提供几何锚定。跟踪时冻结σ²参数→w̃_p为固定置信度图。"
+  },
+  {
+    "page": 5,
+    "phrase": "r = (Σ w̃_s αⱼ)/(Σ αⱼ), sim = cross_sim ⊙ (r_q * r_db)",
+    "category": "module",
+    "note": "【不确定性感知回环检测(Eq.18)】不透明度比率r量化子图中可靠外观信息占比→r高=子图质量好→r低=高不确定性。查询子图r_q与数据库子图r_db的乘积调制NetVLAD特征相似度→高不确定性子图更难匹配→减少重复结构(如走廊)导致的假阳性回环。σ²在此阶段冻结。"
+  },
+  {
+    "page": 5,
+    "phrase": "L_registration = Σ w̃_p ⊙ ‖Î-I‖₁ + ‖D̂-D‖₁",
+    "category": "loss",
+    "note": "【子图配准损失(Eq.19)】回环检测后→用w̃_p加权光度损失+不加权深度损失定位查询关键帧在数据库子图中的位姿。与跟踪损失结构一致→但配准是子图间对齐(中程)→跟踪是帧到子图对齐(短程)。w̃_p抑制子图重叠区域中不可靠像素的误导。"
+  },
+  {
+    "page": 5,
+    "phrase": "TSDF fusion to merge all submaps into a consistent global representation",
+    "category": "module",
+    "note": "【子图合并与全局精化模块】所有子图通过TSDF融合合并为一致全局表示→融合后的几何用于初始化全局高斯中心→仅使用颜色重建损失L_color精化(排除不确定性权重)→因不稳定区域已在跟踪/回环/配准阶段被控制→全局阶段聚焦外观质量。"
+  },
+  {
+    "page": 5,
+    "phrase": "RGB images are more susceptible to viewpoint changes, low texture, and occlusions",
+    "category": "design_decision",
+    "note": "【设计决策——为何光度损失需加权而深度损失不需】RGB图像对视点变化/低纹理/遮挡敏感→纯光度优化导致不稳定梯度。因此仅对光度L1项使用w̃_p加权(降权不可靠像素)→深度损失不加权(深度传感器测量可靠性相对均匀)→深度提供稳定几何锚定。λ_c=0.6平衡两者贡献。"
   },
   {
     "page": 2,
-    "phrase": "ATE 0.23 cm on Replica, ATE 1.69 cm on ScanNet++, ATE 3.20 cm on TUM-RGBD",
-    "category": "result",
-    "note": "【跟踪结果汇总】Replica ATE 0.23 cm(平均最佳，比现有方法提升约10%)；ScanNet++ ATE 1.69 cm(比次优提升18%，SplaTAM在长序列失败达443.10 cm)；TUM-RGBD ATE 3.20 cm(纯3DGS方法最佳)。多数据集验证不确定性引导的鲁棒性。"
+    "phrase": "appearance uncertainty that directly reflects instability in 3DGS rendering has not been treated as a first-class quantity",
+    "category": "core_contribution",
+    "note": "【核心贡献定位——首创外观不确定性一等量】现有方法要么建模几何不确定性(CG-SLAM深度方差/UncLe-SLAM)→要么依赖预训练预测器(WildGS-SLAM DINOv2)→外观不确定性(直接反映3DGS渲染不稳定性)从未在在线SLAM中被显式建模。VarSplat从光栅化过程内部学习方差→无需额外网络或采样。"
   },
   {
-    "page": 4,
-    "phrase": "single-pass rasterization efficiency",
-    "category": "method",
-    "note": "【单pass效率】V与C和D在单次光栅化中同时计算→零额外渲染pass开销。3DGS的Alpha合成天然支持全方差定律的逐项累加→每个高斯仅需额外存储3个σ²参数(RGB各一)→增加的计算和显存开销极小。"
-  },
-  {
-    "page": 1,
-    "phrase": "measurement reliability is rarely modeled explicitly",
-    "category": "limitation",
-    "note": "【现有方法局限】现有3DGS-SLAM对所有像素等权对待→低纹理区域(白墙)/深度不连续处/透明反射表面→光度观测可靠性差异巨大。CG-SLAM建模深度方差(几何侧)、WildGS-SLAM依赖预训练DINOv2(不可在线学习)、VarSplat在外观侧建模不确定性(从光栅化过程内部导出)。"
-  },
-  {
-    "page": 4,
-    "phrase": "variance learning from scratch, jointly optimizing them with appearance and geometry during mapping",
+    "page": 2,
+    "phrase": "learns this variance parameter from scratch, jointly optimizing them with appearance and geometry",
     "category": "design_decision",
-    "note": "【端到端在线学习设计】σ²与标准3DGS参数(µ,Σ,α,s,c)一起端到端优化→跟踪时冻结方差参数(停止ṽ_p梯度)→建图时通过L_var联合更新。与WildGS-SLAM的预训练MLP预测器不同→VarSplat的方差从零开始学习，自适应场景特性。"
+    "note": "【从零开始学习而非预训练——关键架构区别】VarSplat不从预训练模型初始化σ²→σ²随地图增量构建从零开始学习→自适应场景特性(WildGS-SLAM的DINOv2预测器需预训练且不能在线适应)。σ²通过L_var的梯度∂L_var/∂σ²_i=∂L_var/∂V·w_i逐帧更新→方差反映真实测量可靠性。"
+  },
+  {
+    "page": 8,
+    "phrase": "Figure 3: Uncertainty ablation on ScanNet (scene0181). Without uncertainty, tracking jitters",
+    "category": "module",
+    "note": "【消融可视化Figure 3】三条轨迹对比：无不确定性(蓝色)→跟踪抖动、回环长期漂移、配准子图重影。VarSplat启用(绿色)→轨迹平滑、重叠对齐。验证不确定性在三级位姿估计(跟踪/回环/配准)的协同增益——Table 8量化：全启用ATE 6.53 vs 全禁用8.20。"
+  },
+  {
+    "page": 8,
+    "phrase": "Figure 4: Visualization of challenging conditions. uncertainty is high on the texture-poor wall region",
+    "category": "dataflow",
+    "note": "【定性可视化Figure 4】上方示例(Scene0169)：纹理匮乏的白墙区域(白框)不确定性高→地图持续增长(蓝框)。下方示例：透明表面上不确定性图区分可靠区域。验证σ²学习的物理合理性——低纹理/反射/透明区域自然呈现高方差。"
+  },
+  {
+    "page": 8,
+    "phrase": "Figure 5: Per-pixel uncertainty with vs. without depth. With depth, uncertainty focuses on textureless areas",
+    "category": "design_decision",
+    "note": "【消融Figure 5——深度残差在L_var中的作用】有深度(TUM fr1/desk2)：不确定性聚焦纹理缺失+深度孔洞区域→良好约束表面保持低方差→避免光泽区域的过度自信。Table 9消融：含深度残差的L_var ATE从7.38降至6.53→深度将不确定性与几何绑定→防止仅由外观干扰驱动的误导性方差。"
+  },
+  {
+    "page": 5,
+    "phrase": "ATE 0.23 cm on Replica, ATE 1.69 cm on ScanNet++",
+    "category": "result",
+    "note": "【核心定量结果】Replica ATE 0.23 cm(平均最佳，比LoopSplat 0.26提升约10%)；ScanNet++ ATE 1.69 cm(比次优LoopSplat 2.05提升18%，SplaTAM长序列失败443.10 cm验证鲁棒性)；TUM ATE 3.20 cm(纯3DGS方法最佳)；ScanNet ATE 6.5 cm(四数据集总体最佳)。"
+  },
+  {
+    "page": 7,
+    "phrase": "Table 8: Effect of uncertainty on pose estimation",
+    "category": "result",
+    "note": "【消融Table 8——不确定性三级效果】全禁用ATE 8.20→仅跟踪启用7.63→跟踪+回环7.49→仅回环+配准7.51→全启用6.53。跟踪平滑局部运动(降低0.57)+回环减少假阳性+配准消除重叠重影→三级协同带来总体提升1.67 cm(20.4%)。"
+  },
+  {
+    "page": 7,
+    "phrase": "Table 9: Ablation on Variance Training",
+    "category": "result",
+    "note": "【消融Table 9——方差训练策略】跟踪时冻结方差(ATE 7.55 vs 非冻结)→防止位姿与方差优化冲突；含深度残差(ATE 6.53 vs 不含7.38)→深度将不确定性与几何绑定；使用平方L2(ATE 6.53 vs L1 7.38)→匹配高斯NLL假设。三项设计合计降低ATE 1.02 cm。"
+  },
+  {
+    "page": 7,
+    "phrase": "Freezing variance during tracking avoids conflicts with pose optimization",
+    "category": "design_decision",
+    "note": "【训练策略设计原因】跟踪时冻结σ²→避免两个竞争目标：(1)位姿优化试图减少渲染误差(可能将误差归因于方差而非位姿)；(2)方差学习试图增大V以覆盖残余误差。同时优化导致轨迹不稳定→冻结策略确保跟踪收敛性。此设计来自VarSplat将不确定性建模为可学习参数而非后处理量的架构特点。"
+  },
+  {
+    "page": 7,
+    "phrase": "Adding depth residuals tie uncertainty to geometry and prevents distractor-driven variance",
+    "category": "design_decision",
+    "note": "【设计决策——为何L_var需包含深度残差】仅颜色残差驱动σ²→外观干扰(光照变化/反射)可产生误导性高方差→子图间几何错位。深度残差纳入L_var→σ²不仅反映外观可靠性也反映几何一致性→方差与真实3D结构绑定→防止纯外观假象导致的方差偏移。Table 9验证：含深度ATE 6.53 vs 不含7.38。"
+  },
+  {
+    "page": 7,
+    "phrase": "Using square L2 matches the Gaussian model assumed by the NLL",
+    "category": "design_decision",
+    "note": "【设计决策——MSE匹配高斯NLL假设】高斯NLL形式L_var∝‖残差‖²/V+log(V)源自假设渲染残差服从零均值高斯分布→方差V为二阶矩。平方L2(MSE)与此一致→梯度∂L_var/∂V平滑。L1(拉普拉斯分布的一阶矩)与此模型不一致→梯度不连续→方差估计不可靠→置信度权重失效。"
+  },
+  {
+    "page": 4,
+    "phrase": "∂L_var/∂σ²_i = ∂L_var/∂V · w_i",
+    "category": "loss",
+    "note": "【方差梯度回传(Eq.15)】通过链式法则+Eq.9(∂V/∂σ²_i=w_i)将逐像素方差损失梯度传播到每个高斯的外观方差参数→w_i=T_i·α_i为Alpha合成权重→对像素贡献更大的高斯(更大w_i)获得更强的方差梯度→高可见性高斯更快学习到准确的不确定性估计。"
   },
   {
     "page": 3,
-    "phrase": "depth discontinuities or occlusion boundaries lead to inconsistent color observations",
-    "category": "design_decision",
-    "note": "【为何深度不连续处方差大】小视角变化即可改变重叠高斯的可见性和alpha权重→颜色观测不一致→外观方差大。VarSplat通过σ²显式建模这种不确定性→在图1中可视化展示方差图在遮挡边界/反射表面自然呈现高值。"
+    "phrase": "σ2 models uncertainty around that mean color, different from spatial covariance Σ",
+    "category": "module",
+    "note": "【概念区分——σ²≠Σ】空间协方差Σ定义高斯在3D空间中的几何范围(形状和方向)→通过投影和光栅化影响像素贡献范围。外观方差σ²定义高斯平均颜色的一阶不确定性→即使SH正确建模了视角相关平均颜色→实际观测仍因遮挡/反射/深度跳变产生方差。两者在光栅化管线中完全独立→σ²不参与几何投影仅影响V渲染。"
+  },
+  {
+    "page": 7,
+    "phrase": "uncertainty map can distinguish reliable regions on transparent surface",
+    "category": "result",
+    "note": "【Figure 4定性结果】透明表面上不确定性图能区分可靠与不可靠区域→这是标准3DGS-SLAM无法做到的(等权对待所有像素)。验证σ²学习捕获了物理上合理的不确定性模式→反射/折射区域的高方差自动降低跟踪权重→防止错误的光度匹配。"
   }
 ]
