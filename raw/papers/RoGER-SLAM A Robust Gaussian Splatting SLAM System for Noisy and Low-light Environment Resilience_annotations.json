@@ -1,0 +1,188 @@
+[
+  {
+    "page": 1,
+    "phrase": "3DGS rendering pipeline inherently behaves as an implicit low-pass filter",
+    "category": "core_contribution",
+    "note": "【核心洞察——Alpha合成作为隐式低通滤波】3DGS渲染管线中，沿视线加权累加多个高斯(Alpha合成)本质上充当隐式低通滤波器→衰减高频噪声但存在过平滑风险。此属性是非结构化隐式效应，在复合退化条件下不足以保证鲁棒性。这是SP-RoFusion和CLIP增强设计的理论起点。"
+  },
+  {
+    "page": 1,
+    "phrase": "Structure-Preserving Robust Fusion (SP-RoFusion) mechanism that couples rendered appearance, depth, and edge cues",
+    "category": "core_contribution",
+    "note": "【SP-RoFusion模块】构建结构感知伪监督信号I_fuse=λ_r·I_render+λ_d·Norm(Rep₃(D_gt))+λ_g·Norm(Rep₃(G))。融合渲染外观、几何深度和Sobel边缘图三重信息，显式强化几何保真度同时抑制高频噪声。与传统方法仅用原始RGB不同，融合信号增强结构约束。"
+  },
+  {
+    "page": 1,
+    "phrase": "adaptive tracking objective with residual balancing regularization",
+    "category": "core_contribution",
+    "note": "【自适应残差平衡跟踪】动态权重w_im=γ_im/(L_color+γ_im), w_depth=γ_depth/(L_depth+γ_depth)随残差大小自适应调节。含正则项λ_R(log(w_depth/w_im)-log ρ)²防止权重发散。仅在高不透明度(>0.99)像素上计算，位姿初始化采用匀速模型。"
+  },
+  {
+    "page": 1,
+    "phrase": "CLIP-based enhancement module, selectively activated under compounded degradations",
+    "category": "core_contribution",
+    "note": "【CLIP条件增强模块】双分支设计：(1)冻结CLIP图像编码器提取抗失真多尺度特征+可学习多层解码器重建→去噪；(2)神经表示归一化(NRN)统一退化水平+编码器-解码器增强+CLIP文本引导监督→低光增强。双重条件触发：全局亮度μ_L<80或残差噪声方差σ²_R>30，额外开销46ms/帧。"
+  },
+  {
+    "page": 1,
+    "phrase": "first systematic quantitative study of how compounded noise and low-light jointly affect",
+    "category": "core_contribution",
+    "note": "【首次系统量化研究】现有基准缺乏同时包含传感器噪声和低光照且提供真值轨迹的数据集(ExDark等仅用于识别任务)。通过构造Poisson-Gaussian物理噪声模型+低光照退化，首次系统量化噪声+低光对3DGS-SLAM的耦合影响。"
+  },
+  {
+    "page": 2,
+    "phrase": "alpha compositing of multiple overlapping Gaussians therefore acts as a weighted integration process",
+    "category": "method",
+    "note": "【Alpha合成的低通滤波机制】多个重叠高斯的透明度加权累积→类似于经典图像处理中的高斯平滑。这自然衰减高频噪声同时保留粗略场景结构。但因为这是隐式和非结构化的效应，在复合退化下会过度平滑细节几何。"
+  },
+  {
+    "page": 2,
+    "phrase": "Figure 2: Framework Overview",
+    "category": "dataflow",
+    "note": "【系统架构图Figure 2】完整管线：RGB-D输入→高斯球体初始化和稠密化(Sec.III-A)→SP-RoFusion结构保持鲁棒融合(Sec.III-B)→自适应跟踪目标估计相机位姿(Sec.III-C)→退化判断模块选择性激活CLIP增强(Sec.III-D)→输出逼真重建和一致性轨迹。"
+  },
+  {
+    "page": 4,
+    "phrase": "multi-scale gating mechanism applied prior to densification",
+    "category": "method",
+    "note": "【多尺度门控稠密化】在3个分辨率尺度{1.0, 0.5, 0.25}渲染不透明度图→加权融合得到重要性分数IMP_fuse=∑w(s)·(1/|P|)∑O_p(s)。仅当IMP_fuse>0.01时触发稠密化。避免无信息视角的冗余高斯插入。"
+  },
+  {
+    "page": 4,
+    "phrase": "Figure 3: Structure-preserving robust fusion (SP-RoFusion) module",
+    "category": "module",
+    "note": "【SP-RoFusion模块图Figure 3】渲染图I_render、输入深度D[3]、结构边缘图G[3]以权重α/β/γ线性融合为I_fuse→计算深度、颜色、光照残差→自适应光照权重ω_illum组合为最终建图损失L_map。边缘图通过Sobel算子(K_x, K_y)在灰度图上计算。"
+  },
+  {
+    "page": 4,
+    "phrase": "I_fuse = λ_r · I_render + λ_d · Norm(Rep₃(D_gt)) + λ_g · Norm(Rep₃(G))",
+    "category": "method",
+    "note": "【SP-RoFusion融合公式】渲染外观提供当前地图估计→深度提供几何约束→Sobel边缘图G=√((K_x·I_gray)²+(K_y·I_gray)²)提供结构保持。三者归一化后线性融合形成鲁棒监督信号，替代原始噪声图像进行建图优化。"
+  },
+  {
+    "page": 4,
+    "phrase": "L_map = 0.5L_color + L_depth + ω_illum L_illum",
+    "category": "loss",
+    "note": "【建图损失组合】颜色损失L_color=0.8L1+0.2(1-SSIM)（与标准3DGS相同），深度损失L_depth=L1(D_render-D_gt)，光照损失L_illum=‖I_render-I_fuse‖₁。动态权重ω_illum=min(L_illum/(L_color+ε), τ)防止光照损失主导优化。"
+  },
+  {
+    "page": 5,
+    "phrase": "w_im = γ_im/(L_color + γ_im), w_depth = γ_depth/(L_depth + γ_depth)",
+    "category": "method",
+    "note": "【自适应权重公式】当颜色残差大→w_im减小(颜色不可靠)→深度权重相对增大；同理深度残差大→w_depth减小。γ_im和γ_depth为残差敏感系数，控制权重对残差大小的响应灵敏度。此机制解决了固定权重无法跨场景泛化的问题。"
+  },
+  {
+    "page": 5,
+    "phrase": "L_Tracking = 1_{Op>0.99}(w_im L1(C_p) + w_depth L1(D_p) + λ_R(log(w_depth/w_im) - log ρ)²)",
+    "category": "loss",
+    "note": "【跟踪损失完整形式】仅使用高不透明度像素(Op>0.99)→确保监督来自可靠渲染区域。正则项λ_R(log(w_depth/w_im)-log ρ)²约束权重比例保持在预校准理想比ρ附近→防止极端权重发散。"
+  },
+  {
+    "page": 5,
+    "phrase": "Figure 4: Workflow of the CLIP Image Enhancement Module",
+    "category": "module",
+    "note": "【CLIP增强模块Figure 4】双分支：去噪分支(冻结CLIP编码器提取多尺度特征→多层解码器重建→L1去噪损失)和低光增强分支(NRN预处理→编码器-解码器增强→CLIP文本引导监督)。双重条件判断(全局亮度+残差噪声方差)选择性激活。"
+  },
+  {
+    "page": 5,
+    "phrase": "frozen CLIP image encoder and a multi-level learnable image decoder",
+    "category": "module",
+    "note": "【去噪分支——冻结CLIP+可学习解码器】冻结的CLIP编码器提取失真不变、内容相关的多尺度特征→多级可学习解码器由上来样和卷积层组成→多尺度特征与解码器特征级联融合→含噪输入作为额外图像特征加入→卷积操作获得去噪图I_d。损失：L_denoising=L1(I_d, I_c)。"
+  },
+  {
+    "page": 6,
+    "phrase": "Neural Representation Normalization (NRN) to predict degradation to a uniform level",
+    "category": "method",
+    "note": "【NRN神经表示归一化】每个像素p与其空间坐标C和特征嵌入E输入解码函数F_MLP：I_NR(p)=F_MLP(C_p, E_p)。NRN将不同退化水平统一预处理→编码器-解码器增强模块可在统一条件下工作→适应多样化低光条件。"
+  },
+  {
+    "page": 6,
+    "phrase": "cosine similarity between these vectors is computed to measure their differences",
+    "category": "method",
+    "note": "【CLIP文本引导监督】手动设计两个prompt：'高光图像'和'低光图像'。训练鼓励图像向量与'高光图像'prompt相似、与'低光图像'prompt不相似。L_CLIP=cos(Enc(I_L),Enc(T_H))-cos(Enc(I_L),Enc(T_L))。这是一种无配对监督的光照增强方法。"
+  },
+  {
+    "page": 6,
+    "phrase": "dual-condition trigger combining global brightness and residual noise variance",
+    "category": "method",
+    "note": "【双重条件触发机制】条件1：全局亮度μ_L<80(对齐文献中亮度<90为低光条件的标准，留余量避免轻微暗化触发)；条件2：残差噪声方差σ²_R>30(自然传感器噪声σ²_R通常<30，仅合成噪声和极端退化超出)。两个条件OR关系触发CLIP增强。"
+  },
+  {
+    "page": 7,
+    "phrase": "ATE of 0.24 cm, outperforming the strongest baseline by approximately 50%",
+    "category": "result",
+    "note": "【干净Replica跟踪结果Table I】RoGER-SLAM平均ATE 0.24 cm → 比SplaTAM 0.36 cm提升50%，所有8个序列中7个达到第一或第二。办公室序列Of3仅0.15 cm。验证在干净条件下SP-RoFusion已带来显著提升。"
+  },
+  {
+    "page": 8,
+    "phrase": "ATE of 4.79 cm across five sequences, reducing error relative to SplaTAM by more than 12%",
+    "category": "result",
+    "note": "【干净TUM跟踪结果Table II】RoGER-SLAM平均ATE 4.79 cm vs SplaTAM 5.48 cm(提升12%)，fr2/xyz仅1.21 cm(fr2/xyz通常认为简单，但在此序列上RoGER-SLAM仍最佳)。fr1/desk和fr3/off均达各方法最低ATE。"
+  },
+  {
+    "page": 9,
+    "phrase": "PSNR drop of only 0.55 dB vs SplaTAM 1.48 dB",
+    "category": "result",
+    "note": "【自然噪声鲁棒性Table III】office3场景：RoGER-SLAM PSNR下降仅0.55 dB vs SplaTAM 1.48 dB。无需CLIP模块即可抵抗轻度传感器噪声。Poisson-Gaussian噪声建模更接近真实RGB-D传感器噪声特性。"
+  },
+  {
+    "page": 1,
+    "phrase": "50% improvement in tracking performance on clean Replica data and a 91% improvement under noisy and low-light conditions",
+    "category": "result",
+    "note": "【关键量化结果总结】干净条件ATE提升50%(0.24 vs 0.36 cm)；噪声+低光复合退化ATE提升91%(0.60 vs 6.82 cm)。SplaTAM从干净0.36 cm退化到6.82 cm(恶化19倍)，RoGER-SLAM仅从0.24到0.60 cm。"
+  },
+  {
+    "page": 2,
+    "phrase": "primarily target scene dynamics rather than photometric degradations",
+    "category": "limitation",
+    "note": "【与动态SLAM的区分】DG-SLAM和WildGS-SLAM针对场景动态(运动物体)而非光度退化(噪声+低光)。RoGER-SLAM是首个专门针对光度退化设计鲁棒性的3DGS-SLAM系统，与动态SLAM方法互补。"
+  },
+  {
+    "page": 1,
+    "phrase": "compounded degradations that degrade mapping and tracking performance",
+    "category": "limitation",
+    "note": "【问题定义——复合退化】噪声+低光同时出现时产生复合效应：噪声破坏高频外观→低光减少可用光度信息→两者耦合导致跟踪不稳定和建图质量下降。现有3DGS-SLAM缺乏对此场景的专门设计。"
+  },
+  {
+    "page": 6,
+    "phrase": "SP-RoFusion pipeline can already reconstruct reliable geometry",
+    "category": "design_decision",
+    "note": "【选择性激活的设计原因】在正常或仅轻微噪声场景下，SP-RoFusion已能重建可靠几何和满意视觉结果→因此CLIP增强仅在复合退化条件下触发，避免正常场景冗余计算。条件触发平衡鲁棒性与效率。"
+  },
+  {
+    "page": 4,
+    "phrase": "structural cues such as edges and geometric discontinuities play a crucial role",
+    "category": "design_decision",
+    "note": "【为何融合边缘信息】边缘和几何不连续性在保持场景完整性和引导准确几何重建中起关键作用。通过边缘增强伪目标引入结构感知监督→强制执行空间正则化→提升挑战区域的收敛稳定性。噪声和低光条件下结构信息尤为珍贵。"
+  },
+  {
+    "page": 5,
+    "phrase": "static color-to-depth weighting is not guaranteed to generalize across diverse scenes",
+    "category": "design_decision",
+    "note": "【为何需要自适应权重】不同场景纹理丰富度、深度范围、噪声条件差异大→固定颜色-深度权重无法泛化。动态重加权机制根据当前残差大小自动调节→纹理丰富场景颜色权重增大、弱纹理场景深度权重增大。"
+  },
+  {
+    "page": 1,
+    "phrase": "real-world sequences show that RoGER-SLAM consistently improves trajectory accuracy",
+    "category": "result",
+    "note": "【真实世界验证】UGV平台搭载Intel RealSense D435i+RTK，RoGER-SLAM产生更干净RGB/深度渲染和更完整几何一致地图。验证方法从仿真退化到真实传感器数据的迁移能力。"
+  },
+  {
+    "page": 7,
+    "phrase": "Poisson–Gaussian model of image sensor noise",
+    "category": "method",
+    "note": "【噪声建模——Poisson-Gaussian过程】光子散粒噪声模拟为依赖于信号强度的Poisson过程，读出噪声建模为加性高斯扰动。散粒噪声方差3×10⁻⁴~5×10⁻⁴/通道，读出噪声方差3×10⁻⁵。相比简单高斯扰动，此建模更好捕获真实传感器的异方差和信号依赖特性。"
+  },
+  {
+    "page": 6,
+    "phrase": "τ_L = 80 and τ_N = 30 in our implementation",
+    "category": "method",
+    "note": "【触发阈值设定】低光阈值τ_L=80（对齐文献中<90为低光条件的标准，提供余量避免轻微暗化触发），噪声阈值τ_N=30（自然传感器噪声σ²_R通常<30，仅合成噪声和极端退化超出）。基于DND数据集的真实传感器噪声统计设定。"
+  },
+  {
+    "page": 2,
+    "phrase": "CLIP-based enhancement module that is conditionally triggered",
+    "category": "design_decision",
+    "note": "【条件触发设计】双重判断(µ_L<80 OR σ²_R>30)→仅极端退化时激活。冻结CLIP编码器(去噪分支)提供失真不变特征无需额外训练；NRN+CLIP文本监督(低光增强分支)在无配对数据下训练。"
+  }
+]

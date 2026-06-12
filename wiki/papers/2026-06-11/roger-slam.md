@@ -136,3 +136,10 @@ RoGER-SLAM是首个针对**光度退化**（噪声、低光）而非**场景动�
 - [[papers/2026-06-11/add-slam]] — 互补方向：动态物体鲁棒性
 - [[papers/2026-05-21/wildgs-slam]] — 互补方向：不确定性感知动态SLAM
 - [[papers/2026-06-02/up-slam]] — 互补方向：并行架构动态SLAM
+
+## 标注状态
+---
+annotated: true
+annotation_date: 2026-06-12
+annotated_pdf: raw/papers/RoGER-SLAM A Robust Gaussian Splatting SLAM System for Noisy and Low-light Environment Resilience_annotated.pdf
+---
