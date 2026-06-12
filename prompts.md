@@ -416,3 +416,102 @@ Auto git sync.
 ```
 
 三个输出文件定位不同：论文整理是给自己的详细笔记，工程简报是对外沟通用的精简版，方法谱系是做技术选型或找研究方向时用的全景图。
+
+
+## 批量标注
+
+```
+Read wiki/papers/_reading-log.md.
+Find all papers read on [日期, e.g. 2026-06-11].
+
+For each paper found, run the full annotation pipeline:
+
+STEP 1 — CHECK PREREQUISITES
+For each paper:
+- Confirm wiki/papers/YYYY-MM-DD/论文名.md exists (deep-read done)
+- Confirm raw/papers/论文名.pdf exists
+- If PDF missing or encrypted: log to output/待获取PDF列表.md, skip
+- If PDF over 25MB: run python scripts/compress_pdf.py first
+
+STEP 2 — GENERATE ANNOTATIONS JSON
+Read the paper's wiki page wiki/papers/YYYY-MM-DD/论文名.md.
+Read the corresponding PDF.
+
+Generate raw/papers/论文名_annotations.json with TWO types:
+
+Type A — Body text highlights:
+{
+  "page": N,
+  "phrase": "exact phrase under 10 words",
+  "category": "core_contribution | method | result | limitation",
+  "note": "【模块/机制名】功能描述 + 与其他模块关联 + 设计原因，2-3句"
+}
+
+Coverage requirements for body text:
+- Every named module or component → at least one highlight
+- Every "because / due to / in order to" clause → highlight
+  (these explain design decisions, highest priority)
+- Every quantitative result → highlight
+- Loss function mentions → highlight
+- Frozen vs trained component distinctions → highlight
+
+Type B — Architecture figure caption decomposition:
+For every figure with system overview or architecture diagram,
+decompose the caption into individual claims.
+For each claim:
+{
+  "page": N,
+  "phrase": "exact phrase under 10 words from caption",
+  "category": "module | dataflow | design_decision | loss | frozen_component",
+  "note": "【模块名】功能 + 输入输出 + 与其他模块关联 + 对应图中位置/颜色，2-3句"
+}
+
+Coverage requirements for captions:
+- Every named module in the diagram
+- Every input/output relationship
+- Every design decision clause
+- Frozen vs trained distinctions from legend
+
+STEP 3 — RUN ANNOTATION SCRIPT
+python scripts/annotate_pdf.py \
+  raw/papers/论文名.pdf \
+  raw/papers/论文名_annotations.json
+
+Confirm output saved to raw/papers/论文名_annotated.pdf
+
+STEP 4 — UPDATE WIKI PAGE
+Update wiki/papers/YYYY-MM-DD/论文名.md:
+Add or update ## 标注状态 section:
+---
+annotated: true
+annotation_date: [today]
+annotated_pdf: raw/papers/论文名_annotated.pdf
+---
+
+STEP 5 — CLEANUP
+If a compressed PDF was created in STEP 1,
+delete raw/papers/论文名_compressed.pdf after annotation.
+
+Auto git sync after each paper completes.
+
+FINAL REPORT:
+| 论文 | 状态 | highlights数 | margin notes数 | 输出文件 |
+|------|------|------------|--------------|---------|
+Report total: N papers annotated / M skipped (reason).
+```
+
+---
+
+### 使用方式
+
+日期填好直接发，Claude Code 会自动从 `_reading-log.md` 找到当天读的所有论文，逐篇走完整个标注流水线，不需要手动指定论文名。
+
+如果只想标注某几篇而不是某天全部，把第一行改成：
+
+```
+Process annotation pipeline for the following papers:
+1. 论文名A
+2. 论文名B
+```
+
+其余步骤完全不变。
