@@ -180,3 +180,10 @@ Waymo ATE相对OpenGS-SLAM降低28.2%，PSNR提升1.39 dB。在低视差长直�
 - [[papers/mono-gs]] — 纯RGB 3DGS-SLAM基线方法
 - [[papers/2026-06-11/varsplat]] — 互补：VarSplat处理测量不确定性，TVG-SLAM处理几何约束
 - [[papers/2026-06-11/taming-the-light]] — 互补：Taming the Light处理光照不变性，TVG-SLAM通过几何绕过光照问题
+
+## 标注状态
+---
+annotated: true
+annotation_date: 2026-06-12
+annotated_pdf: raw/papers/TVG-SLAM Robust Gaussian Splatting SLAM with Tri-view Geometric Constraints_annotated.pdf
+---

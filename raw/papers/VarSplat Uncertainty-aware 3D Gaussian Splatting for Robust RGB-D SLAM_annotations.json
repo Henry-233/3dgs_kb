@@ -1,0 +1,92 @@
+[
+  {
+    "page": 1,
+    "phrase": "learns per-splat appearance variance. By using the law of total variance with alpha compositing",
+    "category": "core_contribution",
+    "note": "【核心创新——外观方差作为一等量】为每个3D高斯学习外观方差σ²∈ℝ³→通过全方差定律Var[X]=E[Var[X|Z]]+Var(E[X|Z])推导出单pass可微逐像素不确定性渲染：V=Σw_i(σ²_i+c²_i)-(Σw_i c_i)²。V与颜色/深度共享同一次光栅化pass→零额外渲染开销。这是首个在3DGS-SLAM中显式建模外观不确定性的系统。"
+  },
+  {
+    "page": 1,
+    "phrase": "uncertainty map guides tracking, submap registration, and loop detection",
+    "category": "core_contribution",
+    "note": "【不确定性三级位姿估计】(1)跟踪：ṽ_p加权L1光度损失，仅高不透明度像素(>0.99)；(2)子图配准：ṽ_p加权配准损失定位查询关键帧；(3)回环检测：不透明度比率调制子图相似度r=Σṽ_s αⱼ/Σαⱼ→高不确定性子图更难匹配→减少假阳性回环。"
+  },
+  {
+    "page": 1,
+    "phrase": "first 3DGS-SLAM system to learn per-splat appearance variance and render per-pixel uncertainty in online setting",
+    "category": "core_contribution",
+    "note": "【首创性声明】VarSplat是首个将外观不确定性作为一等量(first-class quantity)显式建模的3DGS-SLAM系统。区别于CG-SLAM(深度方差)、WildGS-SLAM(预训练DINOv2预测器)和UncLe-SLAM(几何不确定性)。从光栅化过程内部在线学习方差→无需额外网络或采样。"
+  },
+  {
+    "page": 2,
+    "phrase": "appearance uncertainty that directly reflects instability in 3DGS rendering",
+    "category": "method",
+    "note": "【外观不确定性的物理含义】σ²与几何协方差Σ不同：Σ定义高斯在3D空间的空间范围；σ²编码该高斯在不同视角下外观颜色的一阶不确定性→即使SH正确建模了平均颜色，实际观测仍因遮挡变化/反射方向变化/深度不连续处透射率权重突变而产生方差。深度不连续/遮挡边界处方差自然较大。"
+  },
+  {
+    "page": 3,
+    "phrase": "V = Σ w_i(σ²_i + c²_i) - (Σ w_i c_i)²",
+    "category": "method",
+    "note": "【不确定性渲染公式Eq.9】两项分解：第一项Σw_i(σ²_i+c²_i)=每个高斯贡献的条件方差的加权平均+颜色二阶矩；第二项(Σw_i c_i)²=不同高斯之间颜色均值的方差。合并后在单次光栅化中同时获得颜色C/深度D/不确定性V→零额外渲染开销。w_i=T_i·α_i为标准Alpha合成权重。"
+  },
+  {
+    "page": 4,
+    "phrase": "L_var = (1/(2V))(‖Î-I‖²₂ + ‖D̂-D‖²₂) + log(V)",
+    "category": "loss",
+    "note": "【方差学习损失——高斯负对数似然】使用MSE(高斯NLL)而非L1监督方差→L1导致不一致估计。梯度∂L_var/∂V=-(‖Î-I‖²+‖D̂-D‖²)/(2V²)+1/V→残差大→V增大(不确定性上升)；残差小→V减小(置信度提升)。log(V)正则化防止V发散到0。通过链式法则∂V/∂σ²_i=w_i回传到每个高斯。"
+  },
+  {
+    "page": 4,
+    "phrase": "Figure 2: VarSplat architecture",
+    "category": "dataflow",
+    "note": "【系统架构图Figure 2】RGB-D输入→建图阶段：每个3D高斯联合学习位置/外观/方差σ²→通过可微光栅化器将逐高斯方差合成为逐像素不确定性V→跟踪阶段：V作为置信度加权→子图配准：V加权配准→回环检测：σ²调制子图相似度。全流程不确定性感知。"
+  },
+  {
+    "page": 4,
+    "phrase": "median-of-log scaling to convert V and σ² to confidence weights between 0 and 1",
+    "category": "method",
+    "note": "【中值中心对数缩放】ṽ=median_Ω(log(V))→置信度权重w̃_p=exp[-(log V-Ṽ)/τ]。大于中位数的方差→权重<1；小于中位数的方差→权重趋向1。τ控制权重锐度。对数缩放比线性缩放更鲁棒→抑制异常大方差值的影响。"
+  },
+  {
+    "page": 4,
+    "phrase": "loop detection: r = (Σ w̃_s αⱼ)/(Σ αⱼ)",
+    "category": "method",
+    "note": "【不确定性感知回环检测】不透明度比率调制子图相似度：r=Σṽₛαⱼ/Σαⱼ→r高表示子图中可靠外观信息多→r低表示高不确定性。最终相似度=cross_sim⊙(r_q·r_db)→使高不确定性子图更难匹配→减少假阳性回环。"
+  },
+  {
+    "page": 4,
+    "phrase": "L_map = λ_color·L_color + λ_depth·L_depth + λ_reg·L_reg + λ_var·L_var",
+    "category": "loss",
+    "note": "【建图总损失】颜色损失L_color=(1-λ_SSIM)L1+λ_SSIM(1-SSIM)、深度损失L_depth=L1(D̂-D)、正则化损失L_reg=‖ŝ-s‖₁(控制高斯尺度)、方差损失L_var(高斯NLL)。λ_var控制不确定性学习强度，平衡建图精度与方差估计质量。"
+  },
+  {
+    "page": 2,
+    "phrase": "ATE 0.23 cm on Replica, ATE 1.69 cm on ScanNet++, ATE 3.20 cm on TUM-RGBD",
+    "category": "result",
+    "note": "【跟踪结果汇总】Replica ATE 0.23 cm(平均最佳，比现有方法提升约10%)；ScanNet++ ATE 1.69 cm(比次优提升18%，SplaTAM在长序列失败达443.10 cm)；TUM-RGBD ATE 3.20 cm(纯3DGS方法最佳)。多数据集验证不确定性引导的鲁棒性。"
+  },
+  {
+    "page": 4,
+    "phrase": "single-pass rasterization efficiency",
+    "category": "method",
+    "note": "【单pass效率】V与C和D在单次光栅化中同时计算→零额外渲染pass开销。3DGS的Alpha合成天然支持全方差定律的逐项累加→每个高斯仅需额外存储3个σ²参数(RGB各一)→增加的计算和显存开销极小。"
+  },
+  {
+    "page": 1,
+    "phrase": "measurement reliability is rarely modeled explicitly",
+    "category": "limitation",
+    "note": "【现有方法局限】现有3DGS-SLAM对所有像素等权对待→低纹理区域(白墙)/深度不连续处/透明反射表面→光度观测可靠性差异巨大。CG-SLAM建模深度方差(几何侧)、WildGS-SLAM依赖预训练DINOv2(不可在线学习)、VarSplat在外观侧建模不确定性(从光栅化过程内部导出)。"
+  },
+  {
+    "page": 4,
+    "phrase": "variance learning from scratch, jointly optimizing them with appearance and geometry during mapping",
+    "category": "design_decision",
+    "note": "【端到端在线学习设计】σ²与标准3DGS参数(µ,Σ,α,s,c)一起端到端优化→跟踪时冻结方差参数(停止ṽ_p梯度)→建图时通过L_var联合更新。与WildGS-SLAM的预训练MLP预测器不同→VarSplat的方差从零开始学习，自适应场景特性。"
+  },
+  {
+    "page": 3,
+    "phrase": "depth discontinuities or occlusion boundaries lead to inconsistent color observations",
+    "category": "design_decision",
+    "note": "【为何深度不连续处方差大】小视角变化即可改变重叠高斯的可见性和alpha权重→颜色观测不一致→外观方差大。VarSplat通过σ²显式建模这种不确定性→在图1中可视化展示方差图在遮挡边界/反射表面自然呈现高值。"
+  }
+]

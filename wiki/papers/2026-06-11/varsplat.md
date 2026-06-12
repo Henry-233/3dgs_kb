@@ -151,3 +151,10 @@ VarSplat区别于CG-SLAM（建模深度方差而非外观方差）和WildGS-SLAM
 - [[papers/2026-05-07/3d-gaussian-splatting]] — 3DGS基础方法
 - [[papers/2026-05-21/wildgs-slam]] — 不确定性用于动态检测（预训练DINOv2），VarSplat用于跟踪加权（在线学习方差）
 - [[papers/2026-06-11/roger-slam]] — 互补：RoGER-SLAM用CLIP处理传感器退化，VarSplat用方差处理测量可靠性
+
+## 标注状态
+---
+annotated: true
+annotation_date: 2026-06-12
+annotated_pdf: raw/papers/VarSplat Uncertainty-aware 3D Gaussian Splatting for Robust RGB-D SLAM_annotated.pdf
+---

@@ -1,0 +1,110 @@
+[
+  {
+    "page": 1,
+    "phrase": "dense tri-view matching module that aggregates reliable pairwise correspondences into consistent tri-view matches",
+    "category": "core_contribution",
+    "note": "【稠密三视图匹配模块】使用DUST3R生成成对对应关系→通过共享中间关键帧的桥接策略聚合成三视图匹配(p_{k-1},p_k,p_t)。三视图验证天然滤除不一致的误匹配，提供至少两个独立pointmap的几何冗余→增强后续跟踪和建图的鲁棒性。"
+  },
+  {
+    "page": 1,
+    "phrase": "Hybrid Geometric Constraints, which combine photometric loss with trifocal-based 2D reprojection and 3D alignment losses",
+    "category": "core_contribution",
+    "note": "【混合几何跟踪】L_track=λ_p L_photo+λ_2D L_2D+λ_3D L_3D。光度损失(L1+SSIM)+三焦张量2D重投影约束(极线传输公式最小化几何距离)+3D对齐损失(直接点-点3D约束)。三焦约束在退化运动(共线轨迹/低视差)下仍有效→特别适合室外SLAM。"
+  },
+  {
+    "page": 1,
+    "phrase": "TUGI, a probabilistic initialization strategy that uses multi-view geometric uncertainty",
+    "category": "core_contribution",
+    "note": "【TUGI——不确定性引导高斯初始化】从三视图匹配的pointmap获取多个3D位置估计→计算各向同性方差σ²=1/(N-1)Σ‖X_i-X̄‖²→小σ²=高置信度/大σ²=低置信度。位置=候选3D坐标；颜色=三视图像素均值；协方差∝σ；不透明度α=α_base/(1+βσ²)随不确定性递减。"
+  },
+  {
+    "page": 1,
+    "phrase": "DART, which dynamically downweighs photometric cues when mapping lags",
+    "category": "core_contribution",
+    "note": "【DART——动态渲染信任衰减】在异步跟踪-建图架构中，建图延迟→渲染视图基于过期地图→光度监督不可靠。以距上一关键帧帧数∆N_f为地图陈旧度代理→λ_p用sigmoid函数平滑衰减：λ_p=w_min+(w_max-w_min)σ(k(∆N_f-N_m))。地图新→高光度权重；地图旧→自动转向几何约束。"
+  },
+  {
+    "page": 1,
+    "phrase": "heavy reliance on photometric rendering loss for camera tracking undermines their robustness",
+    "category": "limitation",
+    "note": "【问题动机——光度依赖的脆弱性】现有纯RGB 3DGS-SLAM(MonoGS/GS-SLAM)严重依赖光度渲染一致性→室外无界环境中光照剧变(阴影/云层/太阳角度)和大幅视角偏移导致光度假设频繁失效。TVG-SLAM通过三视图几何范式将'光度依赖'升级为'几何-光度协同'。"
+  },
+  {
+    "page": 3,
+    "phrase": "Fig. 2: The TVG-SLAM pipeline. Our system processes incremental RGB images by first building robust tri-view matches",
+    "category": "dataflow",
+    "note": "【系统架构图Figure 2】增量RGB图像→稠密三视图匹配(DUST3R成对匹配→桥接聚合为三视图匹配)→混合几何跟踪(光度+三焦2D重投影+3D对齐+DART动态权重)→不确定性引导建图(TUGI→高斯初始化→关键帧集成→全局优化)。三阶段紧密耦合，几何与光度协同。"
+  },
+  {
+    "page": 3,
+    "phrase": "trifocal tensor T from the relative camera poses",
+    "category": "method",
+    "note": "【三焦张量约束】由两关键帧位姿计算三焦张量T={T₁,T₂,T₃}(3个3×3矩阵)→通过极线传输公式l_t=Σp^i_{k-1}T_i p_k计算第三视图对应极线→最小化p_t到l_t的Huber几何距离。三焦约束提供比成对极线几何更强的几何可观测性——三视角交点唯一确定3D点位置。"
+  },
+  {
+    "page": 3,
+    "phrase": "L_3D provides a non-projective geometric constraint directly in 3D space",
+    "category": "method",
+    "note": "【3D对齐损失】从成对pointmap获取两个3D点(P_c从(I_k,I_t), P_p从(I_{k-1},I_k))→Procrustes对齐估计尺度因子s→最小化‖T_{cur→prev}(sP_c)-P_p‖²。这是显式点-点3D约束→与三焦2D约束互补→两者联合去除后ATE从0.870升至1.269(+45.9%)。"
+  },
+  {
+    "page": 4,
+    "phrase": "λ_p = w_min + (w_max - w_min)σ(k(∆N_f - N_m))",
+    "category": "method",
+    "note": "【DART权重衰减公式】λ_p为sigmoid递减函数→地图新(∆N_f小)→λ_p高→利用准确光度信息；地图旧(∆N_f大)→λ_p平滑衰减→系统自动转向不依赖地图的几何约束L_2D和L_3D。w_max=1.0, w_min=0.1, N_m=5, k=0.8。DART使RPE方差降低55.3%。"
+  },
+  {
+    "page": 3,
+    "phrase": "uncertainty score σ²_g as the isotropic variance of these estimates",
+    "category": "method",
+    "note": "【几何不确定性估计】从三视图匹配获取至少2个独立3D位置估计→变换到统一参考系→计算各向同性方差σ²=1/(N_valid-1)Σ‖X_i-X̄‖²。小σ²=三点map估计高度一致(高置信度)→大σ²=不一致(低置信度，可能遮挡/错误匹配)。"
+  },
+  {
+    "page": 4,
+    "phrase": "modulate the initial opacity as a decreasing function of variance",
+    "category": "design_decision",
+    "note": "【TUGI不透明度衰减的设计原因】α=α_base/(1+βσ²)→不可靠高斯(高不确定性)以低不透明度开始→抑制早期渲染伪影→给优化器更大灵活性(协方差更大)来纠正。可靠高斯(低不确定性)以高不透明度开始→快速收敛。这是不确定性感知初始化优于启发式方法的关键。"
+  },
+  {
+    "page": 5,
+    "phrase": "ATE 0.602 m, PSNR 25.38 on Waymo",
+    "category": "result",
+    "note": "【Waymo数据集结果Table I】TVG-SLAM平均ATE 0.602 m(相对OpenGS-SLAM 0.839降低28.2%), PSNR 25.38 dB(提升1.39 dB)。场景132384仅0.100 m ATE, PSNR 29.45 dB。长直道低视差场景纯光度方法严重漂移，三焦+3D约束提供稳定几何参考。"
+  },
+  {
+    "page": 6,
+    "phrase": "ATE 2.009 m on Cambridge Landmarks, reducing error by 69.0%",
+    "category": "result",
+    "note": "【Cambridge Landmarks结果Table III】TVG-SLAM平均ATE 2.009 m(vs OpenGS-SLAM 6.490 m, 降低69.0%), PSNR 16.47 dB。手持拍摄+剧烈运动+频繁光照变化→验证三视图几何约束在极端条件下的关键作用。"
+  },
+  {
+    "page": 6,
+    "phrase": "ATE 1.195 m, PSNR 18.78 on Small City",
+    "category": "result",
+    "note": "【Small City结果Table II】TVG-SLAM平均ATE 1.195 m(vs OpenGS-SLAM 3.481 m, 降低65.7%)。动态物体+光照变化场景→几何约束绕过外观不确定性，保持跟踪稳定。"
+  },
+  {
+    "page": 5,
+    "phrase": "w/o TUGI: ATE 1.203, PSNR 24.90",
+    "category": "result",
+    "note": "【消融实验——TUGI单个影响最大】去除TUGI→ATE从0.870升至1.203(+38.3%), PSNR从25.62降至24.90(-0.72 dB)。验证不确定性引导初始化比启发式方法显著提升建图质量和跟踪精度。"
+  },
+  {
+    "page": 5,
+    "phrase": "w/o DART: ATE 1.053",
+    "category": "result",
+    "note": "【消融——DART效果】去除DART→ATE从0.870升至1.053(+21.0%)；DART同时降低RPE方差55.3%。验证动态信任衰减机制在异步SLAM中应对建图延迟的有效性。"
+  },
+  {
+    "page": 5,
+    "phrase": "dense matching 400ms dominates runtime",
+    "category": "limitation",
+    "note": "【局限性——稠密匹配开销】DUST3R匹配耗时400ms占运行时间主导→限制实时性(虽可按需替换轻量替代)。无回环检测→长轨迹累积漂移。仅验证室外数据集→未在室内评估。依赖DUST3R预训练模型的泛化能力。"
+  },
+  {
+    "page": 1,
+    "phrase": "trifocal constraints remain effective under degenerate motions like collinear trajectories",
+    "category": "design_decision",
+    "note": "【为何使用三焦张量而非基本矩阵】成对极线几何在共线运动下退化(如Waymo长直道)→三焦约束需要三视图→提供更强几何可观测性→在低视差和共线轨迹下仍有效。这是选择三视图范式而非双视图的核心几何理由。"
+  }
+]

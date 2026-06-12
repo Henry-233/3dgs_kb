@@ -1,0 +1,116 @@
+[
+  {
+    "page": 1,
+    "phrase": "Intrinsic Appearance Normalization (IAN) module proactively disentangles the scene's intrinsic properties",
+    "category": "core_contribution",
+    "note": "【IAN模块——主动光照解耦】将连续反照率空间强制量化为4级离散palette：a'=⌊4a⌋·0.25+0.125，每通道约束到{0.125,0.375,0.625,0.875}(共4³=64种颜色)。量化作为强正则化器→强制网络将光照变化归因到光照因子l_i而非反照率a_i→从表示层面实现光照免疫。"
+  },
+  {
+    "page": 1,
+    "phrase": "Dynamic Radiance Balancing Loss (DRB-Loss) reactively handles frames with extreme exposure",
+    "category": "core_contribution",
+    "note": "【DRB-Loss——被动曝光补偿】SSIM门控检测(S<0.50判定为曝光帧)→引入可学习曝光参数(g,o)→对渲染图做仿射变换Iθ=g·I+o→L1对齐。正常帧DRB-Loss为零，不影响正常性能。仿射参数约束g∈[0.1,10], o∈[-0.2,0.2]，模拟真实相机曝光调节范围。"
+  },
+  {
+    "page": 1,
+    "phrase": "synergy between IAN's proactive invariance and DRB-Loss's reactive correction",
+    "category": "core_contribution",
+    "note": "【主动-被动协同】IAN提供前摄不变性(从表示层面防止光照编码)，DRB-Loss提供被动纠正(处理逐帧辐射度剧变)。消融实验验证协同效应：完整模型ATE 0.49cm/Depth 0.25cm/PSNR 33.03dB/mIoU 92.73%，四项指标全面优于各自单独使用。"
+  },
+  {
+    "page": 1,
+    "phrase": "explicitly model the final appearance color as the element-wise product of an intrinsic albedo and a transient illumination factor",
+    "category": "method",
+    "note": "【光照不变颜色表示】c_i=a_i⊙l_i，反照率a_i∈[0,1]³为光照不变的标准化颜色(材质本身)，光照因子l_i∈R⁺为可学习参数捕捉残余光照变化。此分解是IAN的数学基础——反照率与光照显式分离，替代标准3DGS的连续RGB+SH表示。"
+  },
+  {
+    "page": 1,
+    "phrase": "Fig. 1: The framework processes input frames by first disentangling albedo and illumination",
+    "category": "dataflow",
+    "note": "【系统架构图Figure 1】输入帧→IAN模块分离反照率与光照→相机跟踪(DRB-Loss处理曝光变化)→联合优化几何+外观+语义建图→输出高保真、光照鲁棒3D语义地图。跟踪使用光照不变反照率C_a(p)而非原始颜色→光照变化不影响位姿估计。"
+  },
+  {
+    "page": 2,
+    "phrase": "constrains each albedo channel to the set {0.125, 0.375, 0.625, 0.875}",
+    "category": "method",
+    "note": "【IAN量化效应】仅64种颜色覆盖所有可能反照率→连续RGB空间被极度压缩→网络无法将光照变化编码进反照率(容量不足)→被迫将光照变化归因到光照因子l_i。量化损失轻微但换取光照不变性。图2展示IAN前后对比。"
+  },
+  {
+    "page": 2,
+    "phrase": "S = SSIM(I_render, I_gt). If S falls below a threshold T_DRB",
+    "category": "method",
+    "note": "【DRB门控检测机制】SSIM对光照变化敏感——极端曝光时图像局部结构(边缘/纹理)显著偏离稳定光照假设下的渲染→SSIM下降→触发DRB。阈值T_DRB=0.50。门控确保仅在极端曝光帧激活补偿，正常光照零开销。"
+  },
+  {
+    "page": 2,
+    "phrase": "L_DRB = (1-S)·(λ_1·‖I^θ_render - I_gt‖_1 + λ_2·‖∇I^θ_render - ∇I_gt‖_1)",
+    "category": "loss",
+    "note": "【DRB损失公式】由结构差异(1-S)加权→SSIM越低(曝光越严重)→光度监督越强。包含L1光度项和梯度差项→同时保持颜色和结构保真度。g和o约束在[0.1,10]和[-0.2,0.2]内→模拟真实相机曝光调节操作范围。"
+  },
+  {
+    "page": 3,
+    "phrase": "L_tracking = λ_D·‖D(p)-D_gt‖_1 + λ_C·‖C_a(p)-C_gt‖_1 + λ_S·‖S(p)-S_gt‖_1 + λ_DRB·I(S<T_DRB)·L_DRB",
+    "category": "loss",
+    "note": "【跟踪损失——关键创新】使用IAN产生的内在反照率C_a(p)(而非原始渲染颜色)与GT比较→跟踪匹配基于光照不变的材质外观→极端光照下位姿估计不受颜色漂移影响。条件DRB仅在S<0.50激活。位姿初始化采用匀速运动模型。"
+  },
+  {
+    "page": 3,
+    "phrase": "two-stage filtering process for keyframe selection: Geometry Filter and Semantic Filter",
+    "category": "method",
+    "note": "【两级关键帧过滤】几何过滤器：计算地图点重投影比例η=Σ𝕀(is_in_view)/|G_map|→确保视觉重叠充足。语义过滤器：丢弃与上一关键帧语义图相同的候选帧→促进信息多样性，防止冗余。"
+  },
+  {
+    "page": 3,
+    "phrase": "L_mapping = Σ(λ_D·‖D-D_gt‖_1 + λ_C·‖C-C_gt‖_1 + λ_S·L_CE(S,S_gt) + λ_DRB·I(S<T_DRB)·L_DRB)",
+    "category": "loss",
+    "note": "【建图损失组合】几何损失(L1深度)+外观损失(L1反照率颜色)+语义损失(交叉熵L_CE，比SSIM更适合分类)+条件DRB。跨关键帧联合优化所有高斯参数(μ,r,σ,a,l,s)。建图过程中动态稠密化和剪枝。"
+  },
+  {
+    "page": 4,
+    "phrase": "ATE RMSE on Replica from 0.45 cm to 0.34 cm",
+    "category": "result",
+    "note": "【Replica跟踪结果Table 1】IAN+DRB将ATE从SGS-SLAM的0.45 cm降至0.34 cm(降低24%)，超过所有对比方法(NICE-SLAM 1.07, ESLAM 0.63, SplaTAM 0.36, SGS-SLAM 0.45)。R0场景仅0.25 cm。"
+  },
+  {
+    "page": 4,
+    "phrase": "mIoU of 92.69%, which is on par with the state-of-the-art SGS-SLAM (92.72%)",
+    "category": "result",
+    "note": "【语义分割结果Table 3】mIoU 92.69%与SGS-SLAM 92.72%可比，在保持光照鲁棒性前提下维持语义精度。Of0场景93.10%为最佳。验证了光照不变几何基础为语义特征提取提供干净稳定输入。"
+  },
+  {
+    "page": 4,
+    "phrase": "Baseline + IAN: ATE from 0.46 to 0.36 cm, Depth L1 from 0.50 to 0.36 cm",
+    "category": "result",
+    "note": "【消融——IAN效果Table 4】IAN单独：ATE从0.46降至0.36 cm(提升22%)，深度L1从0.50降至0.36 cm。PSNR轻微下降(32.41→32.22，量化损失)，mIoU略降(92.69→92.40)。验证量化正则化对跟踪和几何精度有显著增益。"
+  },
+  {
+    "page": 4,
+    "phrase": "Full Model achieves best performance across the board, reaching the lowest tracking error (0.25 cm)",
+    "category": "result",
+    "note": "【消融——完整模型Table 4】IAN+DRB协同：ATE 0.49 cm持平最佳，深度L1 0.25 cm(提升46%)，PSNR 33.03 dB(+0.62 dB)，mIoU 92.73%(+0.04%)。验证主动-被动策略的协同效应。"
+  },
+  {
+    "page": 1,
+    "phrase": "bake transient lighting effects into the scene's color representation",
+    "category": "limitation",
+    "note": "【问题动机——瞬态光照烘焙】标准3DGS直接优化连续RGB值→瞬态光照效应被'烘焙'进场景颜色表示→不同光照条件下渲染不一致→光度一致性假设被破坏→跟踪失败和建图伪影。IAN通过量化反照率空间强制解耦。"
+  },
+  {
+    "page": 1,
+    "phrase": "drastic changes in lighting can cause identical scene elements to appear dramatically different",
+    "category": "limitation",
+    "note": "【极端光照问题】阴影到阳光直射、相机自动曝光等因素使相同场景元素呈现截然不同的外观→光度一致性假设被破坏→优化过程受到污染→几何伪影+颜色不一致+跟踪失败。语义理解进一步受光照变化影响产生错误标签。"
+  },
+  {
+    "page": 2,
+    "phrase": "constrained to [0.1, 10] and [−0.2, 0.2] respectively, mimicking the operational range of real camera adjustments",
+    "category": "design_decision",
+    "note": "【仿射参数约束设计】g∈[0.1,10]和o∈[-0.2,0.2]模拟真实相机曝光调节的操作范围。约束防止DRB-Loss过度补偿(如将黑色渲染图拉亮模拟过曝)→确保仿射变换物理合理。这是被动纠正不损害几何一致性的关键设计。"
+  },
+  {
+    "page": 1,
+    "phrase": "coarse quantization: only 64 colors",
+    "category": "limitation",
+    "note": "【局限性——粗粒度量化】仅4级per-channel量化(64种颜色)→丢失精细材质信息→不适合高保真外观要求。DRB简单仿射模型无法处理空间变化曝光(角落过暗/窗边过亮)。仅验证室内场景(Replica+ScanNet)。"
+  }
+]
