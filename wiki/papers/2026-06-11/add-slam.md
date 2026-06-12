@@ -121,3 +121,10 @@ $$\bm{G}_d^{id}(t) = \{(\mu_i^t, \Sigma_i^t, o_i^t, h_i^t)\}$$
 - [[concepts/differentiable-rendering]] — 可微渲染管线
 - [[papers/2026-05-21/wildgs-slam]] — 主要对比方法：不确定性感知动态SLAM
 - [[papers/2026-06-02/up-slam]] — 同期工作：并行跟踪建图的动态SLAM
+
+## 标注状态
+---
+annotated: true
+annotation_date: 2026-06-12
+annotated_pdf: raw/papers/ADD_SLAM_annotated.pdf
+---

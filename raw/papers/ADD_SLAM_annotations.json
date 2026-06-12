@@ -1,0 +1,224 @@
+[
+  {
+    "page": 1,
+    "phrase": "dynamic objects introduce critical challenges by disrupting scene consistency",
+    "category": "core_contribution",
+    "note": "【问题定义】动态物体破坏场景一致性，导致跟踪漂移和建图伪影。这是ADD-SLAM的核心动机——所有后续设计都围绕恢复场景一致性展开。"
+  },
+  {
+    "page": 1,
+    "phrase": "adaptive dynamic identification mechanism grounded in scene consistency analysis",
+    "category": "core_contribution",
+    "note": "【场景一致性分析模块】通过比较实时观测与历史地图的几何和纹理差异来检测动态。这是ADD-SLAM的核心创新——无需预定义语义类别先验，类别无关地自适应发现场景动态。"
+  },
+  {
+    "page": 1,
+    "phrase": "dynamic-static separation mapping strategy that constructs a temporal Gaussian model",
+    "category": "core_contribution",
+    "note": "【时序高斯动态建模模块】不同于现有方法直接丢弃动态物体，ADD-SLAM为每个动态物体构建时序高斯模型G_d^{id}(t)，实现在线增量动态建模。与静态高斯Gs组合渲染G_all(t)=Gs∪{G_d^{id}(t)}。"
+  },
+  {
+    "page": 2,
+    "phrase": "uncertainties in dynamic object boundaries remain prone to ambiguity",
+    "category": "limitation",
+    "note": "【WildGS-SLAM局限性——边界模糊】不确定性感知方法在动态物体边界处存在歧义，且短序列时不确定性网络训练不充分。ADD-SLAM通过显式的颜色+几何不一致性检测规避此问题。"
+  },
+  {
+    "page": 2,
+    "phrase": "how to track and model dynamic objects. Dynamic information is crucial",
+    "category": "method",
+    "note": "【动态建模动机】动态信息对智能机器人感知和交互至关重要。现有方法通常直接过滤动态物体仅构建静态地图，ADD-SLAM是首个在3DGS-SLAM中同时跟踪和建模动态物体的系统。"
+  },
+  {
+    "page": 2,
+    "phrase": "category-agnostic adaptive recognition of dynamic objects without requiring semantic priors",
+    "category": "method",
+    "note": "【类别无关自适应识别】通过场景一致性分析检测运动引起的渲染-观测不一致，而非依赖预定义语义类别。使得气球、箱子等非标准动态类别也能被检测。"
+  },
+  {
+    "page": 3,
+    "phrase": "static map initialization using the first frame",
+    "category": "method",
+    "note": "【第一帧初始化】首帧RGB-D根据内参和初始位姿重建为点云，初始化为3D高斯椭球体Gs={(μ_i, Σ_i, o_i, h_i)}。注意：不要求首帧完全静态——后续帧中物体运动时会被检测和分离。"
+  },
+  {
+    "page": 4,
+    "phrase": "comparing the rendered image with the observed image, inconsistencies in the scene can be detected",
+    "category": "method",
+    "note": "【场景一致性分析核心原理】高斯地图由历史观测构建。场景静态时渲染与观测一致；物体运动时历史地图未及时更新，导致不一致。同时考虑颜色(I_err)和几何(D_err)两种不一致。"
+  },
+  {
+    "page": 4,
+    "phrase": "I_{err} = \\lVert I - \\hat{I}\\rVert_2, \\quad D_{err} = \\lVert D -\\hat{D}\\rVert_1",
+    "category": "method",
+    "note": "【不一致性计算公式】颜色不一致用L2范数(对光照变化敏感)，几何不一致用L1范数(对深度异常值鲁棒)。联合阈值τ_I=20·median(I_err)，τ_D=20·median(D_err)得到不一致区域M_ic。"
+  },
+  {
+    "page": 5,
+    "phrase": "new occlusion caused by the dynamic object in the background will make the observed depth smaller",
+    "category": "method",
+    "note": "【动态区域定位——深度方向区分】动态物体遮挡背景→观测深度<渲染深度；新暴露背景→观测深度>渲染深度。这是区分真正动态区域和视点变化引起的新暴露背景的关键：M_ic^d = M_ic ∩ ((D-D̂)<0)。"
+  },
+  {
+    "page": 5,
+    "phrase": "center of the inconsistent region as a prompt input for MobileSAM",
+    "category": "method",
+    "note": "【MobileSAM精细分割】以不一致区域内切圆中心作为点提示输入MobileSAM f_θ，获得完整动态物体掩码M_d。由于帧间间隔1/30s，运动引起的不一致区域仅为物体一小部分→点提示足以引导完整分割。"
+  },
+  {
+    "page": 5,
+    "phrase": "previously recognized objects do not require inconsistency re-detection",
+    "category": "method",
+    "note": "【2D动态跟踪机制】每个动态物体分配唯一id及mask和中心。后续帧无需重复不一致检测——以物体中心为提示直接由MobileSAM更新mask。跟踪终止条件：中心距图像边界<4%、mask面积增长>1.5×、中心移动>20%视野。"
+  },
+  {
+    "page": 2,
+    "phrase": "Figure 1: ADD-SLAM. Given RGB-D stream, our method achieves precise camera pose tracking",
+    "category": "dataflow",
+    "note": "【系统概览图Figure 1】输入RGB-D流→输出相机位姿+动态-静态组合地图。展示自适应分割任意类别动态物体、动态跟踪建图、高质量动态-静态分离渲染结果。"
+  },
+  {
+    "page": 4,
+    "phrase": "Figure 2: Overview of ADD-SLAM. The input RGB-D stream is first used to initialize the static map",
+    "category": "dataflow",
+    "note": "【系统架构图Figure 2】完整管线：RGB-D输入→首帧初始化静态地图→自适应动态分割与跟踪（一致性分析→动态定位→MobileSAM分割→2D跟踪序列）→动态-静态分离（从原静态地图中滤除动态高斯）→相机跟踪（排除动态区域+关键帧DBA）→动态-静态组合建图（静态插入与优化+时序高斯动态建图）。"
+  },
+  {
+    "page": 5,
+    "phrase": "M_{track} = (\\neg M_d) \\cap (\\hat{O} > \\tau_{track})",
+    "category": "method",
+    "note": "【跟踪区域掩码】排除动态区域(M_d)且仅使用高不透明度区域(Ô>τ_track=0.7)。这确保跟踪仅依赖可靠的静态区域，避免动态物体干扰。"
+  },
+  {
+    "page": 5,
+    "phrase": "integrate a pre-trained optical flow model with Dense Bundle Adjustment Layer (DBA)",
+    "category": "method",
+    "note": "【关键帧DBA模块】集成Droid-SLAM的预训练光流模型和DBA层，优化关键帧位姿和深度。与WildGS-SLAM用不确定性图进行BA不同，ADD-SLAM用动态掩码过滤动态区域：代价函数中Σ_ij·¬M_d过滤动态干扰。"
+  },
+  {
+    "page": 6,
+    "phrase": "temporal Gaussian model to achieve online incremental dynamic modeling",
+    "category": "core_contribution",
+    "note": "【时序高斯动态模型】G_d^{id}(t)={(μ_i^t, Σ_i^t, o_i^t, h_i^t)}。每帧独立初始化和优化对应动态物体id的高斯椭球体。渲染公式与静态高斯相同（Alpha合成），但仅覆盖动态mask区域M_map^d=M_d∩M_v。"
+  },
+  {
+    "page": 6,
+    "phrase": "L_{map}^{static} = \\lambda_{color} L_{I} + \\lambda_{depth}L_{D} + \\lambda_{reg}L_{reg}",
+    "category": "loss",
+    "note": "【静态建图损失】L_I为L1+SSIM组合颜色损失，L_D为L1深度损失，L_reg为高斯尺度正则化(来自LoopSplat)。仅在M_map=(¬M_d)∩M_v有效区域计算。λ_color=1.0, λ_depth=1.0, λ_reg=1.0。"
+  },
+  {
+    "page": 7,
+    "phrase": "best results are highlighted as first, second, and third",
+    "category": "result",
+    "note": "【Bonn数据集跟踪结果Table 1】ADD-SLAM平均ATE 2.77 cm (S.D. 1.05)，优于WildGS-SLAM RGBD (2.88 cm)和DG-SLAM (5.45 cm)。SplaTAM因不处理动态物体达到77.6 cm。"
+  },
+  {
+    "page": 8,
+    "phrase": "our method achieves state-of-the-art performance in both static and dynamic scenarios",
+    "category": "result",
+    "note": "【TUM RGB-D跟踪结果Table 2】ADD-SLAM平均ATE 1.25 cm (S.D. 0.65)，略优于WildGS-SLAM† (1.32 cm)。动态场景(fr3/walk)和静态场景(fr1)均达到SOTA。"
+  },
+  {
+    "page": 8,
+    "phrase": "PSNR 22.41 dB",
+    "category": "result",
+    "note": "【Bonn渲染质量Table 3】ADD-SLAM平均PSNR 22.41 / SSIM 0.89 / LPIPS 0.26。vs SplaTAM (17.95/0.72/0.27)和MonoGS (20.64/0.77/0.35)。验证动态-静态组合渲染的优越性。"
+  },
+  {
+    "page": 8,
+    "phrase": "Dynamic Seg. 68.79 / Tracking 1025.39 / Mapping 1108.78",
+    "category": "result",
+    "note": "【运行时分析Table 4】动态分割68.79ms(比Rodyn-SLAM 278.66ms快4倍)，跟踪1025.39ms，建图1108.78ms。总运行时间与其他方法可比，但额外完成动态建图。"
+  },
+  {
+    "page": 9,
+    "phrase": "w/o dynamic detection 52.5",
+    "category": "result",
+    "note": "【消融实验Table 5】去掉动态检测→ATE从2.7升至52.5 cm (balloon)；用MaskDINO语义分割替代→5.5 cm (无法检测气球/箱子)；去掉关键帧DBA→3.3 cm。验证三个组件的必要性。"
+  },
+  {
+    "page": 9,
+    "phrase": "relies on mobileSAM to segment inconsistent regions",
+    "category": "limitation",
+    "note": "【局限性——MobileSAM依赖】复杂环境中MobileSAM的部分分割或过度分割会影响性能。图15展示三个失败案例：(a)部分分割 (b)过度分割 (c)深度估计不准确导致的误检。"
+  },
+  {
+    "page": 2,
+    "phrase": "we design a hybrid mapping approach that combines static and dynamic components",
+    "category": "core_contribution",
+    "note": "【动态-静态组合建图策略】与所有现有动态SLAM的关键区别：不丢弃动态物体而是建模它们。动态物体首次检测→从静态高斯图滤除→遮挡背景随物体运动逐渐填充→动态物体构建时序高斯模型。"
+  },
+  {
+    "page": 5,
+    "phrase": "T_t = \\arg\\min \\lambda_{track} \\sum M_{track}\\cdot\\lVert\\hat{I}-I\\rVert_1 + (1-\\lambda_{track})\\sum(M_{track}\\cap M_v)\\cdot\\lVert\\hat{D}-D\\rVert_1",
+    "category": "loss",
+    "note": "【跟踪损失】λ_track=0.6加权颜色L1与深度L1。仅在高不透明度(>0.7)静态区域(¬M_d)计算。深度损失额外要求M_v有效深度区域。逐帧优化100次迭代。"
+  },
+  {
+    "page": 9,
+    "phrase": "keyframe DBA can significantly improve tracking accuracy",
+    "category": "result",
+    "note": "【关键帧DBA效果】加入DBA层将ball_track ATE从6.9降至3.4 cm，mv_box2从7.4降至2.1 cm。DBA提供全局位姿一致性，弥补逐帧跟踪的累积漂移。"
+  },
+  {
+    "page": 17,
+    "phrase": "10× to 30× the error median",
+    "category": "method",
+    "note": "【阈值鲁棒性分析】误差分布呈长尾：静态区域误差小(分布头部)，动态区域误差显著大(分布尾部)。中位数20×作为阈值在10×-30×范围内动态掩码结果稳定，验证阈值选择的鲁棒性。"
+  },
+  {
+    "page": 1,
+    "phrase": "existing methods that employ semantic segmentation or object detection for dynamic identification and filtering typically rely on predefined categorical priors",
+    "category": "limitation",
+    "note": "【现有方法局限】基于语义分割/检测的方法依赖预定义类别先验→(1)无法处理未知动态类别 (2)可能误判静止的可移动类别物体(如静止的人/车)。ADD-SLAM通过场景一致性分析规避此问题。"
+  },
+  {
+    "page": 6,
+    "phrase": "MobileSAM to segment dynamic objects from the rendered images",
+    "category": "module",
+    "note": "【动态-静态分离模块】检测到动态物体后，从渲染图中用MobileSAM分割→利用深度图和相机内外参反投影获得动态点云→在原始静态高斯图中滤除对应区域的高斯椭球体。"
+  },
+  {
+    "page": 6,
+    "phrase": "M_{insert} = (\\neg M_d) \\cap M_v \\cap (\\hat{O} < \\tau_{map})",
+    "category": "method",
+    "note": "【高斯插入策略】在静态区域(¬M_d)、有效深度(M_v)、低不透明度(Ô<τ_map=0.8)处插入新高斯椭球体。插入后从关键帧集中选取关键帧优化静态地图，填补动态物体离开后的空洞。"
+  },
+  {
+    "page": 2,
+    "phrase": "occlusion caused by the view change is also contained in the mask",
+    "category": "limitation",
+    "note": "【DG-SLAM局限性】多视图深度warp掩码包含视点变化导致的遮挡噪声，无法区分真正的动态区域。ADD-SLAM通过深度方向((D-D̂)<0)解决此问题——仅观测深度小于渲染深度的像素为动态区域。"
+  },
+  {
+    "page": 5,
+    "phrase": "backtrack the frames before the detection of the dynamics",
+    "category": "method",
+    "note": "【时间一致性回溯】对于首帧就在视野内运动的物体(非从视野外进入)，回溯检测前的帧，确保时序上连贯的分割。这与逐帧独立检测的方法不同，保证了跨帧的时间一致性。"
+  },
+  {
+    "page": 4,
+    "phrase": "3D Gaussian ellipsoid G_s = {(\\mu_i, \\Sigma_i, o_i, h_i)}",
+    "category": "module",
+    "note": "【3D高斯表示】每个高斯椭球体包含：中心位置μ_i∈R³、协方差矩阵Σ_i∈R³×³、不透明度o∈R、球谐系数h∈R^{3(L+1)²}(L=0即仅直流分量)。通过Alpha合成公式(2)渲染颜色Ĉ、深度D̂和不透明度Ô。"
+  },
+  {
+    "page": 3,
+    "phrase": "dynamic objects disrupt scene consistency can lead to significant performance degradation or even complete failure",
+    "category": "limitation",
+    "note": "【3DGS-SLAM静态假设局限】现有3DGS-SLAM(SplaTAM, MonoGS, GS-SLAM)假设场景静态，动态物体导致性能严重退化甚至完全失败。这是ADD-SLAM解决的核心问题。"
+  },
+  {
+    "page": 9,
+    "phrase": "Limitation: Although our method has achieved remarkable performance, it relies on mobileSAM to segment inconsistent regions",
+    "category": "limitation",
+    "note": "【方法论局限总结】MobileSAM依赖性是最主要的局限性。此外，第一帧初始化为全静态地图(虽然后续可检测运动)，无独立回环检测模块，时序高斯模型长序列可能累积误差。"
+  },
+  {
+    "page": 18,
+    "phrase": "RGB error distribution analysis",
+    "category": "method",
+    "note": "【图11: RGB误差分布】红色虚线为中位数误差，黄色区域为10×-30×中位数范围。长尾分布验证了静态区域(分布头部)和动态区域(分布尾部)的可分性，为联合阈值设计提供统计依据。"
+  }
+]
