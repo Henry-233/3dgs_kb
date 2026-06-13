@@ -41,6 +41,7 @@
 - [[concepts/uncertainty-aware-tracking]] — 不确定性感知跟踪：利用逐像素不确定性图加权跟踪损失，使优化聚焦信息丰富区域
 - [[concepts/probabilistic-dynamic-segmentation]] — 概率动态分割：概率融合光流与深度不一致mask，无需训练的动态物体检测
 - [[concepts/generalizable-motion-model]] — 可泛化运动模型：FIFO帧管理+时序注意力学习动静态分离，无需语义标注或深度输入
+- [[concepts/uncertainty-aware-bundle-adjustment]] — 不确定性感知BA：多视图特征不一致性估计逐像素不确定性，作为可微BA权重实现动态场景鲁棒跟踪
 
 ### 传感器融合
 - [[concepts/multi-sensor-fusion]] — 多传感器融合SLAM：统一支持单目、RGB-D、LiDAR-惯性-视觉数据的通用高斯建图框架
@@ -71,6 +72,7 @@
 - [[papers/2026-05-21/pseudo-depth-meets-gaussian]] — Pseudo Depth (Zhao et al., arXiv 2025)：Feed-forward位姿预测替代测试时优化，跟踪时间减少90%
 - [[papers/2026-06-13/dy3dgs-slam]] — Dy3DGS-SLAM (Li et al., arXiv 2025)：首个纯单目RGB动态3DGS-SLAM，概率融合光流+深度mask检测动态区域
 - [[papers/2026-06-13/ggd-slam]] — GGD-SLAM (Liu et al., arXiv 2026)：可泛化运动模型+时序注意力机制，无需语义先验的动静态分离
+- [[papers/2026-06-13/droid-slam-in-the-wild]] — DROID-SLAM in the Wild (Li et al., CVPR 2026)：可微不确定性感知BA，多视图特征不一致性驱动，非3DGS动态SLAM对比基线
 
 ### 语言场
 - [[papers/2026-05-07/langsplat]] — LangSplat (Qin et al., CVPR 2024)：首个3D高斯语言场，CLIP+SAM分层语义，比LERF快199倍

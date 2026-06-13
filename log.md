@@ -1,5 +1,16 @@
 # Ingest Log
 
+## 2026-06-13 — Batch shallow ingest (1 paper, round 3)
+- Processed 1 newly added unlogged paper clip from raw/papers/
+- Created 1 new paper page: [[papers/2026-06-13/droid-slam-in-the-wild]]
+- Created 1 new concept stub:
+  - [[concepts/uncertainty-aware-bundle-adjustment]] — per-pixel uncertainty from multi-view feature inconsistency, differentiable BA weighting for dynamic scenes
+- Updated index.md
+- Updated [[output/待精读列表]] with 1 new paper
+
+### Papers ingested (shallow)
+- [[papers/2026-06-13/droid-slam-in-the-wild]] (DROID-SLAM in the Wild, CVPR 2026) — differentiable uncertainty-aware BA, multi-view feature inconsistency for per-pixel uncertainty, no predefined dynamic priors, ~10 FPS real-time
+
 ## 2026-05-07 — Initial ingest
 - Ingested 4 papers from raw/papers/
 - Created 12 concept pages in wiki/concepts/
