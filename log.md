@@ -114,6 +114,19 @@
 - Upgraded [[concepts/tri-view-geometric-constraints]] stub → full page with trifocal tensor details, vs pairwise geometry comparison table, TUGI uncertainty estimation formula
 - ⚠️ Annotation skipped: no annotate_pdf.py script found
 
+## 2026-06-13 — Batch shallow ingest (2 papers)
+- Processed 2 unlogged paper clips from raw/papers/
+- Created 2 new paper pages: [[papers/2026-06-13/dy3dgs-slam]], [[papers/2026-06-13/ggd-slam]]
+- Created 2 new concept stubs:
+  - [[concepts/probabilistic-dynamic-segmentation]] — probabilistic fusion of optical flow + depth masks for training-free dynamic detection
+  - [[concepts/generalizable-motion-model]] — FIFO frame management + sequential attention for dynamic/static separation without semantic priors
+- Updated index.md
+- Updated [[output/待精读列表]] with 2 new papers
+
+### Papers ingested (shallow)
+- [[papers/2026-06-13/dy3dgs-slam]] (Dy3DGS-SLAM, arXiv 2025) — first monocular-only RGB dynamic 3DGS-SLAM, probabilistic flow+depth mask fusion, motion loss
+- [[papers/2026-06-13/ggd-slam]] (GGD-SLAM, arXiv 2026) — generalizable motion model, FIFO+sequential attention, no semantic priors or depth needed
+
 ## 2026-06-11 — Cross-paper synthesis
 - Created [[synthesis/dynamic-slam-comparison]] comparing 3 papers addressing dynamic/robust 3DGS-SLAM
 - Created [[synthesis/robustness-dimensions]] — orthogonal robustness taxonomy (measurement/illumination/geometry) across VarSplat, Taming the Light, TVG-SLAM with combination matrix and unified uncertainty perspective
