@@ -1,5 +1,28 @@
 # Ingest Log
 
+## 2026-06-14 — Batch deep read (3 papers)
+- Deep-read 3 papers with `status: skimmed` from wiki/papers/
+- All 3 PDFs read in full detail, paper pages expanded with 核心方法/数学形式/与前作的区别/实验结论/局限性
+- Upgraded 3 concept stubs → full pages:
+  - [[concepts/probabilistic-dynamic-segmentation]] — Bayesian fusion of optical flow + depth masks for training-free dynamic detection
+  - [[concepts/generalizable-motion-model]] — FIFO queue + sequential attention for cross-frame motion semantics learning
+  - [[concepts/uncertainty-aware-bundle-adjustment]] — multi-view feature inconsistency → differentiable UBA, map-free uncertainty
+- Generated annotation JSONs + annotated PDFs for all 3 papers
+- Updated [[synthesis/dynamic-slam-comparison]] with 7-method comprehensive comparison + 3-paradigm taxonomy (tracking-side / mapping-side+temporal / feature-side)
+- Updated [[synthesis/timeline]] with 2026 dynamic SLAM explosion
+- Updated [[wiki/papers/_reading-log]] with 3 new entries
+- Updated index.md
+
+### Papers deep-read
+- [[papers/2026-06-13/dy3dgs-slam]] (Dy3DGS-SLAM, arXiv 2025) — tracking-side probability fusion: optical flow + depth mask Bayesian fusion, single iteration, 17 FPS
+- [[papers/2026-06-13/ggd-slam]] (GGD-SLAM, arXiv 2026) — temporal motion modeling: FIFO(L=12) + sequential attention GMM, distractor-adaptive SSIM, KD-tree occlusion recovery
+- [[papers/2026-06-13/droid-slam-in-the-wild]] (DROID-SLAM in the Wild, CVPR 2026) — feature-side UBA: multi-view DINOv2 feature inconsistency → differentiable uncertainty-aware BA, non-3DGS, Bonn 2.30 cm / TUM 1.36 cm
+
+### Concepts upgraded (stub → full)
+- [[concepts/probabilistic-dynamic-segmentation]] — full methodology, Bayesian fusion formula, comparison with scene consistency / uncertainty / temporal attention approaches
+- [[concepts/generalizable-motion-model]] — full GMM pipeline, FIFO design, sequential attention mechanism, dynamic feature enhancer, training (Davis) vs inference
+- [[concepts/uncertainty-aware-bundle-adjustment]] — UBA mathematical formulation, feature inconsistency measurement, interleaved optimization, comparison with mapping-side uncertainty
+
 ## 2026-06-13 — Batch shallow ingest (1 paper, round 3)
 - Processed 1 newly added unlogged paper clip from raw/papers/
 - Created 1 new paper page: [[papers/2026-06-13/droid-slam-in-the-wild]]

@@ -52,13 +52,21 @@ tags: [synthesis, timeline]
 
 2025年的主题是"系统化"——3DGS不再只是新视角合成工具，而是演进为完整的感知-建图-定位系统。Gaussian-SLAM覆盖了嵌入式部署（GS-LIVO）、多模态通用（G²-Mapping）、动态场景（WildGS-SLAM）、前馈式跟踪（Pseudo Depth Meets Gaussian）四个维度。同时VGGT将3DGS初始化从COLMAP（分钟级）推到前馈推理（秒级），标志着3DGS从"逐场景优化"向"前馈式通用化"的范式迁移。
 
-## 2026 — 语义SLAM时代开启
+## 2026 — 语义SLAM + 动态鲁棒性时代
 
+### 语义SLAM
 | 论文 | 会议/期刊 | 贡献 |
 |------|-----------|------|
 | **[[papers/2026-05-21/langgs-slam\|LangGS-SLAM]]** (Ha et al.) | arxiv 2026 | 首个在线实时语言特征Gaussian SLAM：Top-K渲染替代alpha-blending做高维特征渲染（消除语义歧义），无压缩存储原始VLM特征，15 FPS同时超越纯几何SOTA的几何精度和离线方法的语义保真度 |
 
-2026年的LangGS-SLAM标志着3DGS从"纯几何SLAM"向"几何+语义双场SLAM"的融合——将LangSplat等离线语言场的高斯语义嵌入范式首次以在线实时方式实现，同时通过Top-K渲染解决了alpha-blending在高维特征上的语义歧义本质缺陷。
+### 动态SLAM——先验自由运动检测三条路线
+| 论文 | 会议/期刊 | 贡献 |
+|------|-----------|------|
+| **[[papers/2026-06-13/dy3dgs-slam\|Dy3DGS-SLAM]]** (Li et al.) | arxiv 2025 | **跟踪侧概率融合**：首个纯单目RGB动态3DGS-SLAM，光流+深度mask贝叶斯融合+运动损失，单次网络迭代，17FPS |
+| **[[papers/2026-06-13/ggd-slam\|GGD-SLAM]]** (Liu et al.) | arxiv 2026 | **时序建模运动先验**：FIFO队列+时序注意力可泛化运动模型，干扰自适应SSIM+KD-tree遮挡恢复，跨帧学习"什么是运动" |
+| **[[papers/2026-06-13/droid-slam-in-the-wild\|DROID-SLAM in the Wild]]** (Li et al.) | **CVPR 2026** | **特征侧不确定性**：多视图DINOv2特征不一致性→可微UBA，完全不依赖建图质量，非3DGS路线最鲁棒，Bonn 2.30 cm / TUM 1.36 cm |
+
+2026年的关键转折：动态SLAM从"能否处理"进入"如何最优处理"阶段，出现了三条正交的技术路线——跟踪侧概率融合（Dy3DGS-SLAM）、时序运动建模（GGD-SLAM）、特征侧多视图一致性（DROID-W）。DROID-W以CVPR 2026接收标志着"特征侧不确定性"路线获得顶会认可，同时其非3DGS选择提出了"鲁棒跟踪 vs 照片级渲染"的权衡问题。GGD-SLAM的时序注意力证明了跨帧运动语义学习的可行性——能检测"当前帧静态但跨帧移动"的物体，这是所有逐帧方法的盲区。
 
 ## 研究主线分化
 
@@ -71,6 +79,16 @@ tags: [synthesis, timeline]
                     ├── 渲染质量 ───── Mip-Splatting (2024) → Mobile-GS (2024)
                     │
                     ├── 动态场景 ───── Street Gaussians (2024) → WildGS-SLAM (2025)
+                    │    │                                              │
+                    │    │                    ┌─ Dy3DGS-SLAM (2025) ← 跟踪侧概率融合
+                    │    │                    │
+                    │    └─ 动态SLAM爆炸 ────┼─ GGD-SLAM (2026) ← 时序运动建模
+                    │                         │
+                    │                         ├─ ADD-SLAM (2025) ← 渲染侧一致性+动态建模
+                    │                         │
+                    │                         ├─ UP-SLAM (2025, ICRA 2026) ← 并行+八叉树
+                    │                         │
+                    │                         └─ DROID-W (2026, CVPR 2026) ← 特征侧UBA(非3DGS)
                     │
                     ├── Gaussian SLAM ─ GS-LIVO (2025) → G²-Mapping (2025)
                     │                      │                   └→ WildGS-SLAM (2025)

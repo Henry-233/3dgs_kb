@@ -39,9 +39,9 @@
 - [[concepts/tri-view-geometric-constraints]] — 三视图几何约束：利用三帧稠密匹配构建跨帧几何约束，抗误匹配能力优于成对几何
 - [[concepts/intrinsic-appearance-normalization]] — 内在外观归一化：将场景反照率与瞬态光照解耦，学习光照不变的标准化颜色表示
 - [[concepts/uncertainty-aware-tracking]] — 不确定性感知跟踪：利用逐像素不确定性图加权跟踪损失，使优化聚焦信息丰富区域
-- [[concepts/probabilistic-dynamic-segmentation]] — 概率动态分割：概率融合光流与深度不一致mask，无需训练的动态物体检测
-- [[concepts/generalizable-motion-model]] — 可泛化运动模型：FIFO帧管理+时序注意力学习动静态分离，无需语义标注或深度输入
-- [[concepts/uncertainty-aware-bundle-adjustment]] — 不确定性感知BA：多视图特征不一致性估计逐像素不确定性，作为可微BA权重实现动态场景鲁棒跟踪
+- [[concepts/probabilistic-dynamic-segmentation]] — 概率动态分割：贝叶斯融合光流与深度mask，无需训练的单次迭代动态检测（Dy3DGS-SLAM核心）
+- [[concepts/generalizable-motion-model]] — 可泛化运动模型：FIFO队列+时序注意力跨帧学习运动语义，干扰自适应SSIM消除动态污染（GGD-SLAM核心）
+- [[concepts/uncertainty-aware-bundle-adjustment]] — 不确定性感知BA：多视图DINOv2特征不一致性→可微UBA，地图无关的动态鲁棒跟踪（DROID-W核心，CVPR 2026）
 
 ### 传感器融合
 - [[concepts/multi-sensor-fusion]] — 多传感器融合SLAM：统一支持单目、RGB-D、LiDAR-惯性-视觉数据的通用高斯建图框架
@@ -70,9 +70,9 @@
 - [[papers/2026-06-11/roger-slam]] — RoGER-SLAM (Yin et al., arXiv 2025)：噪声/低光鲁棒SLAM，SP-RoFusion多模态融合+CLIP增强
 - [[papers/2026-06-08/vimgs-slam]] — ViMGS-SLAM (Array 2026)：多尺度ViT+3DGS单目SLAM，ATE提升46%，PSNR 39.6 dB
 - [[papers/2026-05-21/pseudo-depth-meets-gaussian]] — Pseudo Depth (Zhao et al., arXiv 2025)：Feed-forward位姿预测替代测试时优化，跟踪时间减少90%
-- [[papers/2026-06-13/dy3dgs-slam]] — Dy3DGS-SLAM (Li et al., arXiv 2025)：首个纯单目RGB动态3DGS-SLAM，概率融合光流+深度mask检测动态区域
-- [[papers/2026-06-13/ggd-slam]] — GGD-SLAM (Liu et al., arXiv 2026)：可泛化运动模型+时序注意力机制，无需语义先验的动静态分离
-- [[papers/2026-06-13/droid-slam-in-the-wild]] — DROID-SLAM in the Wild (Li et al., CVPR 2026)：可微不确定性感知BA，多视图特征不一致性驱动，非3DGS动态SLAM对比基线
+- [[papers/2026-06-13/dy3dgs-slam]] — Dy3DGS-SLAM (Li et al., arXiv 2025) ★深读：首个纯单目RGB动态3DGS-SLAM，贝叶斯概率融合光流+深度mask，单次迭代17FPS，Bonn ATE 4.5 cm
+- [[papers/2026-06-13/ggd-slam]] — GGD-SLAM (Liu et al., arXiv 2026) ★深读：可泛化运动模型FIFO+时序注意力，干扰自适应SSIM+KD-tree遮挡恢复，跨帧运动学习，Bonn ATE 2.7 cm
+- [[papers/2026-06-13/droid-slam-in-the-wild]] — DROID-SLAM in the Wild (Li et al., CVPR 2026) ★深读：特征侧可微UBA，多视图特征不一致性→不确定性权重，地图无关，Bonn 2.30 cm / TUM 1.36 cm 全最优
 
 ### 语言场
 - [[papers/2026-05-07/langsplat]] — LangSplat (Qin et al., CVPR 2024)：首个3D高斯语言场，CLIP+SAM分层语义，比LERF快199倍
@@ -93,5 +93,5 @@
 
 ## 综合专题 (wiki/synthesis/)
 
-- [[synthesis/dynamic-slam-comparison]] — 动态/鲁棒3DGS-SLAM方法对比（WildGS-SLAM, ADD-SLAM, UP-SLAM, RoGER-SLAM）
+- [[synthesis/dynamic-slam-comparison]] — 动态/鲁棒SLAM方法7篇综合对比（3条技术路线：跟踪侧/建图侧+时序/特征侧）
 - [[synthesis/robustness-dimensions]] — 3DGS-SLAM鲁棒性维度分解（测量/光照/几何三维度 + 组合矩阵 + 统一不确定性视角）
