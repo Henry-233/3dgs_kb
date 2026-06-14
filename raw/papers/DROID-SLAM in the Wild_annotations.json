@@ -1,0 +1,104 @@
+[
+  {
+    "page": 1,
+    "phrase": "differentiable Uncertainty-aware Bundle Adjustment",
+    "category": "core_contribution",
+    "note": "【核心贡献：可微UBA】将逐像素动态不确定性嵌入BA的马氏距离协方差矩阵——不确定性高的像素残差被自动降权，使动态物体不影响位姿优化。这是DROID-W与全部现有动态SLAM的根本性方法差异。"
+  },
+  {
+    "page": 1,
+    "phrase": "per-pixel uncertainty by exploiting multi-view visual feature inconsistency",
+    "category": "core_contribution",
+    "note": "【多视图特征不一致性】用DINOv2特征的跨视图余弦相似度测量'该像素是否违反刚性运动假设'——不需要语义标注、不需要先建地图。与WildGS-SLAM的建图依赖型不确定性形成根本对比。"
+  },
+  {
+    "page": 1,
+    "phrase": "real time at around 10 FPS",
+    "category": "result",
+    "note": "【实时性能】~10 FPS——虽慢于DROID-SLAM(~20FPS)，但在动态场景鲁棒性上的提升远超速度代价。"
+  },
+  {
+    "page": 2,
+    "phrase": "uncertainty optimization into the differentiable bundle adjustment (BA) layer",
+    "category": "method",
+    "note": "【交替优化设计】不确定性优化被集成到DROID-SLAM的可微BA层中——但采用交替而非联合优化（计算代价过高）。位姿-深度精化 ↔ 不确定性优化 交替迭代。"
+  },
+  {
+    "page": 3,
+    "phrase": "Uncertainty-aware Bundle Adjustment",
+    "category": "method",
+    "note": "【UBA模块Fig.2中央】系统流程：输入帧→DROID特征提取+DINOv2特征提取+Metric3D深度→(1)UBA：不确定性加权残差→位姿+深度更新；(2)不确定性优化：多视图特征一致性→不确定性更新。两模块交替迭代。"
+  },
+  {
+    "page": 3,
+    "phrase": "rigid-motion correspondence",
+    "category": "method",
+    "note": "【刚性运动对应Eq.1】p_ij = Π_c(G'_ij ∘ Π_c^{-1}(p_i, d'_i))——用当前位姿和深度估计将帧i的像素投影到帧j。该对应关系的残差是BA的优化目标，也是特征一致性测量的基础。"
+  },
+  {
+    "page": 4,
+    "phrase": "Σuncer",
+    "category": "method",
+    "note": "【不确定性感知协方差Eq.4】Σ_uncer_ij = diag(w_ij · 1/u'_i)——通过将1/u'_i嵌入马氏距离协方差，实现：u_i高(动态)→1/u_i低→协方差大→残差被降权。完全可微，可嵌入Gauss-Newton优化。"
+  },
+  {
+    "page": 4,
+    "phrase": "interleaved optimization strategy",
+    "category": "method",
+    "note": "【交替优化策略】联合优化位姿+深度+不确定性在Gauss-Newton中计算代价过高。采用交替：(1)固定u→Schur补更新G和d；(2)固定G和d→优化u。每次迭代两个子步骤各执行一次。"
+  },
+  {
+    "page": 4,
+    "phrase": "multi-view inconsistency via the similarity of DINOv2",
+    "category": "method",
+    "note": "【不确定性优化核心】用DINOv2特征的跨视图余弦相似度测量不一致性：cos(F_i, F_ij)低→特征不一致→该像素违反刚性运动→提高不确定性。损失E_sim = Σ(1-cos)·u'²。"
+  },
+  {
+    "page": 6,
+    "phrase": "Table 1. Tracking Performance on the Bonn RGB-D Dynamic Dataset",
+    "category": "result",
+    "note": "【Bonn跟踪结果Table 1】DROID-W ATE 2.30 cm(8场景平均)——超过所有RGB-only和RGB-D方法。WildGS-SLAM 2.52 cm，DynaSLAM 6.45 cm，DROID-SLAM 4.91 cm。证明特征侧不确定性优于建图侧不确定性。"
+  },
+  {
+    "page": 6,
+    "phrase": "Table 2. Tracking Performance on TUM RGB-D Dataset",
+    "category": "result",
+    "note": "【TUM跟踪结果Table 2】DROID-W ATE 1.36 cm(9场景平均)——超过DynaSLAM(1.69)、DynaMoN(1.63)、WildGS-SLAM(1.51)、DROID-SLAM(1.62)。每个场景均为最佳或次佳——一致性强。"
+  },
+  {
+    "page": 7,
+    "phrase": "Table 3. Tracking Performance on DyCheck Dataset",
+    "category": "result",
+    "note": "【DyCheck跟踪结果Table 3】DROID-W ATE 0.034(12场景平均)——超过DROID-SLAM(0.044)和WildGS-SLAM(0.056)。高纹理多样化环境中，依赖语义分割或高斯建图的不确定性方法频繁失败(表中大量F/N/A)。"
+  },
+  {
+    "page": 7,
+    "phrase": "Table 4. Tracking Performance on DROID-W Dataset",
+    "category": "result",
+    "note": "【DROID-W室外数据集Table 4】DROID-W ATE 0.230 m(7场景平均)——远超DROID-SLAM(1.460 m)和WildGS-SLAM(0.637 m)。Downtown 2从DROID-SLAM的7.84 m降至0.25 m——在极端动态场景中UBA的效果尤为显著。"
+  },
+  {
+    "page": 7,
+    "phrase": "Table 5. Runtime Comparisons",
+    "category": "result",
+    "note": "【运行效率Table 5】DROID-W平均FPS: Bonn 10.57、TUM 14.92、DyCheck 11.06。DROID-SLAM对应为19.89/26.97/17.50——UBA引入约50%速度代价，但换来动态鲁棒性的质变。"
+  },
+  {
+    "page": 7,
+    "phrase": "Table 6. Ablation Studies",
+    "category": "result",
+    "note": "【消融实验Table 6】(a)无UBA: 5.13 cm vs 完整2.30——UBA贡献最大；(b)无单目深度: 3.30——深度正则化在高度动态场景重要；(c)无不确定解耦: 2.57；(d)无仿射映射: 2.47；(e)无权重衰减: 2.34。每个组件均有正向贡献。"
+  },
+  {
+    "page": 8,
+    "phrase": "3D Reconstruction Comparisons on YouTube Sequences",
+    "category": "result",
+    "note": "【YouTube野外定性Fig.4】WildGS-SLAM在大多数YouTube序列上完全失败(高斯建图无法稳定)；DROID-SLAM出现明显尺度漂移(St. Moritz 1)和不准确几何(St. Moritz 3)；DROID-W重建准确且时序一致。"
+  },
+  {
+    "page": 8,
+    "phrase": "uncertainty optimization relies on frame-to-frame alignment",
+    "category": "limitation",
+    "note": "【局限性】不确定性优化依赖帧间对齐——大旋转、快速运动、严重遮挡时特征对应退化。这是'特征侧不确定性'方法的固有局限：需要足够的共视区域来测量跨视图特征一致性。"
+  }
+]
