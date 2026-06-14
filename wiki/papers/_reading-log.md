@@ -1,5 +1,6 @@
 # Paper Reading Log
 
+| 2026-06-14 | [[papers/2026-06-13/dy3dgs-slam|Dy3DGS-SLAM: Monocular 3D Gaussian Splatting SLAM for Dynamic Environments]] | 2025 | arXiv | done | slam, dynamic-slam, 3dgs, monocular-slam |
 | Date | Paper | Year | Venue | Status | Tags |
 |------|-------|------|-------|--------|------|
 | 2026-06-11 | [[papers/2026-06-11/add-slam|ADD-SLAM: Adaptive Dynamic Dense SLAM with Gaussian Splatting]] | 2025 | arXiv | done | slam, dynamic-slam, 3dgs |

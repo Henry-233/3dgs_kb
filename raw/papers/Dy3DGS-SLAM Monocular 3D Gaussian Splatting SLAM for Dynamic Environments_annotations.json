@@ -1,0 +1,104 @@
+[
+  {
+    "page": 1,
+    "phrase": "the first 3D Gaussian Splatting (3DGS) SLAM method for dynamic scenes using monocular RGB input",
+    "category": "core_contribution",
+    "note": "【核心贡献】首个纯单目RGB输入的动态场景3DGS-SLAM——此前动态NeRF/3DGS-SLAM均依赖RGB-D传感器。这一claim直接定义了论文在领域中的位置。"
+  },
+  {
+    "page": 1,
+    "phrase": "fuse optical flow masks and depth masks through a probabilistic model",
+    "category": "method",
+    "note": "【方法核心：概率融合】将光流mask与深度不一致mask通过贝叶斯概率模型融合——单次网络迭代即可获得准确动态mask。关键创新在于融合策略而非网络设计。"
+  },
+  {
+    "page": 1,
+    "phrase": "motion loss to constrain the pose estimation network",
+    "category": "method",
+    "note": "【运动损失】基于融合动态mask设计的新型损失函数——包含尺度约束的平移误差项和旋转误差项，解决单目SLAM的尺度模糊问题。"
+  },
+  {
+    "page": 1,
+    "phrase": "rendering loss of dynamic pixels, color, and depth to eliminate transient interference",
+    "category": "method",
+    "note": "【动态像素渲染损失】在建图阶段对动态像素施加独立惩罚——关键设计：不让动态像素的渲染误差与静态像素混合优化，消除动态物体造成的瞬态干扰。"
+  },
+  {
+    "page": 2,
+    "phrase": "Dynamic Mask Fusion",
+    "category": "method",
+    "note": "【动态Mask融合模块Sec III-A】系统流程：光流估计(U-Net)→光流mask F_m + 深度估计(Depth Anything v2)→深度mask D_m → 贝叶斯概率融合→ 二值化(T=0.95)→融合mask M̂。"
+  },
+  {
+    "page": 2,
+    "phrase": "lightweight U-Net motion segmentation network",
+    "category": "method",
+    "note": "【光流运动分割】轻量U-Net接收两帧输入，二值化光流结果——将mask区域内光流设为零。但仅光流mask较为粗糙，静态区域易被误分割，因此引入深度mask互补。"
+  },
+  {
+    "page": 3,
+    "phrase": "P(M(p) = 1 | Dm, Fm)",
+    "category": "method",
+    "note": "【贝叶斯融合公式Eq.2-3】逐像素后验动态概率∝ P(Dm|M=1)·P(Fm|M=1)·P(M=1)。假设光流和深度观测条件独立，以乘积形式融合两个似然项。"
+  },
+  {
+    "page": 3,
+    "phrase": "threshold, set to 0.95",
+    "category": "method",
+    "note": "【融合阈值T=0.95】极高阈值确保高精度——宁可漏检慢速运动物体，不可误杀静态像素。这是精度-召回率的权衡：误删静态像素会导致跟踪信息不足。"
+  },
+  {
+    "page": 3,
+    "phrase": "single iteration without incurring additional computational costs",
+    "category": "core_contribution",
+    "note": "【单次迭代vs DytanVO三次迭代】通过概率融合depth mask弥补光流mask的粗糙性，网络仅需单次迭代——DytanVO需要3次迭代(32.9ms)，本文仅10.3ms，3.2×加速。"
+  },
+  {
+    "page": 3,
+    "phrase": "camera motion loss LM",
+    "category": "method",
+    "note": "【运动损失Eq.6】L_M = ||T̂/max(|T̂·S_n|,ε) - T/max(|T·S_n|,ε)|| + ||R̂-R||·M_ds。平移项通过尺度因子S_n归一化以解决单目尺度模糊，旋转项仅在静态区域(M_ds)计算。"
+  },
+  {
+    "page": 3,
+    "phrase": "keyframe every 10 frames",
+    "category": "method",
+    "note": "【关键帧与局部BA】每10帧生成关键帧，≥4个关键帧组成关键帧组进行局部Bundle Adjustment——标准滑动窗口优化策略，校正累计漂移。"
+  },
+  {
+    "page": 4,
+    "phrase": "depth to infinity to perform pruning",
+    "category": "method",
+    "note": "【动态高斯剪枝】被标记为动态像素的高斯椭球体深度设为无穷大进行剪枝——但直接剪枝可能产生难以移除的伪影，因此追加光度+深度渲染损失进行消除。"
+  },
+  {
+    "page": 5,
+    "phrase": "TABLE I: Tracking performance on BONN-RGB-D",
+    "category": "result",
+    "note": "【BONN RGB-D跟踪结果Table I】Dy3DGS-SLAM ATE 4.5 cm(6场景平均)。在balloon2场景最优(1.9 cm)。优于RGB-D方法NID-SLAM(7.1cm)，接近RGB-D+语义先验的DynaSLAM(4.8cm)——纯单目方法达到RGB-D方法的水平。"
+  },
+  {
+    "page": 6,
+    "phrase": "TABLE II: Tracking performance on TUM-RGB-D",
+    "category": "result",
+    "note": "【TUM RGB-D跟踪结果Table II】Dy3DGS-SLAM ATE 4.7 cm(6场景平均)。在f3/static/xyz场景最优(2.0 cm)。高动态场景(f3/walk*)中显著优于所有NeRF/3DGS基线——NICE-SLAM和SplaTAM在walk场景几乎完全失败。"
+  },
+  {
+    "page": 6,
+    "phrase": "TABLE III: Ablation study",
+    "category": "result",
+    "note": "【消融实验Table III】光流+深度+融合 ATE 3.0 cm vs 仅光流 7.6 cm(提升60.52%)vs 仅深度 94.8 cm。深度单独几乎无用(94.8 cm)——说明仅靠深度不一致性不足以处理动态场景，必须与光流融合。"
+  },
+  {
+    "page": 6,
+    "phrase": "TABLE IV: Operating speed",
+    "category": "result",
+    "note": "【运行效率Table IV】跟踪17.0 FPS(DytanVO 10.5)、建图430.5 ms、网络更新10.3 ms(DytanVO 32.9→3.2×加速)、GPU显存12.8 MB(SplaTAM 14.6)。归功于单次迭代+高效CUDA实现。"
+  },
+  {
+    "page": 6,
+    "phrase": "apply this approach to mobile devices with lower computational costs",
+    "category": "limitation",
+    "note": "【未来工作/局限性】作者指出将方法适配移动设备的低计算成本——当前仍需RTX 3090 Ti桌面GPU，移动端部署尚未实现。"
+  }
+]

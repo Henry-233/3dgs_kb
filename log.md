@@ -1,5 +1,16 @@
 # Ingest Log
 
+## 2026-06-13 — Batch shallow ingest (1 paper, round 3)
+- Processed 1 newly added unlogged paper clip from raw/papers/
+- Created 1 new paper page: [[papers/2026-06-13/droid-slam-in-the-wild]]
+- Created 1 new concept stub:
+  - [[concepts/uncertainty-aware-bundle-adjustment]] — per-pixel uncertainty from multi-view feature inconsistency, differentiable BA weighting for dynamic scenes
+- Updated index.md
+- Updated [[output/待精读列表]] with 1 new paper
+
+### Papers ingested (shallow)
+- [[papers/2026-06-13/droid-slam-in-the-wild]] (DROID-SLAM in the Wild, CVPR 2026) — differentiable uncertainty-aware BA, multi-view feature inconsistency for per-pixel uncertainty, no predefined dynamic priors, ~10 FPS real-time
+
 ## 2026-05-07 — Initial ingest
 - Ingested 4 papers from raw/papers/
 - Created 12 concept pages in wiki/concepts/
@@ -113,6 +124,19 @@
 - Rewrote [[papers/2026-06-11/tvg-slam]] with complete methodology (DUST3R dense tri-view matching → Hybrid Geometric Tracking with photometric+trifocal 2D+3D alignment, DART sigmoid photometric weight decay, TUGI variance-guided Gaussian initialization with opacity attenuation), math formulations (Eq. 1-9), experimental results across 3 outdoor datasets (Waymo ATE 0.602, Small City ATE 1.195, Cambridge ATE 2.009 — 69% reduction vs OpenGS-SLAM), ablation (TUGI removal +38.3% ATE, DART +21.0%), and limitations
 - Upgraded [[concepts/tri-view-geometric-constraints]] stub → full page with trifocal tensor details, vs pairwise geometry comparison table, TUGI uncertainty estimation formula
 - ⚠️ Annotation skipped: no annotate_pdf.py script found
+
+## 2026-06-13 — Batch shallow ingest (2 papers)
+- Processed 2 unlogged paper clips from raw/papers/
+- Created 2 new paper pages: [[papers/2026-06-13/dy3dgs-slam]], [[papers/2026-06-13/ggd-slam]]
+- Created 2 new concept stubs:
+  - [[concepts/probabilistic-dynamic-segmentation]] — probabilistic fusion of optical flow + depth masks for training-free dynamic detection
+  - [[concepts/generalizable-motion-model]] — FIFO frame management + sequential attention for dynamic/static separation without semantic priors
+- Updated index.md
+- Updated [[output/待精读列表]] with 2 new papers
+
+### Papers ingested (shallow)
+- [[papers/2026-06-13/dy3dgs-slam]] (Dy3DGS-SLAM, arXiv 2025) — first monocular-only RGB dynamic 3DGS-SLAM, probabilistic flow+depth mask fusion, motion loss
+- [[papers/2026-06-13/ggd-slam]] (GGD-SLAM, arXiv 2026) — generalizable motion model, FIFO+sequential attention, no semantic priors or depth needed
 
 ## 2026-06-11 — Cross-paper synthesis
 - Created [[synthesis/dynamic-slam-comparison]] comparing 3 papers addressing dynamic/robust 3DGS-SLAM
