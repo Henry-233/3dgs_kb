@@ -1,5 +1,6 @@
 # Paper Reading Log
 
+| 2026-06-14 | [[papers/2026-06-13/ggd-slam|GGD-SLAM: Monocular 3DGS SLAM Powered by Generalizable Motion Model for Dynamic Environments]] | 2026 | arXiv | done | slam, dynamic-slam, 3dgs, monocular-slam, motion-model |
 | 2026-06-14 | [[papers/2026-06-13/dy3dgs-slam|Dy3DGS-SLAM: Monocular 3D Gaussian Splatting SLAM for Dynamic Environments]] | 2025 | arXiv | done | slam, dynamic-slam, 3dgs, monocular-slam |
 | Date | Paper | Year | Venue | Status | Tags |
 |------|-------|------|-------|--------|------|
